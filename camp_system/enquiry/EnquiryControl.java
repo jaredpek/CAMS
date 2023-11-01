@@ -18,8 +18,8 @@ public class EnquiryControl{
     {
         int indexStudent = 0;
         int indexCamp =0;
-        Student s1 = new Student;
-        Camp c1 = new Camp;
+        User s1 = new User();
+        Camp c1 = new Camp();
         System.out.println("Please enter the following details: ");
         System.out.println("Your name: "); String studentName;
 
@@ -56,9 +56,10 @@ public class EnquiryControl{
         int indexOfNewArray = 0;
         ArrayList<Enquiry> campEnquiries = new ArrayList<Enquiry>();
         for(int index = 0;index < enquiries.size();index++){
-            if(enquiries.get(index).getCamp() = camp)
+            if(enquiries.get(index).getCamp() == camp)
             {
-                campEnquiries.get(indexOfNewArray) = enquiries.get(index);
+                campEnquiries.add(enquiries.get(index));
+                indexOfNewArray++;
             }
         }
         return campEnquiries;
@@ -69,9 +70,10 @@ public class EnquiryControl{
         int indexOfNewArray = 0;
         ArrayList<Enquiry> studentEnquiries = new ArrayList<Enquiry>();
         for(int index = 0;index < enquiries.size();index++){
-            if(enquiries.get(index).getStudent() =student)
+            if(enquiries.get(index).getStudent() == student)
             {
-                studentEnquiries.get(indexOfNewArray) = enquiries.get(index);
+                studentEnquiries.add(enquiries.get(index));
+                indexOfNewArray++;
             }
         }
         return studentEnquiries;
