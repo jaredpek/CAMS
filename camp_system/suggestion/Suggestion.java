@@ -2,10 +2,11 @@ package camp_system.suggestion;
 import java.util.Scanner;
 
 import camp_system.camp.Camp;
+import camp_system.user.User;
 
 public class Suggestion {
-	private SuggestionStatus status;
-	private Student student;
+	private Status status;
+	private User student;
 	private Camp camp;
 	private String message;
 	
@@ -15,10 +16,10 @@ public class Suggestion {
 	public Suggestion() {
 		
 	}
-	public Student getStudent() {
+	public User getStudent() {
 		return student;
 	}
-	public void setStudent(Student student) {
+	public void setStudent(User student) {
 		this.student = student;
 	}
 	public Camp getCamp() {
@@ -33,11 +34,11 @@ public class Suggestion {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public SuggestionStatus getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(SuggestionStatus s) {
-		this.status = s;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	// composition

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import camp_system.camp.Camp;
+import camp_system.user.User;
 
 public class SuggestionControl {
 	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
@@ -11,14 +12,14 @@ public class SuggestionControl {
 		this.suggestionList = suggestion;
 	}
 	
-	public void addSuggestion() {
+	public void addSuggestion(User student, Camp camp, String message) {
 
 		Scanner sc = new Scanner(System.in);
 		Suggestion s2 = new Suggestion();
 
 		s2.setStudent(Student); // need to get from main
 		s2.setCamp(getCamps(student)); // from CampControl i think
-		s2.setStatus(Status Processing);
+		s2.setStatus(Status.PROCESSING);
 		System.out.println("Enter the suggestion you would like to make :");
 		s2.setMessage(sc.next()); // suggestion has been set
 		

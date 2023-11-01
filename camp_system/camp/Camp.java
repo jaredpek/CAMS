@@ -28,6 +28,18 @@ public class Camp extends CampInformation {
         this.withdrawedList = new ArrayList <User> ();
     }
 
+    public void printCampDetails() {
+        System.out.println("Name: " + getName());
+        System.out.println("Start Date: " + getStartDate().toString());
+        System.out.println("End Date: " + getEndDate().toString());
+        System.out.println("Register By: " + getRegisterBy().toString());
+        System.out.println("Group: " + getGroup());
+        System.out.println("Location: " + getLocation());
+        System.out.println("Description: " + getDescription());
+        System.out.println("Attendee Slots Remaining: " + (getTotalSlots() - getCommitteeSlots() - attendeeList.size()));
+        System.out.println("Committee Slots Remaining: " + (getCommitteeSlots() - committeeList.size()));
+    }
+
     public Boolean getActive() { return active; }
     protected void setActive(Boolean active) { this.active = active; }
 
@@ -61,8 +73,8 @@ public class Camp extends CampInformation {
         return false;
     }
 
-    public ArrayList <User> getAttendeeList() { return attendeeList; }
-    public void addAttendee(User user) {
+    protected ArrayList <User> getAttendeeList() { return attendeeList; }
+    protected void addAttendee(User user) {
         if (!vacancyAttendee()) {
             System.out.println("No more slots for attendees");
             return;
@@ -89,7 +101,7 @@ public class Camp extends CampInformation {
         }
         attendeeList.add(user);
     }
-    public void removeAttendee(User user) {
+    protected void removeAttendee(User user) {
         if (!enrolledAttendee(user)) {
             System.out.println("Not enrolled in this camp");
             return;
@@ -98,8 +110,8 @@ public class Camp extends CampInformation {
         withdrawedList.add(user);
     }
 
-    public ArrayList <User> getCommitteeList() { return committeeList; }
-    public void addCommittee(User user) {
+    protected ArrayList <User> getCommitteeList() { return committeeList; }
+    protected void addCommittee(User user) {
         if (!vacancyCommittee()) {
             System.out.println("No more slots for attendees");
             return;
@@ -132,22 +144,10 @@ public class Camp extends CampInformation {
         return false;
     }
 
-    public CampRole getCampRole(User student) {
-        if (enrolledStaff(student)) return CampRole.Staff;
-        if (enrolledAttendee(student)) return CampRole.Attendee;
-        if (enrolledCommittee(student)) return CampRole.Committee;
-        return CampRole.Not_Enrolled;
-    }
-
-    public void printCampDetails() {
-        System.out.println("Name: " + getName());
-        System.out.println("Start Date: " + getStartDate().toString());
-        System.out.println("End Date: " + getEndDate().toString());
-        System.out.println("Register By: " + getRegisterBy().toString());
-        System.out.println("Group: " + getGroup());
-        System.out.println("Location: " + getLocation());
-        System.out.println("Description: " + getDescription());
-        System.out.println("Attendee Slots Remaining: " + (getTotalSlots() - getCommitteeSlots() - attendeeList.size()));
-        System.out.println("Committee Slots Remaining: " + (getCommitteeSlots() - committeeList.size()));
+    public Role getCampRole(User student) {
+        if (enrolledStaff(student)) return Role.STAFF;
+        if (enrolledAttendee(student)) return Role.ATTENDEE;
+        if (enrolledCommittee(student)) return Role.COMMITTEE;
+        return null;
     }
 }
