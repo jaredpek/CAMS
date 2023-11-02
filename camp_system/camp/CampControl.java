@@ -17,16 +17,14 @@ public class CampControl {
 
     public void addTemplate(User user) throws ParseException {
         if (!(user.getRole() == Role.STAFF)) {
-            System.out.println("Only Staff can add Camps");
-            return;
+            System.out.println("Only Staff can add Camps"); return;
         }
         camps.add(new Camp("camp1", Faculty.NTU, "ntu", "camp1 in ntu!", dateParse.date("12-12-2023 10:00"), dateParse.date("15-12-2023 15:00"), dateParse.date("10-12-2023 23:59"), 100, 10, user));
     }
 
     public void addCamp(User user) throws ParseException {
         if (!(user.getRole() == Role.STAFF)) {
-            System.out.println("Only Staff can add Camps");
-            return;
+            System.out.println("Only Staff can add Camps"); return;
         }
         System.out.printf("Name: "); String name = scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(scan.nextLine());
@@ -65,7 +63,7 @@ public class CampControl {
             System.out.println("Only Staff can Edit Camps");
             return;
         }
-        ArrayList <Camp> createdCamps = getCamps(user);
+        ArrayList <Camp> createdCamps = getStaffCamps(user);
         if (createdCamps.size() <= 0) {
             System.out.println("No Camps Created");
             return;
@@ -79,59 +77,46 @@ public class CampControl {
         switch (option) {
             case 1:
                 System.out.printf("Enter New Visibility: "); Boolean active = scan.nextBoolean();
-                camp.setActive(active);
-                break;
+                camp.setActive(active); break;
             case 2:
                 System.out.printf("Enter New Name: "); String name = scan.nextLine();
-                camp.setName(name);
-                break;
+                camp.setName(name); break;
             case 3:
                 System.out.printf("Enter New Group: "); String group = scan.nextLine();
-                camp.setGroup(Faculty.fromString(group));
-                break;
+                camp.setGroup(Faculty.fromString(group)); break;
             case 4:
                 System.out.printf("Enter New Location: "); String location = scan.nextLine();
-                camp.setLocation(location);
-                break;
+                camp.setLocation(location); break;
             case 5:
                 System.out.printf("Enter New Description: "); String description = scan.nextLine();
-                camp.setDescription(description);
-                break;
+                camp.setDescription(description); break;
             case 6:
                 System.out.printf("Enter New Start Date: "); String startDate = scan.nextLine();
-                camp.setStartDate(dateParse.date(startDate));
-                break;
+                camp.setStartDate(dateParse.date(startDate)); break;
             case 7:
                 System.out.printf("Enter New End Date: "); String endDate = scan.nextLine();
-                camp.setEndDate(dateParse.date(endDate));
-                break;
+                camp.setEndDate(dateParse.date(endDate)); break;
             case 8:
                 System.out.printf("Enter New Date to Register By: "); String registerBy = scan.nextLine();
-                camp.setRegisterBy(dateParse.date(registerBy));
-                break;
+                camp.setRegisterBy(dateParse.date(registerBy)); break;
             case 9:
                 System.out.printf("Enter New Total Slots: "); int totalSlots = scan.nextInt(); scan.nextLine();
-                camp.setTotalSlots(totalSlots);
-                break;
+                camp.setTotalSlots(totalSlots); break;
             case 10:
                 System.out.printf("Enter New Committee Slots: "); int committeeSlots = scan.nextInt(); scan.nextLine();
-                camp.setCommitteeSlots(committeeSlots);
-                break;
+                camp.setCommitteeSlots(committeeSlots); break;
             default:
-                System.out.println("Invalid Option");
-                break;
+                System.out.println("Invalid Option"); break;
         }
     }
 
     public void deleteCamp(User user) {
         if (!(user.getRole() == Role.STAFF)) {
-            System.out.println("Only Staff can Delete Camps");
-            return;
+            System.out.println("Only Staff can Delete Camps"); return;
         }
-        ArrayList <Camp> createdCamps = getCamps(user);
+        ArrayList <Camp> createdCamps = getStaffCamps(user);
         if (createdCamps.size() <= 0) {
-            System.out.println("No Camps Created");
-            return;
+            System.out.println("No Camps Created"); return;
         }
         printCamps(createdCamps);
         System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
@@ -143,31 +128,50 @@ public class CampControl {
         return null;
     }
 
-    public ArrayList <Camp> getCamps(Faculty group) {
+    public ArrayList <Camp> getGroupCamps(Faculty group) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.isGroup(group)) {
-                result.add(camp);
-            }
+            if (camp.isGroup(group)) result.add(camp);
         }
         return result;
     }
 
-    public ArrayList <Camp> getCamps(User user) {
+    public ArrayList <Camp> getAttendeeCamps(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledAttendee(user) || camp.enrolledCommittee(user) || camp.enrolledStaff(user)) {
-                result.add(camp);
-            }
+            if (camp.enrolledAttendee(user)) result.add(camp);
+        }
+        return result;
+    }
+
+    public ArrayList <Camp> getCommitteeCamps(User user) {
+        ArrayList <Camp> result = new ArrayList <Camp> ();
+        for (Camp camp: camps) {
+            if (camp.enrolledCommittee(user)) result.add(camp);
+        }
+        return result;
+    }
+
+    public ArrayList <Camp> getStudentCamps(User user) {
+        ArrayList <Camp> result = new ArrayList <Camp> ();
+        for (Camp camp: camps) {
+            if (camp.enrolledAttendee(user) || camp.enrolledCommittee(user)) result.add(camp);
+        }
+        return result;
+    }
+
+    public ArrayList <Camp> getStaffCamps(User user) {
+        ArrayList <Camp> result = new ArrayList <Camp> ();
+        for (Camp camp: camps) {
+            if (camp.enrolledStaff(user)) result.add(camp);
         }
         return result;
     }
 
     public void registerAttendee(User user) {
-        ArrayList <Camp> availableCamps = getCamps(user.getFaculty());
+        ArrayList <Camp> availableCamps = getGroupCamps(user.getFaculty());
         if (availableCamps.size() <= 0) {
-            System.out.println("No Camps Available");
-            return;
+            System.out.println("No Camps Available"); return;
         }
         printCamps(availableCamps);
         System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
@@ -175,14 +179,13 @@ public class CampControl {
     }
 
     public void registerCommittee(User user) {
-        ArrayList <Camp> registeredCamps = getCamps(user.getFaculty());
+        ArrayList <Camp> registeredCamps = getCommitteeCamps(user);
         for (int i = 0; i < registeredCamps.size(); i ++) {
             if (registeredCamps.get(i).enrolledCommittee(user)) return;
         }
-        ArrayList <Camp> availableCamps = getCamps(user.getFaculty());
+        ArrayList <Camp> availableCamps = getGroupCamps(user.getFaculty());
         if (availableCamps.size() <= 0) {
-            System.out.println("No Camps Available");
-            return;
+            System.out.println("No Camps Available"); return;
         }
         printCamps(availableCamps);
         System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
@@ -190,10 +193,9 @@ public class CampControl {
     }
 
     public void withdrawAttendee(User user) {
-        ArrayList <Camp> registeredCamps = getCamps(user.getFaculty());
+        ArrayList <Camp> registeredCamps = getAttendeeCamps(user);
         if (registeredCamps.size() <= 0) {
-            System.out.println("No Camps Registered");
-            return;
+            System.out.println("No Camps Registered"); return;
         }
         printCamps(registeredCamps);
         System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();

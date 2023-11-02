@@ -39,7 +39,7 @@ public class CampTest {
                     break;
                 }
                 case 3: {
-                    ArrayList <Camp> availableCamps = campControl.getCamps(student1.getFaculty());
+                    ArrayList <Camp> availableCamps = campControl.getGroupCamps(student1.getFaculty());
                     if (availableCamps.size() <= 0) {
                         System.out.println("No Camps Available");
                         break;
@@ -48,7 +48,7 @@ public class CampTest {
                     break;
                 }
                 case 4: {
-                    ArrayList <Camp> registeredCamps = campControl.getCamps(student2);
+                    ArrayList <Camp> registeredCamps = campControl.getStudentCamps(student2);
                     if (registeredCamps.size() <= 0) {
                         System.out.println("No Camps Registered");
                         break;
