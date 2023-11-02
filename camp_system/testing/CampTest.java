@@ -1,13 +1,11 @@
 package camp_system.testing;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
-import camp_system.date_parser.DateParse;
 import camp_system.user.User;
 import camp_system.user.Faculty;
 import camp_system.user.Role;
@@ -15,7 +13,6 @@ import camp_system.user.Role;
 public class CampTest {
     public static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) throws ParseException {
-        DateParse dateParse = new DateParse();
         User staff1 = new User("staff1", "staff1", "password", Faculty.NTU, Role.STAFF);
         User student1 = new User("student1", "student1", "password", Faculty.CCEB, Role.STUDENT);
         User student2 = new User("student2", "student2", "password", Faculty.SCSE, Role.STUDENT);
@@ -34,17 +31,7 @@ public class CampTest {
             int option = scan.nextInt(); scan.nextLine();
             switch (option) {
                 case 1: {
-                    System.out.printf("Name: "); String name = scan.nextLine();
-                    System.out.printf("Group: "); Faculty group = Faculty.fromString(scan.nextLine());
-                    System.out.printf("Location: "); String location = scan.nextLine();
-                    System.out.printf("Description: "); String description = scan.nextLine();
-                    System.out.printf("Start Date: "); Date startDate = dateParse.date(scan.nextLine());
-                    System.out.printf("End Date: "); Date endDate = dateParse.date(scan.nextLine());
-                    System.out.printf("Register By: "); Date registerBy = dateParse.date(scan.nextLine());
-                    System.out.printf("Total Slots: "); int totalSlots = scan.nextInt(); scan.nextLine();
-                    System.out.printf("Committee Slots: "); int committeeSlots = scan.nextInt(); scan.nextLine();
-                    Camp campAdd = new Camp(name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, staff1);
-                    campControl.addCamp(staff1, campAdd);
+                    campControl.addCamp(staff1);
                     break;
                 }
                 case 2: {
@@ -61,7 +48,7 @@ public class CampTest {
                     break;
                 }
                 case 4: {
-                    ArrayList <Camp> registeredCamps = campControl.getCamps(student1);
+                    ArrayList <Camp> registeredCamps = campControl.getCamps(student2);
                     if (registeredCamps.size() <= 0) {
                         System.out.println("No Camps Registered");
                         break;
@@ -70,58 +57,23 @@ public class CampTest {
                     break;
                 }
                 case 5: {
-                    ArrayList <Camp> createdCamps = campControl.getCamps(staff1);
-                    if (createdCamps.size() <= 0) {
-                        System.out.println("No Camps Created");
-                        break;
-                    }
-                    campControl.printCamps(createdCamps);
-                    System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
-                    campControl.editCamp(staff1, createdCamps.get(index - 1));
+                    campControl.editCamp(staff1);
                     break;
                 }
                 case 6: {
-                    ArrayList <Camp> createdCamps = campControl.getCamps(staff1);
-                    if (createdCamps.size() <= 0) {
-                        System.out.println("No Camps Created");
-                        break;
-                    }
-                    campControl.printCamps(createdCamps);
-                    System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
-                    campControl.deleteCamp(staff1, createdCamps.get(index - 1));
+                    campControl.deleteCamp(staff1);
                     break;
                 }
                 case 7: {
-                    ArrayList <Camp> availableCamps = campControl.getCamps(student2.getFaculty());
-                    if (availableCamps.size() <= 0) {
-                        System.out.println("No Camps Available");
-                        break;
-                    }
-                    campControl.printCamps(availableCamps);
-                    System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
-                    campControl.registerAttendee(student2, availableCamps.get(index - 1));
+                    campControl.registerAttendee(student2);
                     break;
                 }
                 case 8: {
-                    ArrayList <Camp> availableCamps = campControl.getCamps(student2.getFaculty());
-                    if (availableCamps.size() <= 0) {
-                        System.out.println("No Camps Available");
-                        break;
-                    }
-                    campControl.printCamps(availableCamps);
-                    System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
-                    campControl.registerCommittee(student2, availableCamps.get(index - 1));
+                    campControl.registerCommittee(student2);
                     break;
                 }
                 case 9: {
-                    ArrayList <Camp> availableCamps = campControl.getCamps(student2.getFaculty());
-                    if (availableCamps.size() <= 0) {
-                        System.out.println("No Camps Available");
-                        break;
-                    }
-                    campControl.printCamps(availableCamps);
-                    System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
-                    campControl.withdrawAttendee(student2, availableCamps.get(index - 1));
+                    campControl.withdrawAttendee(student2);
                     break;
                 }
             }
