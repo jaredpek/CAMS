@@ -16,7 +16,6 @@ public class Report {
         try (FileWriter fw = new FileWriter(file, false);
                 BufferedWriter bw = new BufferedWriter(fw)) 
         {
-             //camp->name is camp name or participant name?
              bw.write(camp.getName());
              bw.newLine();
                
@@ -67,9 +66,11 @@ public class Report {
     }
     public void performanceReport(Camp camp)
     {
+         //prints out the number of enquiries and suggestions committee member completed (+point for each suggestion/enquiry)
+         //needs a getPoint method from user that stores the points gained by every individual user
     	
     }
-    //in CampApp
+    //test
     /*public static void main(String[] args)
     {
     	
