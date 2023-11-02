@@ -68,6 +68,7 @@ public class Report {
     {
          //prints out the number of enquiries and suggestions committee member completed (+point for each suggestion/enquiry)
          //needs a getPoint method from user that stores the points gained by every individual user
+         //print out the committee list with their respective points 
     	
     }
     //test
