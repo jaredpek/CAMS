@@ -7,9 +7,10 @@ import CampSystem.Enquiry.enquiryStatus;
 
 public class EnquiryControl{
 
-    private ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
+    private ArrayList <Enquiry> enquiries;
     
     Scanner scan = new Scanner(System.in);
+    public EnquiryControl() {this.enquiries = new ArrayList <Enquiry> (); }
     public EnquiryControl(ArrayList <Enquiry> enquiries){
         this.enquiries = enquiries;
     }

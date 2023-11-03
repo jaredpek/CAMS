@@ -11,7 +11,7 @@ public class UserControl {
     public UserControl(String csvFilePath) {
         this.csvFilePath = csvFilePath;
         this.users = new ArrayList<>();
-        readExcel(this.csvFilePath);
+        // readExcel(this.csvFilePath);
     }
 
     public void readExcel(String csvFilePath) {

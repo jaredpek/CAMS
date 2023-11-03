@@ -11,9 +11,14 @@ import camp_system.user.Faculty;
 import camp_system.user.Role;
 
 public class CampControl {
-    private ArrayList <Camp> camps = new ArrayList <Camp> ();
+    private ArrayList <Camp> camps;
     public Scanner scan = new Scanner(System.in);
     public DateParse dateParse = new DateParse();
+
+    public CampControl() {this.camps = new ArrayList <Camp> ();}
+    public CampControl(ArrayList <Camp> camps) {
+        this.camps = camps;
+    }
 
     public void addTemplate(User user) throws ParseException {
         if (!(user.getRole() == Role.STAFF)) {

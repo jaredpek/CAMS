@@ -33,7 +33,7 @@ public class CampMenu {
 
     }
     public void campMenu() {
-
+        System.out.println("Camp Menu");
     }
     public void reportMenu() {
 
