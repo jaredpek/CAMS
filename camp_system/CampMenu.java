@@ -14,6 +14,7 @@ public class CampMenu {
         System.out.println("6: Manage Camp Enquiries");
         System.out.println("7: Manage Camp Suggestions");
         System.out.println("8: Generate Camp Report");
+        System.out.println("9: Logout");
     }
     public void staffMenu() {
         System.out.println("Welcome to NTU CAMS!");
@@ -25,6 +26,7 @@ public class CampMenu {
         System.out.println("6: View Student Roles");
         System.out.println("7: Manage Camp Suggestions");
         System.out.println("8: Generate Camp Report");
+        System.out.println("9: Logout");
     }
     public void enquiryMenu() {
 
@@ -33,7 +35,7 @@ public class CampMenu {
 
     }
     public void campMenu() {
-
+        System.out.println("Camp Menu");
     }
     public void reportMenu() {
 

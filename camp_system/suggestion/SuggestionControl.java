@@ -6,10 +6,11 @@ import camp_system.camp.Camp;
 import camp_system.user.User;
 
 public class SuggestionControl {
-	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
-	
-	public SuggestionControl(ArrayList<Suggestion> suggestion) {
-		this.suggestionList = suggestion;
+	private ArrayList<Suggestion> suggestionList;
+
+	public SuggestionControl() { this.suggestionList = new ArrayList<Suggestion>(); }
+	public SuggestionControl(ArrayList<Suggestion> suggestions) {
+		this.suggestionList = suggestions;
 	}
 	
 	public void addSuggestion(User student, Camp camp, String message) {

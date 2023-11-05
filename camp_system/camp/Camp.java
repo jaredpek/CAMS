@@ -39,6 +39,12 @@ public class Camp extends CampInformation {
         System.out.println("Attendee Slots Remaining: " + (getTotalSlots() - getCommitteeSlots() - attendeeList.size()));
         System.out.println("Committee Slots Remaining: " + (getCommitteeSlots() - committeeList.size()));
     }
+    public void printRoles() {
+        System.out.println("Committee:");
+        for (User user : committeeList) System.out.println(user.getName());
+        System.out.println("\nAttendee:");
+        for (User user : attendeeList) System.out.println(user.getName());
+    }
 
     public Boolean getActive() { return active; }
     protected void setActive(Boolean active) { this.active = active; }
@@ -73,7 +79,7 @@ public class Camp extends CampInformation {
         return false;
     }
 
-    protected ArrayList <User> getAttendeeList() { return attendeeList; }
+    public ArrayList <User> getAttendeeList() { return attendeeList; }
     protected void addAttendee(User user) {
         if (!vacancyAttendee()) {
             System.out.println("No more slots for attendees");
@@ -110,7 +116,7 @@ public class Camp extends CampInformation {
         withdrawedList.add(user);
     }
 
-    protected ArrayList <User> getCommitteeList() { return committeeList; }
+    public ArrayList <User> getCommitteeList() { return committeeList; }
     protected void addCommittee(User user) {
         if (!vacancyCommittee()) {
             System.out.println("No more slots for attendees");
