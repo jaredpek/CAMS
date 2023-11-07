@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 import camp_system.user.Faculty;
 
+/**
+ * Represents a filter and sorter class that modifies a list of camps based on certain requirements and in a specified order
+ */
 public class CampFilter {
     public Scanner scan = new Scanner(System.in);
 
@@ -24,6 +27,13 @@ public class CampFilter {
         System.out.println("4: End before Specific Date");
         System.out.println("5: None (Default)");
     }
+
+    /**
+     * Filters a list of camps by a specified group
+     * @param camps List of camps to filter
+     * @param group Specified group to filter by
+     * @return ArrayList
+     */
     public ArrayList <Camp> filterByGroup(ArrayList <Camp> camps, Faculty group) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
@@ -33,6 +43,13 @@ public class CampFilter {
         }
         return result;
     }
+    
+    /**
+     * Filters a list of camps by a specified location
+     * @param camps List of camps to filter
+     * @param location Specified location to filter by
+     * @return ArrayList
+     */
     public ArrayList <Camp> filterByLocation(ArrayList <Camp> camps, String location) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
@@ -42,6 +59,13 @@ public class CampFilter {
         }
         return result;
     }
+    
+    /**
+     * Filters a list of camps by a specified start date
+     * @param camps List of camps to filter
+     * @param startDate Specified start date to filter by
+     * @return ArrayList
+     */
     public ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) throws ParseException {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
@@ -51,6 +75,13 @@ public class CampFilter {
         }
         return result;
     }
+    
+    /**
+     * Filters a list of camps by a specified end date
+     * @param camps List of camps to filter
+     * @param endDate Specified end date to filter by
+     * @return ArrayList
+     */
     public ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) throws ParseException {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
@@ -60,6 +91,13 @@ public class CampFilter {
         }
         return result;
     }
+    
+    /**
+     * Filters a list of camps based on a selected attribute
+     * @param camps List of camps to filter
+     * @param option Camp attribute to filter by
+     * @return ArrayList
+     */
     public ArrayList <Camp> filterCamps(ArrayList <Camp> camps, int option) throws ParseException {
         switch (option) {
             case 1: {
@@ -95,6 +133,13 @@ public class CampFilter {
         System.out.println("1: Ascending (Default)");
         System.out.println("2: Descending");
     }
+
+    /**
+     * Sorts a list of camps by the group
+     * @param camps List of camps to sort
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortByGroup(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getGroup().toString().compareTo(camp2.getGroup().toString())); break;
@@ -102,6 +147,13 @@ public class CampFilter {
         }
         return camps;
     }
+    
+    /**
+     * Sorts a list of camps by the location
+     * @param camps List of camps to sort
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortByLocation(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getLocation().toLowerCase().compareTo(camp2.getLocation().toLowerCase())); break;
@@ -109,6 +161,13 @@ public class CampFilter {
         }
         return camps;
     }
+    
+    /**
+     * Sorts a list of camps by the start date
+     * @param camps List of camps to sort
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortByStartDate(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getStartDate().compareTo(camp2.getStartDate())); break;
@@ -116,6 +175,13 @@ public class CampFilter {
         }
         return camps;
     }
+    
+    /**
+     * Sorts a list of camps by the end date
+     * @param camps List of camps to sort
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortByEndDate(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getEndDate().compareTo(camp2.getEndDate())); break;
@@ -123,6 +189,13 @@ public class CampFilter {
         }
         return camps;
     }
+
+    /**
+     * Sorts a list of camps in alphabetical order
+     * @param camps List of camps to sort
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortByAlphabetical(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getName().toLowerCase().compareTo(camp2.getName().toLowerCase())); break;
@@ -130,6 +203,14 @@ public class CampFilter {
         }
         return camps;
     }
+
+    /**
+     * Sorts a list of camps by a specified attribute and order
+     * @param camps List of camps to sort
+     * @param sortOption Attribute to sort the camps by
+     * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
+     * @return
+     */
     public ArrayList <Camp> sortCamps(ArrayList <Camp> camps, int sortOption, int orderOption) {
         switch (sortOption) {
             case 1: return sortByGroup(camps, orderOption);
