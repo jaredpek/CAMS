@@ -32,7 +32,15 @@ public class CampMenu {
 
     }
     public void suggestionMenu() {
-
+        System.out.println("Suggestion Menu");
+		System.out.println("1: Add Suggestion");
+		System.out.println("2: Edit Suggestion");
+		System.out.println("3: Delete Suggestion");
+		System.out.println("4: Get all Suggestions");
+		
+		if (user.getRole() == STAFF) { // only show if current user is a staff
+			System.out.println("5: Get all Suggestions by Camp");
+		}
     }
     public void campMenu() {
         System.out.println("Camp Menu");
