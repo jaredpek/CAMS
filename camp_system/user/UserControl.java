@@ -5,22 +5,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import camp_system.camp.Camp;
+
 public class UserControl {
-    private String csvFilePath;
     private  ArrayList<User> users;
-    public UserControl(String csvFilePath) {
-        this.csvFilePath = csvFilePath;
+    public UserControl(String[] csvFilePaths) {
         this.users = new ArrayList<>();
-        // readExcel(this.csvFilePath);
+        for (String csvFilePath : csvFilePaths) {
+            readExcel(csvFilePath);
+        }
     }
 
-    public void readExcel(String csvFilePath) {
-    try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+    public void readExcel(String csvFilePath1) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath1))) {
         String line;
         Role role = Role.STUDENT;
-            if (csvFilePath.contains("students.csv")) {
+            if (csvFilePath1.contains("students.csv")) {
                 role = Role.STUDENT;
-            } else if (csvFilePath.contains("staffs.csv")) {
+            } else if (csvFilePath1.contains("staffs.csv")) {
                 role = Role.STAFF;
             }
         while ((line = reader.readLine()) != null) {
@@ -33,7 +35,7 @@ public class UserControl {
                 String userID = email.split("@")[0]; // Extract the user ID from the email
                 
 
-                User user = new User(name, userID, "password", faculty, role); // Create a User object with a default password 
+                User user = new User(name, userID, "password", faculty, role, null, 0); // Create a User object with a default password 
                 users.add(user);
             } else {
                 System.err.println("Error: CSV line does not have enough values: " + line);
@@ -61,7 +63,7 @@ public class UserControl {
         return null;
     }
     //test
-    /*public void printUserList() {
+    public void printUserList() {
         for (User user : users) {
             System.out.println("Name: " + user.getName());
             System.out.println("Email: " + user.getUserID());
@@ -72,7 +74,8 @@ public class UserControl {
         }
     }
     public static void main(String[] args) {
-        UserControl userControl = new UserControl("C:\\Users\\qzq99\\OneDrive\\Documents\\GitHub\\CAMS\\students.csv");
+        String[] csvFiles = {"C:\\Users\\qzq99\\OneDrive\\Documents\\GitHub\\CAMS\\students.csv", "C:\\Users\\qzq99\\OneDrive\\Documents\\GitHub\\CAMS\\staffs.csv"};
+        UserControl userControl = new UserControl(csvFiles);
         userControl.printUserList();
 
         // Test case 1: A valid login
@@ -96,7 +99,7 @@ public class UserControl {
         } else {
             System.out.println("Login failed for user with ID: " + invalidUserID);
         }
-    }*/
+    }
 }
     
 
