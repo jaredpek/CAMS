@@ -1,6 +1,8 @@
 package camp_system.user;
 
 import camp_system.camp.Camp;
+import camp_system.enquiry.Enquiry;
+import camp_system.suggestion.Suggestion;
 
 public class User {
     private String name, userID, password;
@@ -38,5 +40,29 @@ public class User {
     public void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
 
     public int getPoint() {return point;}
-    
+    public void setPoint(int point) {this.point = point;}
+
+    public void addPoint(User user) {   
+    int pointsToAdd = 0;
+
+    // Add points for replied enquiries
+    for (Enquiry enquiry : user.getEnquiries()) {
+        if (enquiry.getStatus() == Enquiry.Status.REPLIED) {
+            pointsToAdd++;
+        }
+    }
+
+    // Add points for approved suggestions
+    for (Suggestion suggestion : user.getSuggestions()) {
+        if (suggestion.getStatus() == Suggestion.Status.APPROVED) {
+            pointsToAdd += 2; // One point for giving the suggestion, one extra point for acceptance
+        }
+        else if (suggestion.getStatus() == Suggestion.Status.PROCESSING || suggestion.getStatus() == Suggestion.Status.REJECTED) {
+            pointsToAdd++;
+        }
+        // Add the calculated points to the user's current points
+        user.setPoint(user.getPoint() + pointsToAdd);
+        }
+    }
 }
+    
