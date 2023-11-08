@@ -46,6 +46,9 @@ public class CampMenu {
         System.out.println("Camp Menu");
     }
     public void reportMenu() {
+	System.out.println("Report Menu");
+        System.out.println("1. Participant Report");
+        System.out.println("2. Performance Report");
 
     }
 }
