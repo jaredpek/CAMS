@@ -64,23 +64,60 @@ public class Report {
                
            }
     }
-    public void performanceReport(Camp camp)
-    {
-         //prints out the number of enquiries and suggestions committee member completed (+point for each suggestion/enquiry)
-         //needs a getPoint method from user that stores the points gained by every individual user
-         //print out the committee list with their respective points 
-    	
+   public void performanceReport(Camp camp) throws IOException {
+       
+        String path = "src/camp_system.report/PerformanceReport.csv";
+        File file = new File(path);
+
+        try (FileWriter fw = new FileWriter(file, false);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            List<User> committee = camp.getCommitteeList();
+
+            for (User user : committee) {
+
+                bw.write("Name: " + user.getName());
+                bw.newLine();
+
+                bw.write("Total points: " + user.getPoint());
+                bw.newLine();
+            }
+        }
     }
+
     //test
-    /*public static void main(String[] args)
-    {
-    	
-    	Report report = new Report();
+    /*
+    public static void main(String[] args) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        Date start = sdf.parse("09/11/23");
+        Date end = sdf.parse("30/09/23");
+        Date regBy = sdf.parse("30/09/23");
+
+        User staffUser = new User("Rachel", "staff001", "password", Faculty.ADM, Role.STAFF, null, 0);
+        User committeeUser = new User("CommitteeMember", "com001", "password", Faculty.SCSE, Role.STUDENT, null, 0);
+        User attendeeUser = new User("Attendee", "att001", "password", Faculty.SBS, Role.STUDENT, null, 0);
+
+        Camp camp = new Camp("Camp A", Faculty.EEE, "AIA", "Hallo",start,end,regBy, 5, 4, staffUser);
+
+        camp.addCommittee(committeeUser);
+        camp.addAttendee(attendeeUser);
+
+        committeeUser.setPoint(10);
+        List<User> committeeList = new ArrayList<>();
+        committeeList.add(committeeUser);
+
+        // Create report instance and generate reports
+        Report report = new Report();
         try {
             report.participantReport(camp);
+            report.performanceReport(camp);
+            System.out.println("Reports generated successfully. Check the CSV files.");
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("An error occurred while generating the reports.");
         }
-    }*/
+    }
+
+     */
     
 }
