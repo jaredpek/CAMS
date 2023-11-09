@@ -166,30 +166,12 @@ public class Camp extends CampInformation {
      * @param user
      */
     protected void addAttendee(User user) {
-        if (!vacancyAttendee()) {
-            System.out.println("No more slots for attendees");
-            return;
-        }
-        if (enrolledAttendee(user)) {
-            System.out.println("Already enrolled as an attendee");
-            return;
-        }
-        if (enrolledCommittee(user)) {
-            System.out.println("Already enrolled in the committee");
-            return;
-        }
-        if (enrolledStaff(user)) {
-            System.out.println("Already enrolled as the staff in charge");
-            return;
-        }
-        if (withdrawed(user)) {
-            System.out.println("Previously withdrawed from the camp");
-            return;
-        }
-        if (!withinDate(new Date())) {
-            System.out.println("Register date has already passed");
-            return;
-        }
+        if (!vacancyAttendee()) { System.out.println("No more slots for attendees"); return; }
+        if (enrolledAttendee(user)) { System.out.println("Already enrolled as an attendee"); return; }
+        if (enrolledCommittee(user)) { System.out.println("Already enrolled in the committee"); return; }
+        if (enrolledStaff(user)) { System.out.println("Already enrolled as the staff in charge"); return; }
+        if (withdrawed(user)) { System.out.println("Previously withdrawed from the camp"); return; }
+        if (!withinDate(new Date())) { System.out.println("Register date has already passed"); return; }
         attendeeList.add(user);
     }
 
@@ -217,30 +199,12 @@ public class Camp extends CampInformation {
      * @param user
      */
     protected void addCommittee(User user) {
-        if (!vacancyCommittee()) {
-            System.out.println("No more slots for attendees");
-            return;
-        }
-        if (enrolledAttendee(user)) {
-            System.out.println("Already enrolled as an attendee");
-            return;
-        }
-        if (enrolledCommittee(user)) {
-            System.out.println("Already enrolled in the committee");
-            return;
-        }
-        if (enrolledStaff(user)) {
-            System.out.println("Already enrolled as the staff in charge");
-            return;
-        }
-        if (withdrawed(user)) {
-            System.out.println("Previously withdrawed from the camp");
-            return;
-        }
-        if (!withinDate(new Date())) {
-            System.out.println("Register date has already passed");
-            return;
-        }
+        if (!vacancyCommittee()) { System.out.println("No more slots for attendees"); return; }
+        if (enrolledAttendee(user)) { System.out.println("Already enrolled as an attendee"); return; }
+        if (enrolledCommittee(user)) { System.out.println("Already enrolled in the committee"); return; }
+        if (enrolledStaff(user)) { System.out.println("Already enrolled as the staff in charge"); return; }
+        if (withdrawed(user)) { System.out.println("Previously withdrawed from the camp"); return; }
+        if (!withinDate(new Date())) { System.out.println("Register date has already passed"); return; }
         committeeList.add(user);
     }
 

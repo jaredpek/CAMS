@@ -42,9 +42,6 @@ public class CampMenu {
 			System.out.println("5: Get all Suggestions by Camp");
 		}
     }
-    public void campMenu() {
-        System.out.println("Camp Menu");
-    }
     public void reportMenu() {
 	System.out.println("Report Menu");
         System.out.println("1. Participant Report");
