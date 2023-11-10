@@ -31,16 +31,19 @@ public class CampMenu {
     public void enquiryMenu() {
 
     }
-    public void suggestionMenu() {
-        System.out.println("Suggestion Menu");
-		System.out.println("1: Add Suggestion");
-		System.out.println("2: Edit Suggestion");
-		System.out.println("3: Delete Suggestion");
-		System.out.println("4: Get all Suggestions");
-		
-		if (user.getRole() == STAFF) { // only show if current user is a staff
-			System.out.println("5: Get all Suggestions by Camp");
-		}
+    public void CommitteeSuggestionMenu() {
+        System.out.println("Committee Member Suggestion Menu");
+	System.out.println("------------------------------------");
+	System.out.println("1: Add Suggestion");
+	System.out.println("2: Edit Suggestion");
+	System.out.println("3: Delete Suggestion");
+	System.out.println("4: Get all Suggestions");
+    }
+	public void StaffSuggestionMenu(){
+	System.out.println("Staff Suggestion Menu");
+	System.out.println("--------------------------");
+	System.out.println("1: Get all Suggestions for Camp");
+	System.out.println("2: View/Approve Suggestions");
     }
     public void reportMenu() {
 	System.out.println("Report Menu");
