@@ -14,19 +14,21 @@ public class SuggestionControl {
 	
 	public void addSuggestion() {
 
-		Scanner sc = new Scanner(System.in);
-		Suggestion s2 = new Suggestion();
+		// Scanner sc = new Scanner(System.in);
+		// Suggestion s2 = new Suggestion();
 
-		s2.setStudent(Student); // need to get from main
-		s2.setCamp(getCamps(student)); // from CampControl i think
-		//s2.setStatus(Status Processing); already initialised
-		System.out.println("Enter the suggestion you would like to make :");
-		s2.setMessage(sc.next()); // suggestion has been set
+		// s2.setStudent(Student); // need to get from main
+		// s2.setCamp(getCamps(student)); // from CampControl i think
+		// //s2.setStatus(Status Processing); already initialised
+		// System.out.println("Enter the suggestion you would like to make :");
+		// s2.setMessage(sc.next()); // suggestion has been set
 		
 		
-		this.suggestionList.add(s2); // add into the global array of suggestions
+		// this.suggestionList.add(s2); // add into the global array of suggestions
 		
-		
+		SuggestionAdder sa = new SuggestionAdder();
+		sa.add(this.suggestionList);
+
 	}
 	
 	public void editSuggestion(int index) {
