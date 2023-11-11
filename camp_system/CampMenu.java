@@ -32,7 +32,7 @@ public class CampMenu {
 
     }
     public void CommitteeSuggestionMenu() {
-        System.out.println("Committee Member Suggestion Menu");
+    System.out.println("Committee Member Suggestion Menu");
 	System.out.println("------------------------------------");
 	System.out.println("1: Add Suggestion");
 	System.out.println("2: Edit Suggestion");
@@ -44,6 +44,9 @@ public class CampMenu {
 	System.out.println("--------------------------");
 	System.out.println("1: Get all Suggestions for Camp");
 	System.out.println("2: View/Approve Suggestions");
+    }
+    public void test(){
+        System.out.println("The Vscode thing works");
     }
     public void reportMenu() {
 	System.out.println("Report Menu");
