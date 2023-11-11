@@ -45,9 +45,6 @@ public class CampMenu {
 	System.out.println("1: Get all Suggestions for Camp");
 	System.out.println("2: View/Approve Suggestions");
     }
-    public void test(){
-        System.out.println("The Vscode thing works");
-    }
     public void reportMenu() {
 	System.out.println("Report Menu");
         System.out.println("1. Participant Report");
