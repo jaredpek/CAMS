@@ -7,7 +7,7 @@ import camp_system.user.User;
 
 public class Suggestion {
 	private Status status = Status.PROCESSING;
-	private Student student;
+	private User user;
 	private Camp camp;
 	private String message;
 	
@@ -17,11 +17,11 @@ public class Suggestion {
 	public Suggestion() {
 		
 	}
-	public Student getStudent() {
-		return student;
+	public User getUser() {
+		return user;
 	}
-	protected void setStudent(Student student) {
-		this.student = student;
+	protected void setUser(User user) {
+		this.user = user;
 	}
 	public Camp getCamp() {
 		return camp;
@@ -38,8 +38,8 @@ public class Suggestion {
 	public Status getStatus() {
 		return status;
 	}
-	protected void setStatus(Status s) {
-		this.status = s;
+	protected void setStatus(Status status) {
+		this.status = status;
 	}
 	
 	// composition

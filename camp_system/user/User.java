@@ -53,7 +53,7 @@ public class User {
     }
 
     // Add points for approved suggestions
-    for (Suggestion suggestion : user.getSuggestions()) {
+    for (Suggestion suggestion : user.getSuggestion()) {
         if (suggestion.getStatus() == Suggestion.Status.APPROVED) {
             pointsToAdd += 2; // One point for giving the suggestion, one extra point for acceptance
         }
