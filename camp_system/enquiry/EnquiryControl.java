@@ -15,37 +15,21 @@ public class EnquiryControl{
         this.enquiries = enquiries;
     }
 
-    public void addEnquiry() //the Input should be done in the main program
+     public void addEnquiry() //the Input should be done in the main program
     {
-        int indexStudent = 0;
-        int indexCamp =0;
-        User s1 = new User();
-        Camp c1 = new Camp();
-        System.out.println("Please enter the following details: ");
-        System.out.println("Your name: "); String studentName;
-
-        while(user.get(indexStudent).studentName != studentName){indexStudent++;}
-        s1 = user.get(indexStudent);
-
-        System.out.println("Camp name: "); String campName;
-        while(camp.get(indexCamp).campName != campName) {indexCamp++;}
-        c1 = camp.get(indexCamp);
-
-        System.out.println("Question: "); String question = scan.nextLine();
-        enquiries.add(new Enquiry(s1, c1, question));
+        enquiries.add(EnquiryBuild.build(user));
     }
 
-    public void editEnquiry(int index)
+    public void editEnquiry()
     {
-            
-        System.out.println("Enter your reply"); String reply = scan.nextLine();
-        enquiries.get(index).setReply(reply);
-        enquiries.get(index).setStatus(Replied);
+        System.out.println("Please select the index of the enquiry you would like to reply"); int index = scan.nextInt();
+        EnquiryEdit.edit(index);
     }
 
-    public void deleteEnquiry(int index)
+    public void deleteEnquiry()
     {
-        enquiries.remove(index);
+        System.out.println("Please select the index of the enquiry you would like to delete"); int index = scan.nextInt();
+        EnquiryDetele.delete(index);
     }
 
     public Enquiry getEnquiry(int index)
