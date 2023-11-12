@@ -28,8 +28,21 @@ public class CampMenu {
         System.out.println("8: Generate Camp Report");
         System.out.println("9: Logout");
     }
-    public void enquiryMenu() {
+    public void CommitteeEnquiryMenu() {
+	System.out.println("Committee Member Enquiry Menu");
+        System.out.println("---------------------------------");
+        System.out.println("1: Edit Enquiry");
+        System.out.println("2: Delete Enquiry");
+        System.out.println("3: Get all Enquiries");
+    }
 
+    public void StudentEnquiryMenu() {
+	System.out.println("Enquiry Menu");
+        System.out.println("---------------------------------");
+	System.out.println("1: Add Enquiry");    
+        System.out.println("2: Edit Enquiry");
+        System.out.println("3: Delete Enquiry");
+        System.out.println("4: Get all Enquiries");
     }
     public void CommitteeSuggestionMenu() {
     System.out.println("Committee Member Suggestion Menu");
