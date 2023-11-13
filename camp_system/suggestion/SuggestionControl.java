@@ -13,6 +13,9 @@ public class SuggestionControl {
 	private SuggestionEditor suggestionEditor = new SuggestionEditor();
 	private SuggestionApprove suggestionApprove = new SuggestionApprove();
 
+	public SuggestionControl(){
+		this.suggestionList = new ArrayList<Suggestion>();
+	}
 	public SuggestionControl(ArrayList<Suggestion> suggestion) {
 		this.suggestionList = suggestion;
 	}

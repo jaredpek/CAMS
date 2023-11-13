@@ -29,7 +29,7 @@ public class SuggestionAdder{
 		s2.setMessage(sc.next()); // suggestion has been set
 		
         global.add(s2);  // add the new suggestion to the global suggestion array
-		user.addPoint();
+		student.addPoint(); // add a point for adding a suggestion
 		
     }
     

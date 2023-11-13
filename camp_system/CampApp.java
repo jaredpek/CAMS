@@ -50,7 +50,7 @@ public class CampApp {
                         campMenu.enquiryMenu(); break;
                     }
                     case 7: {
-                        campMenu.suggestionMenu(); break;
+                        campMenu.StudentSuggestionMenu(); break;
                     }
                     case 8: {
                         ArrayList <Camp> committeeCamps = campControl.getCommitteeCamps(currentUser);
@@ -80,7 +80,7 @@ public class CampApp {
                         campControl.viewRoles(camps); break;
                     }
                     case 7: {
-                        campMenu.suggestionMenu(); break;
+                        campMenu.StaffSuggestionMenu(); break;
                     }
                     case 8: {
                         campMenu.reportMenu(); break;

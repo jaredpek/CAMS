@@ -49,7 +49,7 @@ public class CampMenu {
         System.out.println("3: Delete Enquiry");
         System.out.println("4: Get all Enquiries");
     }
-    public void CommitteeSuggestionMenu() {
+    public void StudentSuggestionMenu() {
     System.out.println("Committee Member Suggestion Menu");
 	System.out.println("------------------------------------");
 	System.out.println("1: Add Suggestion");
