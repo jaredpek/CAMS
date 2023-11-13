@@ -47,7 +47,7 @@ public class CampApp {
                     case 4: campControl.registerCamp(currentUser); break;
                     case 5: campControl.withdrawAttendee(currentUser); break;
                     case 6: {
-                        campMenu.enquiryMenu(); break;
+                        campMenu.studentEnquiryMenu(currentUser); break;
                     }
                     case 7: {
                         campMenu.StudentSuggestionMenu(); break;
@@ -80,12 +80,15 @@ public class CampApp {
                         campControl.viewRoles(camps); break;
                     }
                     case 7: {
+                        ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
+                        campMenu.CommitteeEnquiryMenu(camps); break;
+                    case 8: {
                         campMenu.StaffSuggestionMenu(); break;
                     }
-                    case 8: {
+                    case 9: {
                         campMenu.reportMenu(); break;
                     }
-                    case 9: currentUser = null; break;
+                    case 10: currentUser = null; break;
                     default: continue;
                 }
             }
