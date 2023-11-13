@@ -46,10 +46,10 @@ public class EnquiryControl{
     /*
      * Allow only the student to delete their enquiry
     */
-    public void deleteEnquiry(EnquiryControl enquiries)
+    public void deleteEnquiry(EnquiryControl global,EnquiryControl enquiries)
     {
         System.out.println("Please select the index of the enquiry you would like to delete"); int index = scan.nextInt();
-        EnquiryDelete.delete(enquiries,index);
+        EnquiryDelete.delete(global,enquiries,index);
     }
 
     /*
