@@ -1,7 +1,7 @@
 package camp_system.enquiry;
 
-public class EnquiryDetele{
-    public void delete(int delete){
+public class EnquiryDelete{
+    public void delete(EnquiryControl enquiries, int delete){
         enquiries.remove(index);
     }
 }
