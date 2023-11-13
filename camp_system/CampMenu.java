@@ -37,9 +37,8 @@ public class CampMenu {
     public void CommitteeEnquiryMenu() {
 	System.out.println("Committee Member Enquiry Menu");
         System.out.println("---------------------------------");
-        System.out.println("1: Edit Enquiry");
-        System.out.println("2: Delete Enquiry");
-        System.out.println("3: Get all Enquiries");
+        System.out.println("1: Reply Enquiry");
+        System.out.println("2: Get all Enquiries");
     }
 
     public void StudentEnquiryMenu() {
