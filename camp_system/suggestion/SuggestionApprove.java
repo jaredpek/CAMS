@@ -54,6 +54,7 @@ public class SuggestionApprove {
 					Status s = Status.ACCEPTED;
 					// set status of suggestion to approved
 					temp.get(index).setStatus(s);
+					user.addPoint();
 					break;
 				case 2:
 					Status r = Status.REJECTED;

@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import camp_system.camp.Camp;
+//import camp_system.camp.Camp;
 
 public class UserControl {
     private  ArrayList<User> users;
@@ -15,7 +15,10 @@ public class UserControl {
             readExcel(csvFilePath);
         }
     }
-
+    /**
+     * import data from the csv files
+     * @param csvFilePath1 this is the path of the file
+     */
     public void readExcel(String csvFilePath1) {
     try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath1))) {
         String line;
@@ -45,11 +48,20 @@ public class UserControl {
         e.printStackTrace();
     }
 }
-
+    /**
+     * return an arraylist of users
+     * @return ArrayList
+     */
     public ArrayList<User> getUsers() {
         return users;
     }
 
+    /**
+     * to authenticate user
+     * @param userID this is the user's ID
+     * @param password this is the user's password
+     * @return User
+     */
     public User login(String userID, String password) {
 
         for (User user : this.users) {
@@ -62,7 +74,7 @@ public class UserControl {
         // If the user ID and password do not match, return null.
         return null;
     }
-    //test
+    /*//test
     public void printUserList() {
         for (User user : users) {
             System.out.println("Name: " + user.getName());
@@ -99,7 +111,7 @@ public class UserControl {
         } else {
             System.out.println("Login failed for user with ID: " + invalidUserID);
         }
-    }
+    }*/
 }
     
 

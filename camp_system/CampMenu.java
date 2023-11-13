@@ -2,7 +2,13 @@ package camp_system;
 
 public class CampMenu {
     public void loginMenu() {
-        
+        System.out.println("==================================================");
+        System.out.println("|                     CAMS Login Menu                               |");
+        System.out.println("==================================================\n");
+        System.out.println("Please select one of the following options:");
+        System.out.println("1. Login");
+        System.out.println("2. Change password");
+        System.out.println("3. Exit\n");
     }
     public void studentMenu() {
         System.out.println("Welcome to NTU CAMS!");

@@ -4,6 +4,7 @@ import java.util.*;
 
 import CampSystem.Enquiry;
 import CampSystem.Enquiry.enquiryStatus;
+import camp_system.user.User;
 
 public class EnquiryControl{
 
@@ -18,6 +19,7 @@ public class EnquiryControl{
      public void addEnquiry() //the Input should be done in the main program
     {
         enquiries.add(EnquiryBuild.build(user));
+        user.addPoint();
     }
 
     public void editEnquiry()
