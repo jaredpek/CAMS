@@ -22,12 +22,18 @@ public class EnquiryControl{
         user.addPoint();
     }
 
-    public void editEnquiry()
+    public void replyEnquiry()
     {
         System.out.println("Please select the index of the enquiry you would like to reply"); int index = scan.nextInt();
         EnquiryEdit.edit(index);
     }
 
+    public void editEnquiry()
+    {
+        System.out.println("Please select the index of the enquiry you would like to edit"); int index = scan.nextInt();
+    
+    }
+    
     public void deleteEnquiry()
     {
         System.out.println("Please select the index of the enquiry you would like to delete"); int index = scan.nextInt();
