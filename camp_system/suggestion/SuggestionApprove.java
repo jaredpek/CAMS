@@ -4,8 +4,17 @@ import java.util.Scanner;
 
 import camp_system.camp.Camp;
 
-
+/**
+ * Used by Staff to Approve or Reject a suggestion
+ */
 public class SuggestionApprove {
+	/**
+	 * It is used by staff to approve/edit a suggestion that was 
+	 * directed to the camp that these staff are in charge of
+	 * 
+	 * @param global the arraylist which contains all the suggestions
+	 * @param camp the camp that the Staff is in charge of
+	 */
     protected void ApproveDelete(ArrayList<Suggestion> global, Camp camp){
         ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<global.size(); i++) {
@@ -35,7 +44,12 @@ public class SuggestionApprove {
 		}	
 		sc.close();								
     }
-	
+	/**
+	 * Extension of the previous method, but split for cleaner implementation
+	 * 
+	 * @param temp the list of suggestions that was directed to the camp that the staff is a part of
+	 * @param index the index of the suggestion that the staff wants to approve/reject
+	 */
 	private void decide(ArrayList<Suggestion> temp, int index){
 
 		
