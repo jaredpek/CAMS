@@ -2,8 +2,8 @@ package camp_system.enquiry;
 
 import java.util.*;
 
-import CampSystem.Enquiry;
-import CampSystem.Enquiry.enquiryStatus;
+import camp_system.camp.Camp;
+import camp_system.camp.CampControl;
 import camp_system.user.User;
 
 public class EnquiryControl{
