@@ -28,10 +28,10 @@ public class EnquiryControl{
         EnquiryReply.reply(index);
     }
 
-    public void editEnquiry()
+    public void editEnquiry(EnquiryControl enquiries)
     {
         System.out.println("Please select the index of the enquiry you would like to edit"); int index = scan.nextInt();
-        EnquiryEdit.edit(index);
+        EnquiryEdit.edit(enquiries,index);
     }
     
     public void deleteEnquiry(EnquiryControl enquiries)
