@@ -34,10 +34,10 @@ public class EnquiryControl{
         EnquiryEdit.edit(index);
     }
     
-    public void deleteEnquiry()
+    public void deleteEnquiry(EnquiryControl enquiries)
     {
         System.out.println("Please select the index of the enquiry you would like to delete"); int index = scan.nextInt();
-        EnquiryDetele.delete(index);
+        EnquiryDelete.delete(enquiries,index);
     }
 
     public Enquiry getEnquiry(int index)
