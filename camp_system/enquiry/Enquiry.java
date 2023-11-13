@@ -1,5 +1,8 @@
 package camp_system.enquiry;
 
+import camp_system.camp.Camp;
+import camp_system.user.User;
+
 public class Enquiry {
     
     public enum enquiryStatus {Processing ,Replied};

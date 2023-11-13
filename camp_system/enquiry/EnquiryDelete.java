@@ -1,8 +1,8 @@
 package camp_system.enquiry;
 
-public class EnquiryDetele{
-    public void delete(int delete){
-        enquiries.remove(index);
+public class EnquiryDelete{
+    public void delete(EnquiryControl global,EnquiryControl enquiries, int index){
+        global.remove(enquiries.get(index));
     }
 }
 

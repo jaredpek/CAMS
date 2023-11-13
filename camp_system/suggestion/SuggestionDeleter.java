@@ -2,11 +2,18 @@ package camp_system.suggestion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import camp_system.camp.Camp;
-import camp_system.camp.CampControl;
 import camp_system.user.User;
 
+/**
+ * Used by the User to delete a suggestion that they have made
+ */
 public class SuggestionDeleter{
+	/**
+	 * Used to delete a suggestion that the User has made
+	 * 
+	 * @param global the arraylist which contains all the suggestions
+	 * @param student the User that is deleting the suggestion
+	 */
     protected void delete(ArrayList<Suggestion> global, User student){
         //get all suggestions
 		// ask which one they want to delete
@@ -29,6 +36,6 @@ public class SuggestionDeleter{
 		int num = sc.nextInt();
 		
 		global.remove(temp.get(num)); // removes the specific suggestion from global list
-		
+		sc.close();
     }
 }

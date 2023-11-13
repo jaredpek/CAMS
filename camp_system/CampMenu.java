@@ -30,16 +30,16 @@ public class CampMenu {
         System.out.println("4: Edit a Camp");
         System.out.println("5: Delete a Camp");
         System.out.println("6: View Student Roles");
-        System.out.println("7: Manage Camp Suggestions");
-        System.out.println("8: Generate Camp Report");
-        System.out.println("9: Logout");
+	System.out.println("7: Manage Camp Enquiries");
+        System.out.println("8: Manage Camp Suggestions");
+        System.out.println("9: Generate Camp Report");
+        System.out.println("10: Logout");
     }
     public void CommitteeEnquiryMenu() {
 	System.out.println("Committee Member Enquiry Menu");
         System.out.println("---------------------------------");
-        System.out.println("1: Edit Enquiry");
-        System.out.println("2: Delete Enquiry");
-        System.out.println("3: Get all Enquiries");
+        System.out.println("1: Reply Enquiry");
+        System.out.println("2: Get all Enquiries");
     }
 
     public void StudentEnquiryMenu() {
@@ -50,7 +50,7 @@ public class CampMenu {
         System.out.println("3: Delete Enquiry");
         System.out.println("4: Get all Enquiries");
     }
-    public void CommitteeSuggestionMenu() {
+    public void StudentSuggestionMenu() {
     System.out.println("Committee Member Suggestion Menu");
 	System.out.println("------------------------------------");
 	System.out.println("1: Add Suggestion");

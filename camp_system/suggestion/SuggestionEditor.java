@@ -5,7 +5,17 @@ import java.util.Scanner;
 import camp_system.camp.CampControl;
 import camp_system.user.User;
 
+/**
+ * Used by User to edit any of the suggestions that they have made
+ */
 public class SuggestionEditor{
+	/**
+	 * Used to edit the User's suggestions
+	 * 
+	 * @param global the arraylist which contains all the suggestions
+	 * @param student the User that is deleting the suggestion
+	 * @param camps the camp that the Staff is in charge of
+	 */
     protected void edit(ArrayList<Suggestion> global, User student, CampControl camps){
         // print all suggestions, and show which camp they are a part of
         // edit suggestion
@@ -29,5 +39,6 @@ public class SuggestionEditor{
 		System.out.println("Enter your edited suggestion"); String new_message = sc.next();
 		temp.get(num).setMessage(new_message); // update to new suggestion
 		
+		sc.close();
     }
 }
