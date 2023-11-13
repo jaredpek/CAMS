@@ -4,8 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import camp_system.camp.Camp;
+import camp_system.user.User;
 
 public class Report {
      public void participantReport (Camp camp) throws IOException
@@ -51,16 +53,6 @@ public class Report {
             
              bw.write("Camp Committee List: "+camp.getCommitteeList());
              bw.newLine();
-             
-            /*if (camp.enrolledAttendee(student)) 
-            {
-            	bw.write(camp.getName() + ": Attendee");
-            	
-            }
-            if (enrolledCommittee(student)) 
-            {
-            	bw.write(camp.getName() + ": Committee");
-            }*/
                
            }
     }
