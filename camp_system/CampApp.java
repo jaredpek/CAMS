@@ -47,7 +47,7 @@ public class CampApp {
                     case 4: campControl.registerCamp(currentUser); break;
                     case 5: campControl.withdrawAttendee(currentUser); break;
                     case 6: {
-                        campMenu.studentEnquiryMenu(currentUser); break;
+                        campMenu.StudentEnquiryMenu(currentUser); break;
                     }
                     case 7: {
                         campMenu.StudentSuggestionMenu(); break;
