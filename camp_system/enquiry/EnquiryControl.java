@@ -19,20 +19,19 @@ public class EnquiryControl{
      * Adds a new enquiry into the list of enquiries
      * Only available for Students
     */
-    public void addEnquiry() //the Input should be done in the main program
+    public void addEnquiry(EnquiryControl enquiries) //the Input should be done in the main program
     {
         enquiries.add(EnquiryBuild.build(user));
-        user.addPoint();
     }
 
     /*
      * Only allow Committee Member or Staff to reply to the enquiry
      * Adds a point if the user is a Committee Member
     */
-    public void replyEnquiry()
+    public void replyEnquiry(EnquiryControl enquiries,User user)
     {
         System.out.println("Please select the index of the enquiry you would like to reply"); int index = scan.nextInt();
-        EnquiryReply.reply(index);
+        EnquiryReply.reply(enquiries,user,index);
     }
 
     /* Allow Students to edit their enquiry
