@@ -29,5 +29,6 @@ public class SuggestionEditor{
 		System.out.println("Enter your edited suggestion"); String new_message = sc.next();
 		temp.get(num).setMessage(new_message); // update to new suggestion
 		
+		sc.close();
     }
 }

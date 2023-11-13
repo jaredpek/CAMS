@@ -2,11 +2,8 @@ package camp_system.suggestion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import camp_system.camp.CampControl;
-import camp_system.user.User;
 import camp_system.camp.Camp;
 
-import java.util.ArrayList;
 
 public class SuggestionApprove {
     protected void ApproveDelete(ArrayList<Suggestion> global, Camp camp){
@@ -35,7 +32,8 @@ public class SuggestionApprove {
 		if (num >=0 || num < temp.size()){
 			// prompt the user for their decision abot the suggestion
 			decide(temp, num);
-		}									
+		}	
+		sc.close();								
     }
 	
 	private void decide(ArrayList<Suggestion> temp, int index){
@@ -67,5 +65,7 @@ public class SuggestionApprove {
 				break;
 			}
 		} while (num != 3);
+
+		sc.close();
 	}
 }

@@ -1,6 +1,6 @@
 package camp_system.suggestion;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;

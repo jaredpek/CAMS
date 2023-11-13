@@ -30,6 +30,7 @@ public class SuggestionAdder{
 		
         global.add(s2);  // add the new suggestion to the global suggestion array
 		student.addPoint(); // add a point for adding a suggestion
+		sc.close();
 		
     }
     

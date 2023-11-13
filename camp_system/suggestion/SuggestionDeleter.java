@@ -2,8 +2,6 @@ package camp_system.suggestion;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import camp_system.camp.Camp;
-import camp_system.camp.CampControl;
 import camp_system.user.User;
 
 public class SuggestionDeleter{
@@ -29,6 +27,6 @@ public class SuggestionDeleter{
 		int num = sc.nextInt();
 		
 		global.remove(temp.get(num)); // removes the specific suggestion from global list
-		
+		sc.close();
     }
 }
