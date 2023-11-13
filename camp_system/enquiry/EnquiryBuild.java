@@ -1,8 +1,9 @@
 package camp_system.enquiry;
 
 import java.util.*;
+import camp_system.camp.Camp;
+import camp_system.user.User;
 
-import camp_system.enquiry.Enquiry;
 
 public class EnquiryBuild {
     public Enquiry build(User user){
