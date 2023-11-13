@@ -25,13 +25,13 @@ public class EnquiryControl{
     public void replyEnquiry()
     {
         System.out.println("Please select the index of the enquiry you would like to reply"); int index = scan.nextInt();
-        EnquiryEdit.edit(index);
+        EnquiryReply.reply(index);
     }
 
     public void editEnquiry()
     {
         System.out.println("Please select the index of the enquiry you would like to edit"); int index = scan.nextInt();
-    
+        EnquiryEdit.edit(index);
     }
     
     public void deleteEnquiry()
