@@ -1,14 +1,18 @@
 package camp_system.application;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampDisplay;
+import camp_system.camp.CampSelect;
 import camp_system.enquiry.EnquiryControl;
 import camp_system.report.Report;
+import camp_system.suggestion.Suggestion;
 import camp_system.suggestion.SuggestionControl;
+import camp_system.suggestion.SuggestionDisplay;
 import camp_system.user.Role;
 import camp_system.user.User;
 import camp_system.user.UserControl;
@@ -17,14 +21,16 @@ public class CampApp implements IBase {
         private static UserControl userControl = new UserControl();
         private static User currentUser = null;
         private static SuggestionControl suggestionControl = new SuggestionControl();
+        private static SuggestionDisplay suggestionDisplay = new SuggestionDisplay();
         private static EnquiryControl enquiryControl = new EnquiryControl();
         private static CampControl campControl = new CampControl();
         private static CampDisplay campDisplay = new CampDisplay();
+        private static CampSelect campSelect = new CampSelect();
         private static CampMenu campMenu = new CampMenu();
         private static Report report = new Report();
         private static Boolean run = true;
         
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
         while (run) {
             campMenu.loginMenu();
             System.out.printf("Enter User ID: "); String userId = scan.nextLine();
@@ -48,16 +54,44 @@ public class CampApp implements IBase {
                     case 4: campControl.registerCamp(currentUser); break;
                     case 5: campControl.withdrawAttendee(currentUser); break;
                     case 6: {
-                        campMenu.studentEnquiryMenu();; break;
+                        campMenu.studentEnquiryMenu();
+                        System.out.printf("Option: "); int choice = scan.nextInt(); scan.nextLine();
+                        switch (choice) {
+                            case 1:
+                                ArrayList <Camp> camps = campControl.getGroupCamps(currentUser.getFaculty());
+                                enquiryControl.addEnquiry(currentUser, camps); break;
+                            case 2:
+                                enquiryControl.editEnquiry(currentUser); break;
+                            case 3:
+                                enquiryControl.deleteEnquiry(currentUser); break;
+                            case 4:
+                                enquiryControl.replyEnquiry(currentUser); break;
+                            default: break;
+                        }
+                        break;
                     }
                     case 7: {
-                        campMenu.studentSuggestionMenu(); break;
+                        campMenu.studentSuggestionMenu();
+                        System.out.printf("Option: "); int choice = scan.nextInt(); scan.nextLine();
+                        switch (choice) {
+                            case 1:
+                                ArrayList <Camp> camps = campControl.getCommitteeCamps(currentUser);
+                                suggestionControl.addSuggestion(currentUser, camps); break;
+                            case 2:
+                                suggestionControl.editSuggestion(currentUser); break;
+                            case 3:
+                                suggestionControl.deleteSuggestion(currentUser); break;
+                            default: break;
+                        }
+                        break;
                     }
                     case 8: {
                         ArrayList <Camp> committeeCamps = campControl.getCommitteeCamps(currentUser);
                         if (committeeCamps.size() <= 0) break;
                         campDisplay.printCamps(committeeCamps);
-                        campMenu.reportMenu(); break;
+                        Camp camp = campSelect.select(committeeCamps);
+                        report.participantReport(camp);
+                        break;
                     }
                     case 9: currentUser = null; break;
                     default: continue;
@@ -81,16 +115,41 @@ public class CampApp implements IBase {
                         campDisplay.printRoles(camps); break;
                     }
                     case 7: {
-                        ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
-                        campMenu.committeeEnquiryMenu(); break;
+                        campMenu.staffSuggestionMenu(); 
+                        System.out.printf("Option: "); int choice = scan.nextInt(); scan.nextLine();
+                        ArrayList <Camp> camps = campControl.getStaffCamps(currentUser);
+                        Camp camp = campSelect.select(camps);
+                        switch (choice) {
+                            case 1:
+                                ArrayList <Suggestion> suggestions = suggestionControl.getCampSuggestions(camp);
+                                suggestionDisplay.printSuggestions(suggestions);
+                                break;
+                            case 2:
+                                suggestionControl.approveRejectSuggestions(camp);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
                     }
                     case 8: {
-                        campMenu.staffSuggestionMenu(); break;
+                        campMenu.staffReportMenu();
+                        System.out.printf("Option: "); int choice = scan.nextInt(); scan.nextLine();
+                        ArrayList <Camp> camps = campControl.getStaffCamps(currentUser);
+                        Camp camp = campSelect.select(camps);
+                        switch (choice) {
+                            case 1:
+                                report.participantReport(camp);
+                                break;
+                            case 2:
+                                report.performanceReport(camp);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
                     }
-                    case 9: {
-                        campMenu.reportMenu(); break;
-                    }
-                    case 10: currentUser = null; break;
+                    case 9: currentUser = null; break;
                     default: continue;
                 }
             }

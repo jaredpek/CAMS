@@ -76,7 +76,7 @@ public class SuggestionControl {
 	 * 
 	 * @param camp the camp that the Staff is in-charge of
 	 */
-	public void ApproveRejectSuggestions(Camp camp){
+	public void approveRejectSuggestions(Camp camp){
 		ArrayList <Suggestion> campSuggestions = getCampSuggestions(camp);
 		Suggestion suggestion = suggestionSelect.select(campSuggestions);
 		suggestionApprove.ApproveDelete(suggestion);
