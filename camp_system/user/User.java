@@ -19,63 +19,71 @@ public class User {
      * @param committeeOf this is the camp of the committee belongs to
      * @param point this is the point of the user
      */
-    public User (String name, String userID, String password, Faculty faculty, Role role, Camp committeeOf, int point){
+    public User (String name, String userID, Faculty faculty, Role role){
         this.name = name;
         this.userID = userID;
         this.password = "password";
         this.faculty = faculty;
         this.role = role;
-        this.committeeOf = committeeOf;
-        this.point = point;
+    }
+    public void printInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("User ID: " + userID);
+        System.out.println("Faculty: " + faculty);
+        System.out.println("Role: " + role);
     }
     /**
      * return user's name
      * @return String
      */
     public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    protected void setName(String name) {this.name = name;}
 
     /**
      * return user's ID
      * @return String
      */
     public String getUserID() {return userID;}
-    public void setUserID(String userID) {this.userID = userID;}
+    protected void setUserID(String userID) {this.userID = userID;}
 
     /**
      * return the faculty that the user belongs to
      * @return Faculty
      */
     public Faculty getFaculty() {return faculty;}
-    public void setFaculty(Faculty faculty) {this.faculty = faculty;}
+    protected void setFaculty(Faculty faculty) {this.faculty = faculty;}
 
     /**
      * return user's role
      * @return Role
      */
     public Role getRole() { return role;}
-    public void setRole(Role role) {this.role = role;}
+    protected void setRole(Role role) {this.role = role;}
 
     /**
      * Change password for the user
      * @param password this is the new password
      */
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return password;}
+    protected void setPassword(String password) {this.password = password;}
+    
+    public Boolean verifyCredentials(String userID, String password) {
+        if (this.userID == userID && this.password == password) return true;
+        return false;
+    }
 
     /**
      * return the camp name which the user belongs to
      * @return Camp
      */
     public Camp getCommitteeOf() {return committeeOf;}
-    public void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
+    protected void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
     
     /**
      * return user's point
      * @return int
      */
     public int getPoint() {return point;}
-    public void setPoint(int point) {this.point = point;}
+    protected void setPoint(int point) {this.point = point;}
     
     /**
      * add point for the user
@@ -83,8 +91,5 @@ public class User {
     public void addPoint(){
         point++;
     }
-    
-
-    
 }
     

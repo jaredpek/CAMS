@@ -3,10 +3,11 @@ package camp_system.camp;
 import java.text.ParseException;
 import java.util.Date;
 
+import camp_system.IBase;
 import camp_system.user.Faculty;
 import camp_system.user.User;
 
-public class CampBuild implements ICamp {
+public class CampBuild implements IBase {
     public Camp build(User user) throws ParseException {
         System.out.printf("Name: "); String name = scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(scan.nextLine());

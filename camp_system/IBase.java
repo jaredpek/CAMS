@@ -1,10 +1,10 @@
-package camp_system.camp;
+package camp_system;
 
 import java.util.Scanner;
 
 import camp_system.date_parser.DateParse;
 
-public interface ICamp {
+public interface IBase {
     public static Scanner scan = new Scanner(System.in);
     public static DateParse dateParse = new DateParse();
 }

@@ -2,7 +2,9 @@ package camp_system.camp;
 
 import java.util.ArrayList;
 
-public class CampSort {
+import camp_system.IBase;
+
+public class CampSort implements IBase {
     public void sortMenu() {
         System.out.println("Select Sort Method:");
         System.out.println("1: Group");
@@ -94,7 +96,11 @@ public class CampSort {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortCamps(ArrayList <Camp> camps, int sortOption, int orderOption) {
+    public ArrayList <Camp> sortCamps(ArrayList <Camp> camps) {
+        sortMenu();
+        System.out.printf("Sort Option: "); int sortOption = scan.nextInt(); scan.nextLine();
+        orderMenu();
+        System.out.printf("Order Option: "); int orderOption = scan.nextInt(); scan.nextLine();
         switch (sortOption) {
             case 1: return sortByGroup(camps, orderOption);
             case 2: return sortByLocation(camps, orderOption);

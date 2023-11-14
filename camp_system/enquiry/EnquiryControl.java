@@ -1,15 +1,21 @@
 package camp_system.enquiry;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import camp_system.camp.Camp;
-import camp_system.camp.CampControl;
+import camp_system.camp.CampSelect;
 import camp_system.user.User;
 
-public class EnquiryControl{
-
+public class EnquiryControl {
     private ArrayList <Enquiry> enquiries;
-    Scanner scan = new Scanner(System.in);
+
+    public static EnquiryBuild enquiryBuild = new EnquiryBuild();
+    public static EnquirySelect enquirySelect = new EnquirySelect();
+    public static EnquiryEdit enquiryEdit = new EnquiryEdit();
+    public static EnquiryReply enquiryReply = new EnquiryReply();
+
+    public static CampSelect campSelect = new CampSelect();
+
     public EnquiryControl() {this.enquiries = new ArrayList <Enquiry> (); }
     public EnquiryControl(ArrayList <Enquiry> enquiries){
         this.enquiries = enquiries;
@@ -19,60 +25,52 @@ public class EnquiryControl{
      * Adds a new enquiry into the list of enquiries
      * Only available for Students
     */
-    public void addEnquiry(EnquiryControl enquiries) //the Input should be done in the main program
-    {
-        enquiries.add(EnquiryBuild.build(user));
+    public void addEnquiry(User user, ArrayList <Camp> camps) {
+        Camp camp = campSelect.select(camps);
+        Enquiry enquiry = enquiryBuild.build(user, camp);
+        enquiries.add(enquiry);
     }
 
     /*
      * Only allow Committee Member or Staff to reply to the enquiry
      * Adds a point if the user is a Committee Member
     */
-    public void replyEnquiry(EnquiryControl enquiries,User user)
-    {
-        System.out.println("Please select the index of the enquiry you would like to reply"); int index = scan.nextInt();
-        EnquiryReply.reply(enquiries,user,index);
+    public void replyEnquiry(User user) {
+        ArrayList <Enquiry> committeeEnquiries = getCampEnquiries(user.getCommitteeOf());
+        Enquiry enquiry = enquirySelect.select(committeeEnquiries);
+        if (user.getCommitteeOf() != enquiry.getCamp()) return;
+
+        enquiryReply.reply(enquiry);
+        user.addPoint();
     }
 
     /* Allow Students to edit their enquiry
      * Only applicable when the enquiry is still processing
     */
-    public void editEnquiry(EnquiryControl enquiries)
-    {
-        System.out.println("Please select the index of the enquiry you would like to edit"); int index = scan.nextInt();
-        EnquiryEdit.edit(enquiries,index);
+    public void editEnquiry(User user) {
+        ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
+        Enquiry enquiry = enquirySelect.select(studentEnquiries);
+        if (user != enquiry.getStudent()) return;
+        enquiryEdit.edit(enquiry);
     }
 
     /*
      * Allow only the student to delete their enquiry
     */
-    public void deleteEnquiry(EnquiryControl global,EnquiryControl enquiries)
-    {
-        System.out.println("Please select the index of the enquiry you would like to delete"); int index = scan.nextInt();
-        EnquiryDelete.delete(global,enquiries,index);
-    }
-
-    /*
-     * return the enquiry
-    */
-    public Enquiry getEnquiry(int index)
-    {
-        return enquiries.get(index);
+    public void deleteEnquiry(User user) {
+        ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
+        Enquiry enquiry = enquirySelect.select(studentEnquiries);
+        if (user != enquiry.getStudent()) return;
+        enquiries.remove(enquiry);
     }
 
     /* 
      * Get the list of enquiry for the camp's committee member and staff
     */
-    public ArrayList<Enquiry> getEnquiries(Camp camp)
-    {
-        int indexOfNewArray = 0;
+    public ArrayList<Enquiry> getCampEnquiries(Camp camp) {
         ArrayList<Enquiry> campEnquiries = new ArrayList<Enquiry>();
-        for(int index = 0;index < enquiries.size();index++){
-            if(enquiries.get(index).getCamp() == camp)
-            {
-                campEnquiries.add(enquiries.get(index));
-                indexOfNewArray++;
-            }
+        for (Enquiry enquiry : enquiries) {
+            if (enquiry.getCamp() == camp) campEnquiries.add(enquiry);
         }
         return campEnquiries;
     }
@@ -80,19 +78,11 @@ public class EnquiryControl{
     /* 
      * Allow students to see their own enquiry
     */
-    public Enquiry[] getEnquiries(Student student)
-    {
-        int indexOfNewArray = 0;
+    public ArrayList <Enquiry> getStudentEnquiries(User student) {
         ArrayList<Enquiry> studentEnquiries = new ArrayList<Enquiry>();
-        for(int index = 0;index < enquiries.size();index++){
-            if(enquiries.get(index).getStudent() == student)
-            {
-                studentEnquiries.add(enquiries.get(index));
-                indexOfNewArray++;
-            }
+        for (Enquiry enquiry : enquiries) {
+            if (enquiry.getStudent() == student) studentEnquiries.add(enquiry);
         }
         return studentEnquiries;
     }
-    
-    
 }

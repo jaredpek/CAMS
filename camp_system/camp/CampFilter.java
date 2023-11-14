@@ -3,12 +3,13 @@ package camp_system.camp;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import camp_system.IBase;
 import camp_system.user.Faculty;
 
 /**
  * Represents a filter and sorter class that modifies a list of camps based on certain requirements and in a specified order
  */
-public class CampFilter implements ICamp {
+public class CampFilter implements IBase {
     public void filterMenu() {
         System.out.println("Select Filter Field:");
         System.out.println("1: Group");
@@ -88,7 +89,9 @@ public class CampFilter implements ICamp {
      * @param option Camp attribute to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterCamps(ArrayList <Camp> camps, int option) throws ParseException {
+    public ArrayList <Camp> filterCamps(ArrayList <Camp> camps) throws ParseException {
+        filterMenu();
+        System.out.printf("Filter Option: "); int option = scan.nextInt();
         switch (option) {
             case 1: {
                 System.out.printf("Enter Group: "); String group = scan.nextLine();

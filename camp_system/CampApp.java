@@ -1,7 +1,6 @@
 package camp_system;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
@@ -12,10 +11,9 @@ import camp_system.user.Role;
 import camp_system.user.User;
 import camp_system.user.UserControl;
 
-public class CampApp {
-    public static Scanner scan = new Scanner(System.in);
+public class CampApp implements IBase {
     public static void main(String[] args) {
-        UserControl userControl = new UserControl(null);
+        UserControl userControl = new UserControl();
         User currentUser = null;
         SuggestionControl suggestionControl = new SuggestionControl();
         EnquiryControl enquiryControl = new EnquiryControl();
@@ -82,6 +80,7 @@ public class CampApp {
                     case 7: {
                         ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
                         campMenu.CommitteeEnquiryMenu(camps); break;
+                    }
                     case 8: {
                         campMenu.StaffSuggestionMenu(); break;
                     }

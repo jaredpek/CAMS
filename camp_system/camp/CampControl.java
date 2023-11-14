@@ -4,13 +4,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import camp_system.user.User;
+import camp_system.IBase;
 import camp_system.user.Faculty;
 import camp_system.user.Role;
 
 /**
  * Represents a camp manager that controls a list of all the camps
  */
-public class CampControl implements ICamp {
+public class CampControl implements IBase {
     /** List of all the available camps */
     private ArrayList <Camp> camps;
     private CampBuild campBuild = new CampBuild();
