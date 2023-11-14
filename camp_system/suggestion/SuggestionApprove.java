@@ -1,6 +1,6 @@
 package camp_system.suggestion;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 
 /**
  * Used by Staff to Approve or Reject a suggestion
@@ -20,7 +20,7 @@ public class SuggestionApprove implements IBase {
 		System.out.println("3: Exit");
 		// can just do a swtich statement here
 		int num = scan.nextInt(); scan.nextLine();
-		do{
+		do {
 			switch(num){
 				case 1:
 					Status s = Status.ACCEPTED;
@@ -35,8 +35,8 @@ public class SuggestionApprove implements IBase {
 					suggestion.setStatus(r);
 					break; 
 				default:
-				System.out.println("Invalid Choice!");
-				break;
+					System.out.println("Invalid Choice!");
+					break;
 			}
 		} while (num != 3);			
     }

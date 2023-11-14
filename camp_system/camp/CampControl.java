@@ -4,23 +4,24 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import camp_system.user.User;
-import camp_system.IBase;
 import camp_system.user.Faculty;
 import camp_system.user.Role;
 
 /**
  * Represents a camp manager that controls a list of all the camps
  */
-public class CampControl implements IBase {
+public class CampControl {
     /** List of all the available camps */
     private ArrayList <Camp> camps;
     private CampBuild campBuild = new CampBuild();
     private CampEdit campEdit = new CampEdit();
     private CampSelect campSelect = new CampSelect();
     private CampSort campSort = new CampSort();
+    private CampEnrol campEnrol = new CampEnrol();
+    private CampWithdraw campWithdraw = new CampWithdraw();
 
     /** Creates a new CampControl object with a default empty list */
-    public CampControl() {this.camps = new ArrayList <Camp> ();}
+    public CampControl() { this.camps = new ArrayList <Camp> (); }
 
     /**
      * Creates a new CampControl object with an initial list of camps
@@ -154,47 +155,10 @@ public class CampControl implements IBase {
         }
         return result;
     }
-
-    /**
-     * Registers an attendee to a camp
-     * @param user This is the user to register
-     */
-    public void registerAttendee(User user) {
-        ArrayList <Camp> availableCamps = getGroupCamps(user.getFaculty());
-        Camp camp = campSelect.select(availableCamps);
-        camp.addAttendee(user);
-    }
-
-    /**
-     * Registers a committee member to a camp
-     * @param user This is the user to register
-     */
-    public void registerCommittee(User user) {
-        ArrayList <Camp> registeredCamps = getCommitteeCamps(user);
-        for (int i = 0; i < registeredCamps.size(); i ++) {
-            if (registeredCamps.get(i).enrolledCommittee(user)) return;
-        }
-        ArrayList <Camp> availableCamps = getGroupCamps(user.getFaculty());
-        Camp camp = campSelect.select(availableCamps);
-        camp.addCommittee(user);
-    }
-
-    private void registerMenu() {
-        System.out.println("Available Roles:");
-        System.out.println("1: Attendee");
-        System.out.println("2: Committee");
-    }
-    /**
-     * Registers a user to a camp, user can select whether or not to enrol as attendee or committee
-     * @param user This is the user to register
-     */
+    
     public void registerCamp(User user) {
-        registerMenu();
-        System.out.printf("Enter Option: "); int option = scan.nextInt(); scan.nextLine();
-        switch (option) {
-            case 1: registerAttendee(user); break;
-            case 2: registerCommittee(user); break;
-        }
+        ArrayList <Camp> available = getGroupCamps(user.getFaculty());
+        campEnrol.register(user, available);
     }
 
     /**
@@ -202,8 +166,7 @@ public class CampControl implements IBase {
      * @param user This is the user to withdraw
      */
     public void withdrawAttendee(User user) {
-        ArrayList <Camp> registeredCamps = getAttendeeCamps(user);
-        Camp camp = campSelect.select(registeredCamps);
-        camp.removeAttendee(user);
+        ArrayList <Camp> registered = getAttendeeCamps(user);
+        campWithdraw.attendee(user, registered);
     }
 }

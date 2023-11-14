@@ -2,7 +2,7 @@ package camp_system.camp;
 
 import java.util.ArrayList;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 
 public class CampDisplay implements IBase {
     /**

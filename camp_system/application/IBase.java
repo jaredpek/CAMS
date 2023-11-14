@@ -1,4 +1,4 @@
-package camp_system;
+package camp_system.application;
 
 import java.util.Scanner;
 

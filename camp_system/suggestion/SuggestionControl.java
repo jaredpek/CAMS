@@ -13,8 +13,8 @@ public class SuggestionControl {
 	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
 	private SuggestionBuild suggestionBuild = new SuggestionBuild();
 	private SuggestionEdit suggestionEdit = new SuggestionEdit();
-	public static SuggestionSelect suggestionSelect = new SuggestionSelect();
-	public static CampSelect campSelect = new CampSelect();
+	private SuggestionSelect suggestionSelect = new SuggestionSelect();
+	private CampSelect campSelect = new CampSelect();
 	private SuggestionApprove suggestionApprove = new SuggestionApprove();
 	/**
 	 * Default constructor for the SuggestionControl

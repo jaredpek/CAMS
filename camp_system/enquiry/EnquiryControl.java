@@ -9,12 +9,11 @@ import camp_system.user.User;
 public class EnquiryControl {
     private ArrayList <Enquiry> enquiries;
 
-    public static EnquiryBuild enquiryBuild = new EnquiryBuild();
-    public static EnquirySelect enquirySelect = new EnquirySelect();
-    public static EnquiryEdit enquiryEdit = new EnquiryEdit();
-    public static EnquiryReply enquiryReply = new EnquiryReply();
-
-    public static CampSelect campSelect = new CampSelect();
+    public EnquiryBuild enquiryBuild = new EnquiryBuild();
+    public EnquirySelect enquirySelect = new EnquirySelect();
+    public EnquiryEdit enquiryEdit = new EnquiryEdit();
+    public EnquiryReply enquiryReply = new EnquiryReply();
+    public CampSelect campSelect = new CampSelect();
 
     public EnquiryControl() {this.enquiries = new ArrayList <Enquiry> (); }
     public EnquiryControl(ArrayList <Enquiry> enquiries){

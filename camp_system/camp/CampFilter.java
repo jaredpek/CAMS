@@ -3,7 +3,7 @@ package camp_system.camp;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 import camp_system.user.Faculty;
 
 /**

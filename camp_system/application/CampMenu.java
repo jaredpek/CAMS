@@ -1,4 +1,4 @@
-package camp_system;
+package camp_system.application;
 
 public class CampMenu {
     public void loginMenu() {
@@ -35,14 +35,14 @@ public class CampMenu {
         System.out.println("9: Generate Camp Report");
         System.out.println("10: Logout");
     }
-    public void CommitteeEnquiryMenu() {
+    public void committeeEnquiryMenu() {
 	System.out.println("Committee Member Enquiry Menu");
         System.out.println("---------------------------------");
         System.out.println("1: Reply Enquiry");
         System.out.println("2: Get all Enquiries");
     }
 
-    public void StudentEnquiryMenu() {
+    public void studentEnquiryMenu() {
 	System.out.println("Enquiry Menu");
         System.out.println("---------------------------------");
 	System.out.println("1: Add Enquiry");    
@@ -50,7 +50,7 @@ public class CampMenu {
         System.out.println("3: Delete Enquiry");
         System.out.println("4: Get all Enquiries");
     }
-    public void StudentSuggestionMenu() {
+    public void studentSuggestionMenu() {
     System.out.println("Committee Member Suggestion Menu");
 	System.out.println("------------------------------------");
 	System.out.println("1: Add Suggestion");
@@ -58,7 +58,7 @@ public class CampMenu {
 	System.out.println("3: Delete Suggestion");
 	System.out.println("4: Get all Suggestions");
     }
-	public void StaffSuggestionMenu(){
+	public void staffSuggestionMenu(){
 	System.out.println("Staff Suggestion Menu");
 	System.out.println("--------------------------");
 	System.out.println("1: Get all Suggestions for Camp");

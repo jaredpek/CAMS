@@ -1,9 +1,11 @@
-package camp_system;
+package camp_system.application;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
+import camp_system.camp.CampDisplay;
 import camp_system.enquiry.EnquiryControl;
 import camp_system.report.Report;
 import camp_system.suggestion.SuggestionControl;
@@ -12,16 +14,17 @@ import camp_system.user.User;
 import camp_system.user.UserControl;
 
 public class CampApp implements IBase {
-    public static void main(String[] args) {
-        UserControl userControl = new UserControl();
-        User currentUser = null;
-        SuggestionControl suggestionControl = new SuggestionControl();
-        EnquiryControl enquiryControl = new EnquiryControl();
-        CampControl campControl = new CampControl();
-        CampMenu campMenu = new CampMenu();
-        Report report = new Report();
-        Boolean run = true;
-
+        private static UserControl userControl = new UserControl();
+        private static User currentUser = null;
+        private static SuggestionControl suggestionControl = new SuggestionControl();
+        private static EnquiryControl enquiryControl = new EnquiryControl();
+        private static CampControl campControl = new CampControl();
+        private static CampDisplay campDisplay = new CampDisplay();
+        private static CampMenu campMenu = new CampMenu();
+        private static Report report = new Report();
+        private static Boolean run = true;
+        
+    public static void main(String[] args) throws ParseException {
         while (run) {
             campMenu.loginMenu();
             System.out.printf("Enter User ID: "); String userId = scan.nextLine();
@@ -36,24 +39,24 @@ public class CampApp implements IBase {
                     case 1: userControl.resetPassword(currentUser); break;
                     case 2: {
                         ArrayList <Camp> availableCamps = campControl.getGroupCamps(currentUser.getFaculty());
-                        campControl.printCamps(availableCamps); break;
+                        campDisplay.printCamps(availableCamps); break;
                     }
                     case 3: {
                         ArrayList <Camp> registeredCamps = campControl.getStudentCamps(currentUser);
-                        campControl.printCamps(registeredCamps); break;
+                        campDisplay.printCamps(registeredCamps); break;
                     }
                     case 4: campControl.registerCamp(currentUser); break;
                     case 5: campControl.withdrawAttendee(currentUser); break;
                     case 6: {
-                        campMenu.StudentEnquiryMenu(currentUser); break;
+                        campMenu.studentEnquiryMenu();; break;
                     }
                     case 7: {
-                        campMenu.StudentSuggestionMenu(); break;
+                        campMenu.studentSuggestionMenu(); break;
                     }
                     case 8: {
                         ArrayList <Camp> committeeCamps = campControl.getCommitteeCamps(currentUser);
                         if (committeeCamps.size() <= 0) break;
-                        campControl.printCamps(committeeCamps);
+                        campDisplay.printCamps(committeeCamps);
                         campMenu.reportMenu(); break;
                     }
                     case 9: currentUser = null; break;
@@ -68,21 +71,21 @@ public class CampApp implements IBase {
                     case 1: userControl.resetPassword(currentUser); break;
                     case 2: {
                         ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
-                        campControl.printCamps(camps); break;
+                        campDisplay.printCamps(camps); break;
                     }
                     case 3: campControl.addCamp(currentUser); break;
                     case 4: campControl.editCamp(currentUser); break;
                     case 5: campControl.deleteCamp(currentUser); break;
                     case 6: {
                         ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
-                        campControl.viewRoles(camps); break;
+                        campDisplay.printRoles(camps); break;
                     }
                     case 7: {
                         ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
-                        campMenu.CommitteeEnquiryMenu(camps); break;
+                        campMenu.committeeEnquiryMenu(); break;
                     }
                     case 8: {
-                        campMenu.StaffSuggestionMenu(); break;
+                        campMenu.staffSuggestionMenu(); break;
                     }
                     case 9: {
                         campMenu.reportMenu(); break;

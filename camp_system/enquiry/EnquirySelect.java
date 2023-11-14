@@ -2,10 +2,10 @@ package camp_system.enquiry;
 
 import java.util.ArrayList;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 
 public class EnquirySelect implements IBase {
-    public static EnquiryDisplay enquiryDisplay = new EnquiryDisplay();
+    public EnquiryDisplay enquiryDisplay = new EnquiryDisplay();
 
     public Enquiry select(ArrayList <Enquiry> enquiries) {
         enquiryDisplay.printEnquiries(enquiries);

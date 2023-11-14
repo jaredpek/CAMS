@@ -2,7 +2,7 @@ package camp_system.camp;
 
 import java.text.ParseException;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 import camp_system.user.Faculty;
 
 public class CampEdit implements IBase {

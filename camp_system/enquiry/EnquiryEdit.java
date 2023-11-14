@@ -1,6 +1,6 @@
 package camp_system.enquiry;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 
 public class EnquiryEdit implements IBase {
     public void edit(Enquiry enquiry){

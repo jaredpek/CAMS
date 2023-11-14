@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import camp_system.csv_parser.CSVParse;
 
 public class UserControl {
-    private  ArrayList<User> users;
-    private static UserBuild userBuild = new UserBuild();
-    private static CSVParse csvParse = new CSVParse();
+    private ArrayList<User> users;
+    private UserBuild userBuild = new UserBuild();
+    private UserPassword userPassword = new UserPassword();
+    private CSVParse csvParse = new CSVParse();
 
     public UserControl() {
         users = new ArrayList <User> ();
@@ -32,7 +33,7 @@ public class UserControl {
      * @return User
      */
     public User login(String userID, String password) {
-        for (User user : this.users) {
+        for (User user : users) {
             // Check if the user ID and password match.
             if (user.verifyCredentials(userID, password)) {
                 // Return the user object.
@@ -41,6 +42,10 @@ public class UserControl {
         }
         // If the user ID and password do not match, return null.
         return null;
+    }
+
+    public void resetPassword(User user) {
+        userPassword.reset(user);
     }
 }
     

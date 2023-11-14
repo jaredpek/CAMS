@@ -1,6 +1,6 @@
 package camp_system.suggestion;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 
 /**
  * Used by User to edit any of the suggestions that they have made

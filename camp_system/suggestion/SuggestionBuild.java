@@ -1,6 +1,6 @@
 package camp_system.suggestion;
 
-import camp_system.IBase;
+import camp_system.application.IBase;
 import camp_system.camp.Camp;
 import camp_system.user.User;
 
