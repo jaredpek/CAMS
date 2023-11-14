@@ -1,18 +1,12 @@
 package camp_system.enquiry;
 
-import camp_system.user.User;
-public class EnquiryReply {
-    public void reply(EnquiryControl enquiries,User user,int index){
-        System.out.println("Enter your reply"); String reply = scan.nextLine();
-        enquiries.get(index).setReply(reply);
-        enquiries.get(index).setStatus(Replied);
-        if(user.role == STAFF){
-            return;
-        }
-        else{
-            user.addPoint();
-            return;
-        }
+import camp_system.application.IBase;
+
+public class EnquiryReply implements IBase {
+    public void reply(Enquiry enquiry){
+        System.out.printf("Reply: "); String reply = scan.nextLine();
+        enquiry.setReply(reply);
+        enquiry.setStatus(Status.REPLIED);
     }
     
 }

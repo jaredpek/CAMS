@@ -1,10 +1,10 @@
 package camp_system.enquiry;
 
+import camp_system.application.IBase;
 
-public class EnquiryEdit {
-    public void edit(EnquiryControl enquiries,int index){
+public class EnquiryEdit implements IBase {
+    public void edit(Enquiry enquiry){
         System.out.println("Enter your edit"); String edit = scan.nextLine();
-        enquiries.get(index).setQuestion(edit);
+        enquiry.setQuestion(edit);
     }
-    
 }

@@ -1,10 +1,10 @@
 package camp_system.camp;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class CampDisplay {
-    public static Scanner scan = new Scanner(System.in);
+import camp_system.application.IBase;
+
+public class CampDisplay implements IBase {
     /**
      * Prints the provided camp objects in the standardized format 
      * @param camps This is the list of camps to print
@@ -15,7 +15,7 @@ public class CampDisplay {
             return;
         }
         for (int i = 0; i < camps.size(); i ++) {
-            System.out.printf((i + 1) + " -> ");
+            System.out.printf("%d -> ", (i + 1));
             camps.get(i).printCampDetails();
             System.out.println();
         }

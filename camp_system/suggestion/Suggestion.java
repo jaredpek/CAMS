@@ -19,10 +19,15 @@ public class Suggestion {
 		System.out.println(this.message);
 	}
 	/**
-	 * Default constuctor, but with no initialization
+	 * Creates a new suggestion object with the required attributes
+	 * @param user The user making the suggestion
+	 * @param camp The camp that the suggestion is for
+	 * @param message The suggestion string
 	 */
-	public Suggestion() {
-		
+	public Suggestion(User user, Camp camp, String message) {
+		this.user = user;
+		this.camp = camp;
+		this.message = message;
 	}
 	/**
 	 * @return the User who made this Suggestion
@@ -73,6 +78,6 @@ public class Suggestion {
 		this.status = status;
 	}
 	
-	}	
+}	
 
 

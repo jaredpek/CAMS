@@ -2,9 +2,10 @@ package camp_system.camp;
 
 import java.text.ParseException;
 
+import camp_system.application.IBase;
 import camp_system.user.Faculty;
 
-public class CampEdit implements ICamp {
+public class CampEdit implements IBase {
     public void menu() {
         System.out.println("Select Attribute to Edit:");
         System.out.println("1: Visibility");

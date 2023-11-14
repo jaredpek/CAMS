@@ -1,21 +1,13 @@
 package camp_system.enquiry;
 
-import java.util.*;
+import camp_system.application.IBase;
 import camp_system.camp.Camp;
 import camp_system.user.User;
 
 
-public class EnquiryBuild {
-    public Enquiry build(User user){
-        Scanner scan = new Scanner(System.in);
-        
-        int indexCamp =0;
-        Camp c1 = new Camp();
-        System.out.println("Camp name: "); String campName;
-        while(camp.get(indexCamp).campName != campName) {indexCamp++;}
-        c1 = camp.get(indexCamp);
-        System.out.println("Question: "); String question = scan.nextLine();
-        
-        return new Enquiry(user, c1, question);
+public class EnquiryBuild implements IBase {
+    public Enquiry build(User user, Camp camp){
+        System.out.printf("Enquiry: "); String question = scan.nextLine();        
+        return new Enquiry(user, camp, question);
     }
 }

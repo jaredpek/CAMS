@@ -1,9 +1,8 @@
 package camp_system.suggestion;
 import java.util.ArrayList;
 
-
 import camp_system.camp.Camp;
-import camp_system.camp.CampControl;
+import camp_system.camp.CampSelect;
 import camp_system.user.User;
 
 /**
@@ -12,9 +11,10 @@ import camp_system.user.User;
  */
 public class SuggestionControl {
 	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
-	private SuggestionAdder suggestionAdder = new SuggestionAdder();
-	private SuggestionDeleter suggestionDeleter = new SuggestionDeleter();
-	private SuggestionEditor suggestionEditor = new SuggestionEditor();
+	private SuggestionBuild suggestionBuild = new SuggestionBuild();
+	private SuggestionEdit suggestionEdit = new SuggestionEdit();
+	private SuggestionSelect suggestionSelect = new SuggestionSelect();
+	private CampSelect campSelect = new CampSelect();
 	private SuggestionApprove suggestionApprove = new SuggestionApprove();
 	/**
 	 * Default constructor for the SuggestionControl
@@ -39,8 +39,11 @@ public class SuggestionControl {
 	 * @param student the user that is trying to add the suggestion
 	 * @param camps the list of all existing camps
 	 */
-	public void addSuggestion(User student, CampControl camps) {
-		suggestionAdder.add(this.suggestionList, student, camps); 
+	public void addSuggestion(User student, ArrayList <Camp> camps) {
+		Camp camp = campSelect.select(camps);
+		if (!camp.enrolledCommittee(student)) return;
+		Suggestion suggestion = suggestionBuild.build(student, camp);
+		suggestionList.add(suggestion);
 	}
 	
 	/**
@@ -49,8 +52,11 @@ public class SuggestionControl {
 	 * @param student the user that is trying to add the suggestion
 	 * @param camps the list of all existing camps
 	 */
-	public void editSuggestion(User student, CampControl camps) {
-		suggestionEditor.edit(this.suggestionList, student, camps);
+	public void editSuggestion(User student) {
+		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
+		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
+		if (student != suggestion.getUser()) return;
+		if (suggestion != null) suggestionEdit.edit(suggestion);
 	}
 	
 	/**
@@ -59,7 +65,9 @@ public class SuggestionControl {
 	 * @param student the user that is trying to add the suggestion
 	 */
 	public void deleteSuggestion(User student) {
-		suggestionDeleter.delete(this.suggestionList, student);
+		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
+		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
+		if (suggestion != null) suggestionList.remove(suggestion);
 	}
 	
 	/**
@@ -68,19 +76,10 @@ public class SuggestionControl {
 	 * 
 	 * @param camp the camp that the Staff is in-charge of
 	 */
-	public void ApproveRejectSuggestions(Camp camp){
-		suggestionApprove.ApproveDelete(this.suggestionList, camp);
-	}
-
-	/**
-	 * Used to get a specific suggestion from the arraylist of suggestions
-	 * 
-	 * @param index the index of a specific suggestion in arraylist
-	 * @return the Suggestion object with that index in arraylist
-	 */
-	public Suggestion getSuggestion(int index) {
-		//using the index we iterate through and return that suggestion
-		return this.suggestionList.get(index-1);
+	public void approveRejectSuggestions(Camp camp){
+		ArrayList <Suggestion> campSuggestions = getCampSuggestions(camp);
+		Suggestion suggestion = suggestionSelect.select(campSuggestions);
+		suggestionApprove.ApproveDelete(suggestion);
 	}
 	
 	/**
@@ -89,7 +88,7 @@ public class SuggestionControl {
 	 * @param camp the camp which we will get the suggestions for
 	 * @return arraylist of suggestions for the camp
 	 */
-	public ArrayList<Suggestion> getSuggestion(Camp camp){
+	public ArrayList<Suggestion> getCampSuggestions(Camp camp){
 		// filter global array by camp
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<this.suggestionList.size(); i++) {
@@ -106,7 +105,7 @@ public class SuggestionControl {
 	 * @param student the student whose suggestions we are getting
 	 * @return arraylist of suggestions made by that student
 	 */
-	public ArrayList<Suggestion> getSuggestion(User student){
+	public ArrayList<Suggestion> getStudentSuggestions(User student){
 		//filter global array by student
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<this.suggestionList.size(); i++ ) {
