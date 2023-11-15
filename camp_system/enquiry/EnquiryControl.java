@@ -44,13 +44,14 @@ public class EnquiryControl {
      * Only allow Committee Member or Staff to reply to the enquiry
      * Adds a point if the user is a Committee Member
     */
-    public void replyEnquiry(User user) {
-        ArrayList <Enquiry> committeeEnquiries = getCampEnquiries(user.getCommitteeOf());
+    public void replyEnquiry(User user, ArrayList <Camp> camps) {
+        Camp camp = campSelect.select(camps);
+        if (camp == null) return;
+        ArrayList <Enquiry> committeeEnquiries = getCampEnquiries(camp);
         Enquiry enquiry = enquirySelect.select(committeeEnquiries);
-        if (user.getCommitteeOf().getId() != enquiry.getCamp()) return;
+        if (!camp.enrolledCommittee(user.getUserID())) return;
 
-        enquiryReply.reply(enquiry);
-        user.addPoint();
+        enquiryReply.reply(user.getUserID(), enquiry);
     }
 
     /* Allow Students to edit their enquiry

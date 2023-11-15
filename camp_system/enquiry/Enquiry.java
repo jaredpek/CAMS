@@ -6,6 +6,7 @@ public class Enquiry {
     private String student;
     private long camp;
     private String question, reply;
+    private String repliedBy;
 
     public Enquiry(String student, long camp, String question) {
         this.status = Status.PROCESSING; //default value
@@ -15,12 +16,13 @@ public class Enquiry {
         this.reply = "No Reply"; //default no replies
     }
 
-    public Enquiry(Status status, String student, long camp, String question, String reply) {
+    public Enquiry(Status status, String student, long camp, String question, String reply, String repliedBy) {
         this.status = status;
         this.student = student;
         this.camp = camp;
         this.question = question;
         this.reply = reply;
+        this.repliedBy = repliedBy;
     }
 
     public void printEnquiry() {
@@ -44,4 +46,7 @@ public class Enquiry {
 
     public String getReply() { return this.reply; }
     protected void setReply(String reply) { this.reply = reply; }
+
+    public String getRepliedBy() { return repliedBy; }
+    protected void setRepliedBy(String repliedBy) { this.repliedBy = repliedBy; }
 }

@@ -7,8 +7,8 @@ public class User {
     private String name, userID, password;
     private Faculty faculty;
     private Role role;
-    private Camp committeeOf;
-    private int point = 0;
+    // private Camp committeeOf;
+    // private int point = 0;
     /**
      * 
      * @param name this is the name of the user
@@ -76,21 +76,21 @@ public class User {
      * return the camp name which the user belongs to
      * @return Camp
      */
-    public Camp getCommitteeOf() {return committeeOf;}
-    protected void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
+    // public Camp getCommitteeOf() {return committeeOf;}
+    // protected void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
     
-    /**
-     * return user's point
-     * @return int
-     */
-    public int getPoint() {return point;}
-    protected void setPoint(int point) {this.point = point;}
+    // /**
+    //  * return user's point
+    //  * @return int
+    //  */
+    // public int getPoint() {return point;}
+    // protected void setPoint(int point) {this.point = point;}
     
-    /**
-     * add point for the user
-     */
-    public void addPoint(){
-        point++;
-    }
+    // /**
+    //  * add point for the user
+    //  */
+    // public void addPoint(){
+    //     point++;
+    // }
 }
     

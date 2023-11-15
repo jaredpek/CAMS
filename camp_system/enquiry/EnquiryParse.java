@@ -25,7 +25,8 @@ public class EnquiryParse {
                 enquiry.getStudent() + "," +
                 enquiry.getCamp() + "," +
                 enquiry.getQuestion() + "," +
-                enquiry.getReply()
+                enquiry.getReply() + "," +
+                enquiry.getRepliedBy()
             );
         }
         try {

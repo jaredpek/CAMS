@@ -71,7 +71,8 @@ public class CampApp implements IBase {
                     case 3:
                         enquiryControl.deleteEnquiry(currentUser); break;
                     case 4:
-                        enquiryControl.replyEnquiry(currentUser); break;
+                        ArrayList <Camp> committeeCamps = campControl.getCommitteeCamps(currentUser);
+                        enquiryControl.replyEnquiry(currentUser, committeeCamps); break;
                     default: break;
                 }
                 break;
