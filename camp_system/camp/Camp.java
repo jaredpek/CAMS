@@ -68,9 +68,11 @@ public class Camp extends CampInformation {
 
     /** Print the roles of all the students in the camp */
     public void printRoles() {
-        System.out.println("Committee:");
+        System.out.printf("Total Slots = %d\n", this.getTotalSlots());
+        System.out.printf("Committee (%d / %d)\n", committeeList.size(), this.getCommitteeSlots());
         for (User user : committeeList) System.out.println(user.getName());
-        System.out.println("\nAttendee:");
+        System.out.println();
+        System.out.printf("\nAttendee (%d / %d)\n", attendeeList.size(), this.getTotalSlots() - this.getCommitteeSlots());
         for (User user : attendeeList) System.out.println(user.getName());
     }
 

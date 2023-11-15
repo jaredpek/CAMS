@@ -26,6 +26,7 @@ public class EnquiryControl {
     */
     public void addEnquiry(User user, ArrayList <Camp> camps) {
         Camp camp = campSelect.select(camps);
+        if (camp == null) return;
         Enquiry enquiry = enquiryBuild.build(user, camp);
         enquiries.add(enquiry);
     }
@@ -49,7 +50,7 @@ public class EnquiryControl {
     public void editEnquiry(User user) {
         ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (user != enquiry.getStudent()) return;
+        if (enquiry == null || user != enquiry.getStudent()) return;
         enquiryEdit.edit(enquiry);
     }
 
@@ -59,7 +60,7 @@ public class EnquiryControl {
     public void deleteEnquiry(User user) {
         ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (user != enquiry.getStudent()) return;
+        if (enquiry == null || user != enquiry.getStudent()) return;
         enquiries.remove(enquiry);
     }
 

@@ -14,7 +14,7 @@ public class CampEnrol implements IBase {
      */
     public void attendee(User user, ArrayList <Camp> available) {
         Camp camp = campSelect.select(available);
-        camp.addAttendee(user);
+        if (camp != null) camp.addAttendee(user);
     }
 
     /**
@@ -26,7 +26,7 @@ public class CampEnrol implements IBase {
             if (available.get(i).enrolledCommittee(user)) return;
         }
         Camp camp = campSelect.select(available);
-        camp.addCommittee(user);
+        if (camp != null) camp.addCommittee(user);
     }
 
     private void menu() {

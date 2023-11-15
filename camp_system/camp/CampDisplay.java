@@ -25,9 +25,7 @@ public class CampDisplay implements IBase {
      * Prints the roles of all the students in the specified camp
      * @param camps This is the list of camps to select from
      */
-    public void printRoles(ArrayList <Camp> camps) {
-        printCamps(camps);
-        System.out.printf("Enter Camp Option: "); int option = scan.nextInt(); scan.nextLine();
-        camps.get(option).printRoles();
+    public void printRoles(Camp camp) {
+        camp.printRoles();
     }
 }

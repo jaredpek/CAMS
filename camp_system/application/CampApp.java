@@ -18,24 +18,29 @@ import camp_system.user.User;
 import camp_system.user.UserControl;
 
 public class CampApp implements IBase {
-        private static UserControl userControl = new UserControl();
-        private static User currentUser = null;
-        private static SuggestionControl suggestionControl = new SuggestionControl();
-        private static SuggestionDisplay suggestionDisplay = new SuggestionDisplay();
-        private static EnquiryControl enquiryControl = new EnquiryControl();
-        private static CampControl campControl = new CampControl();
-        private static CampDisplay campDisplay = new CampDisplay();
-        private static CampSelect campSelect = new CampSelect();
-        private static CampMenu campMenu = new CampMenu();
-        private static Report report = new Report();
-        private static Boolean run = true;
+    private static UserControl userControl = new UserControl();
+    private static User currentUser = null;
+    private static SuggestionControl suggestionControl = new SuggestionControl();
+    private static SuggestionDisplay suggestionDisplay = new SuggestionDisplay();
+    private static EnquiryControl enquiryControl = new EnquiryControl();
+    private static CampControl campControl = new CampControl();
+    private static CampDisplay campDisplay = new CampDisplay();
+    private static CampSelect campSelect = new CampSelect();
+    private static CampMenu campMenu = new CampMenu();
+    private static Report report = new Report();
+    private static Boolean run = true;
         
     public static void main(String[] args) throws ParseException, IOException {
         while (run) {
             campMenu.loginMenu();
-            System.out.printf("Enter User ID: "); String userId = scan.nextLine();
-            System.out.printf("Enter Password: "); String password = scan.nextLine();
-            currentUser = userControl.login(userId, password);
+            System.out.printf("Option: "); int authChoice = scan.nextInt(); scan.nextLine();
+            switch (authChoice) {
+                case 1:
+                    System.out.printf("Enter User ID: "); String userId = scan.nextLine();
+                    System.out.printf("Enter Password: "); String password = scan.nextLine();
+                    currentUser = userControl.login(userId, password); break;
+                default: return;
+            }
             if (currentUser == null) continue;
 
             while (currentUser != null && currentUser.getRole() == Role.STUDENT) {
@@ -112,7 +117,9 @@ public class CampApp implements IBase {
                     case 5: campControl.deleteCamp(currentUser); break;
                     case 6: {
                         ArrayList <Camp> camps = campControl.getAllCamps(currentUser);
-                        campDisplay.printRoles(camps); break;
+                        Camp camp = campSelect.select(camps);
+                        if (camp != null) campDisplay.printRoles(camp); 
+                        break;
                     }
                     case 7: {
                         campMenu.staffSuggestionMenu(); 

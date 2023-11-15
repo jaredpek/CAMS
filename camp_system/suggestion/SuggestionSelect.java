@@ -9,6 +9,7 @@ public class SuggestionSelect implements IBase {
 
     public Suggestion select(ArrayList <Suggestion> suggestions) {
         suggestionDisplay.printSuggestions(suggestions);
+        if (suggestions.size() == 0) return null;
         System.out.printf("Suggestion: "); int index = scan.nextInt(); scan.nextLine();
         return suggestions.get(index - 1);
     }

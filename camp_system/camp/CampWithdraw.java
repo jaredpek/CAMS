@@ -12,6 +12,6 @@ public class CampWithdraw {
      */
     public void attendee(User user, ArrayList <Camp> registered) {
         Camp camp = campSelect.select(registered);
-        camp.removeAttendee(user);
+        if (camp != null) camp.removeAttendee(user);
     }
 }

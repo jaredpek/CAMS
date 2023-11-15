@@ -9,6 +9,7 @@ public class CampSelect implements IBase {
 
     public Camp select(ArrayList <Camp> camps) {
         campDisplay.printCamps(camps);
+        if (camps.size() == 0) return null;
         System.out.printf("Camp: "); int index = scan.nextInt(); scan.nextLine();
         return camps.get(index - 1);
     }

@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import camp_system.csv_parser.CSVParse;
 
 public class UserControl {
-    private ArrayList<User> users;
+    private ArrayList<User> users= new ArrayList <User> ();;
     private UserBuild userBuild = new UserBuild();
     private UserPassword userPassword = new UserPassword();
     private CSVParse csvParse = new CSVParse();
 
     public UserControl() {
-        users = new ArrayList <User> ();
         ArrayList <String[]> studentData = csvParse.read("camp_system\\data\\students.csv");
         ArrayList <String[]> staffData = csvParse.read("camp_system\\data\\staffs.csv");
         users.addAll(userBuild.buildMany(studentData, Role.STUDENT));
@@ -48,6 +47,3 @@ public class UserControl {
         userPassword.reset(user);
     }
 }
-    
-
-

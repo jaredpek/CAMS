@@ -55,8 +55,8 @@ public class SuggestionControl {
 	public void editSuggestion(User student) {
 		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (student != suggestion.getUser()) return;
-		if (suggestion != null) suggestionEdit.edit(suggestion);
+		if (suggestion == null || student != suggestion.getUser()) return;
+		suggestionEdit.edit(suggestion);
 	}
 	
 	/**
@@ -67,7 +67,8 @@ public class SuggestionControl {
 	public void deleteSuggestion(User student) {
 		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (suggestion != null) suggestionList.remove(suggestion);
+		if (suggestion == null || student != suggestion.getUser()) return;
+		suggestionList.remove(suggestion);
 	}
 	
 	/**

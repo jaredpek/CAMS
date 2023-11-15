@@ -21,6 +21,7 @@ public class CampEdit implements IBase {
     }
 
     public void edit(Camp camp) throws ParseException {
+        if (camp == null) return;
         menu();
         int option = scan.nextInt(); scan.nextLine();
         switch (option) {

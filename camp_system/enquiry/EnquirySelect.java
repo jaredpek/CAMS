@@ -9,6 +9,7 @@ public class EnquirySelect implements IBase {
 
     public Enquiry select(ArrayList <Enquiry> enquiries) {
         enquiryDisplay.printEnquiries(enquiries);
+        if (enquiries.size() == 0) return null;
         System.out.printf("Enquiry: "); int index = scan.nextInt(); scan.nextLine();
         return enquiries.get(index - 1);
     }

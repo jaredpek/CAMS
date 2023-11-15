@@ -67,7 +67,7 @@ public class User {
     protected void setPassword(String password) {this.password = password;}
     
     public Boolean verifyCredentials(String userID, String password) {
-        if (this.userID == userID && this.password == password) return true;
+        if (this.userID.compareTo(userID) == 0 && this.password.compareTo(password) == 0) return true;
         return false;
     }
 
