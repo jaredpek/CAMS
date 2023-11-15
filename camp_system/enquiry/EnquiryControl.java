@@ -40,7 +40,7 @@ public class EnquiryControl {
     public void replyEnquiry(User user) {
         ArrayList <Enquiry> committeeEnquiries = getCampEnquiries(user.getCommitteeOf());
         Enquiry enquiry = enquirySelect.select(committeeEnquiries);
-        if (user.getCommitteeOf() != enquiry.getCamp()) return;
+        if (user.getCommitteeOf().getId() != enquiry.getCamp()) return;
 
         enquiryReply.reply(enquiry);
         user.addPoint();
@@ -52,7 +52,7 @@ public class EnquiryControl {
     public void editEnquiry(User user) {
         ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (enquiry == null || user != enquiry.getStudent()) return;
+        if (enquiry == null || user.getUserID() != enquiry.getStudent()) return;
         enquiryEdit.edit(enquiry);
     }
 
@@ -62,7 +62,7 @@ public class EnquiryControl {
     public void deleteEnquiry(User user) {
         ArrayList <Enquiry> studentEnquiries = getStudentEnquiries(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (enquiry == null || user != enquiry.getStudent()) return;
+        if (enquiry == null || user.getUserID() != enquiry.getStudent()) return;
         enquiries.remove(enquiry);
     }
 
@@ -72,7 +72,7 @@ public class EnquiryControl {
     public ArrayList<Enquiry> getCampEnquiries(Camp camp) {
         ArrayList<Enquiry> campEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : enquiries) {
-            if (enquiry.getCamp() == camp) campEnquiries.add(enquiry);
+            if (enquiry.getCamp() == camp.getId()) campEnquiries.add(enquiry);
         }
         return campEnquiries;
     }
@@ -83,7 +83,7 @@ public class EnquiryControl {
     public ArrayList <Enquiry> getStudentEnquiries(User student) {
         ArrayList<Enquiry> studentEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : enquiries) {
-            if (enquiry.getStudent() == student) studentEnquiries.add(enquiry);
+            if (enquiry.getStudent() == student.getUserID()) studentEnquiries.add(enquiry);
         }
         return studentEnquiries;
     }

@@ -23,16 +23,10 @@ public class SuggestionApprove implements IBase {
 		do {
 			switch(num){
 				case 1:
-					Status s = Status.ACCEPTED;
-					// set status of suggestion to approved
-					suggestion.setStatus(s);
-					suggestion.getUser().addPoint();
-					// add point for the suggestion being accepted
+					suggestion.setStatus(Status.ACCEPTED);
 					break;
 				case 2:
-					Status r = Status.REJECTED;
-					// set status of suggestion to rejected
-					suggestion.setStatus(r);
+					suggestion.setStatus(Status.REJECTED);
 					break; 
 				default:
 					System.out.println("Invalid Choice!");

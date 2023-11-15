@@ -8,7 +8,7 @@ import camp_system.user.Faculty;
 import camp_system.user.User;
 
 public class CampBuild implements IBase {
-    public Camp build(User user) throws ParseException {
+    public Camp build(User user, int id) throws ParseException {
         System.out.printf("Name: "); String name = scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(scan.nextLine());
         System.out.printf("Location: "); String location = scan.nextLine();
@@ -18,10 +18,11 @@ public class CampBuild implements IBase {
         System.out.printf("Register By: "); Date registerBy = dateParse.date(scan.nextLine());
         System.out.printf("Total Slots: "); int totalSlots = scan.nextInt(); scan.nextLine();
         System.out.printf("Committee Slots: "); int committeeSlots = scan.nextInt(); scan.nextLine();
-        return new Camp(name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user);
+        return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user.getUserID());
     }
-    public Camp template(User user) throws ParseException {
+    public Camp template(User user, int id) throws ParseException {
         return new Camp(
+            id, 
             "camp1", 
             Faculty.NTU, 
             "ntu", 
@@ -31,7 +32,7 @@ public class CampBuild implements IBase {
             dateParse.date("10-12-2023 23:59"), 
             100, 
             10, 
-            user
+            user.getUserID()
         );
     }
 }

@@ -1,7 +1,5 @@
 package camp_system.suggestion;
 
-import camp_system.camp.Camp;
-import camp_system.user.User;
 /**
  * Represents a Suggestion made by the User from a Camp
  * 
@@ -9,8 +7,8 @@ import camp_system.user.User;
  */
 public class Suggestion {
 	private Status status = Status.PROCESSING;
-	private User user;
-	private Camp camp;
+	private String user;
+	private int camp;
 	private String message;
 	/**
 	 * Prints the suggestion stored in the message attribute
@@ -24,7 +22,7 @@ public class Suggestion {
 	 * @param camp The camp that the suggestion is for
 	 * @param message The suggestion string
 	 */
-	public Suggestion(User user, Camp camp, String message) {
+	public Suggestion(String user, int camp, String message) {
 		this.user = user;
 		this.camp = camp;
 		this.message = message;
@@ -32,25 +30,25 @@ public class Suggestion {
 	/**
 	 * @return the User who made this Suggestion
 	 */
-	public User getUser() {
+	public String getUser() {
 		return user;
 	}
 	/**
 	 * @param user Set the user attribute to this param
 	 */
-	protected void setUser(User user) {
+	protected void setUser(String user) {
 		this.user = user;
 	}
 	/**
 	 * @return the Camp that the user who made this Suggestion is from
 	 */
-	public Camp getCamp() {
+	public int getCamp() {
 		return camp;
 	}
 	/**
 	 * @param camp Set the camp attribute to this param
 	 */
-	protected void setCamp(Camp camp) {
+	protected void setCamp(int camp) {
 		this.camp = camp;
 	}
 	/**
@@ -77,7 +75,4 @@ public class Suggestion {
 	protected void setStatus(Status status) {
 		this.status = status;
 	}
-	
 }	
-
-

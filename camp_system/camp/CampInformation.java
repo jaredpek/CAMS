@@ -3,7 +3,6 @@ package camp_system.camp;
 import java.util.Date;
 
 import camp_system.user.Faculty;
-import camp_system.user.User;
 
 /**
  * Represents the core camp information for a camp
@@ -34,7 +33,7 @@ public class CampInformation {
     private int committeeSlots;
 
     /** Staff in charge of the camp */
-    private User staffInCharge;
+    private String staffInCharge;
 
     /** Group the camp is open to */
     Faculty group;
@@ -62,7 +61,7 @@ public class CampInformation {
         Date registerBy,
         int totalSlots,
         int committeeSlots,
-        User staffInCharge
+        String staffInCharge
     ) {
         this.name = name;
         this.group = group;
@@ -188,11 +187,5 @@ public class CampInformation {
      * Returns the current staff that is in charge of the camp
      * @return User
      */
-    public User getStaffInCharge() { return staffInCharge; }
-
-    /**
-     * Sets a new member of staff to be in charge of the camp
-     * @param staffInCharge This is the new staff member to be in charge
-     */
-    protected void setStaffInCharge(User staffInCharge) { this.staffInCharge = staffInCharge; }
+    public String getStaffInCharge() { return staffInCharge; }
 }

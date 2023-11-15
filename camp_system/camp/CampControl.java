@@ -13,6 +13,7 @@ import camp_system.user.Role;
 public class CampControl {
     /** List of all the available camps */
     private ArrayList <Camp> camps;
+    private int counter = 0;
     private CampBuild campBuild = new CampBuild();
     private CampEdit campEdit = new CampEdit();
     private CampSelect campSelect = new CampSelect();
@@ -49,13 +50,13 @@ public class CampControl {
      */
     public void addCamp(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.build(user));
+        camps.add(campBuild.build(user, counter++ + 1));
         campSort.sortByAlphabetical(camps, 0);
     }
 
     public void addTemplate(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.template(user));
+        camps.add(campBuild.template(user, counter++ + 1));
     }
 
     /**
@@ -112,7 +113,7 @@ public class CampControl {
     public ArrayList <Camp> getAttendeeCamps(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledAttendee(user)) result.add(camp);
+            if (camp.enrolledAttendee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -125,7 +126,7 @@ public class CampControl {
     public ArrayList <Camp> getCommitteeCamps(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledCommittee(user)) result.add(camp);
+            if (camp.enrolledCommittee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -138,7 +139,7 @@ public class CampControl {
     public ArrayList <Camp> getStudentCamps(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledAttendee(user) || camp.enrolledCommittee(user)) result.add(camp);
+            if (camp.enrolledAttendee(user.getUserID()) || camp.enrolledCommittee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -151,14 +152,14 @@ public class CampControl {
     public ArrayList <Camp> getStaffCamps(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledStaff(user)) result.add(camp);
+            if (camp.enrolledStaff(user.getUserID())) result.add(camp);
         }
         return result;
     }
     
     public void registerCamp(User user) {
         ArrayList <Camp> available = getGroupCamps(user.getFaculty());
-        campEnrol.register(user, available);
+        campEnrol.register(user.getUserID(), available);
     }
 
     /**
@@ -167,6 +168,6 @@ public class CampControl {
      */
     public void withdrawAttendee(User user) {
         ArrayList <Camp> registered = getAttendeeCamps(user);
-        campWithdraw.attendee(user, registered);
+        campWithdraw.attendee(user.getUserID(), registered);
     }
 }

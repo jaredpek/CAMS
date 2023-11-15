@@ -1,6 +1,4 @@
 package camp_system.suggestion;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import camp_system.camp.Camp;
@@ -41,7 +39,7 @@ public class SuggestionControl {
 	 */
 	public void addSuggestion(User student, ArrayList <Camp> camps) {
 		Camp camp = campSelect.select(camps);
-		if (!camp.enrolledCommittee(student)) return;
+		if (!camp.enrolledCommittee(student.getUserID())) return;
 		Suggestion suggestion = suggestionBuild.build(student, camp);
 		suggestions.add(suggestion);
 	}
@@ -55,7 +53,7 @@ public class SuggestionControl {
 	public void editSuggestion(User student) {
 		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (suggestion == null || student != suggestion.getUser()) return;
+		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
 		suggestionEdit.edit(suggestion);
 	}
 	
@@ -67,7 +65,7 @@ public class SuggestionControl {
 	public void deleteSuggestion(User student) {
 		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (suggestion == null || student != suggestion.getUser()) return;
+		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
 		suggestions.remove(suggestion);
 	}
 	
@@ -93,7 +91,7 @@ public class SuggestionControl {
 		// filter global array by camp
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<this.suggestions.size(); i++) {
-			if (camp == this.suggestions.get(i).getCamp()) {
+			if (camp.getId() == this.suggestions.get(i).getCamp()) {
 				temp.add(this.suggestions.get(i));
 			}
 		}
@@ -110,7 +108,7 @@ public class SuggestionControl {
 		//filter global array by student
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<this.suggestions.size(); i++ ) {
-			if (this.suggestions.get(i).getUser() == student) {
+			if (this.suggestions.get(i).getUser() == student.getUserID()) {
 				temp.add(this.suggestions.get(i)); // matching suggestions are added in
 			}
 		}

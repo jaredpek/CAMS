@@ -18,6 +18,6 @@ public class SuggestionBuild implements IBase {
 	 */
     public Suggestion build(User student, Camp camp){
 		System.out.printf("Suggestion: "); String message = scan.nextLine();
-		return new Suggestion(student, camp, message);
+		return new Suggestion(student.getUserID(), camp.getId(), message);
     }
 }
