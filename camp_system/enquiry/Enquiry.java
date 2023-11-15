@@ -40,4 +40,3 @@ public class Enquiry {
     public String getReply() { return this.reply; }
     protected void setReply(String reply) { this.reply = reply; }
 }
-

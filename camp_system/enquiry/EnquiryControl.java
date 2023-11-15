@@ -9,13 +9,15 @@ import camp_system.user.User;
 public class EnquiryControl {
     private ArrayList <Enquiry> enquiries;
 
-    public EnquiryBuild enquiryBuild = new EnquiryBuild();
-    public EnquirySelect enquirySelect = new EnquirySelect();
-    public EnquiryEdit enquiryEdit = new EnquiryEdit();
-    public EnquiryReply enquiryReply = new EnquiryReply();
-    public CampSelect campSelect = new CampSelect();
+    private EnquiryBuild enquiryBuild = new EnquiryBuild();
+    private EnquirySelect enquirySelect = new EnquirySelect();
+    private EnquiryEdit enquiryEdit = new EnquiryEdit();
+    private EnquiryReply enquiryReply = new EnquiryReply();
+    private CampSelect campSelect = new CampSelect();
+    
+    /** Creates a new CampControl object with a default empty list */
+    public EnquiryControl() { this.enquiries = new ArrayList <Enquiry> (); }
 
-    public EnquiryControl() {this.enquiries = new ArrayList <Enquiry> (); }
     public EnquiryControl(ArrayList <Enquiry> enquiries){
         this.enquiries = enquiries;
     }

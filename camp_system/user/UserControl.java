@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import camp_system.csv_parser.CSVParse;
 
 public class UserControl {
-    private ArrayList<User> users= new ArrayList <User> ();;
+    private ArrayList <User> users = new ArrayList <User> ();
     private UserBuild userBuild = new UserBuild();
     private UserPassword userPassword = new UserPassword();
     private CSVParse csvParse = new CSVParse();
 
+    /** Creates a new CampControl object with a default empty list */
     public UserControl() {
         ArrayList <String[]> studentData = csvParse.read("camp_system\\data\\students.csv");
         ArrayList <String[]> staffData = csvParse.read("camp_system\\data\\staffs.csv");

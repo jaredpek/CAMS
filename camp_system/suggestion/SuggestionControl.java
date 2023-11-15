@@ -1,4 +1,6 @@
 package camp_system.suggestion;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import camp_system.camp.Camp;
@@ -10,27 +12,25 @@ import camp_system.user.User;
  * all of the suggestions that can be used by User
  */
 public class SuggestionControl {
-	private ArrayList<Suggestion> suggestionList = new ArrayList<Suggestion>();
+	private ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
 	private SuggestionBuild suggestionBuild = new SuggestionBuild();
 	private SuggestionEdit suggestionEdit = new SuggestionEdit();
 	private SuggestionSelect suggestionSelect = new SuggestionSelect();
 	private CampSelect campSelect = new CampSelect();
 	private SuggestionApprove suggestionApprove = new SuggestionApprove();
+    
+    /** Creates a new CampControl object with a default empty list */
+    public SuggestionControl() { this.suggestions = new ArrayList<Suggestion>(); }
+
 	/**
-	 * Default constructor for the SuggestionControl
-	 */
-	public SuggestionControl(){
-		this.suggestionList = new ArrayList<Suggestion>();
-	}
-	/**
-	 * Used to set to set the suggestionlist attribute 
+	 * Used to set to set the suggestions attribute 
 	 * with another arraylist of suggestions
 	 * 
 	 * @param suggestion arraylist of suggestions that use
 	 */
 
-	public void setSuggestionList(ArrayList<Suggestion> suggestion){
-		this.suggestionList = suggestion;
+	public void setSuggestions(ArrayList<Suggestion> suggestion){
+		this.suggestions = suggestion;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class SuggestionControl {
 		Camp camp = campSelect.select(camps);
 		if (!camp.enrolledCommittee(student)) return;
 		Suggestion suggestion = suggestionBuild.build(student, camp);
-		suggestionList.add(suggestion);
+		suggestions.add(suggestion);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class SuggestionControl {
 		ArrayList <Suggestion> studentSuggestions = getStudentSuggestions(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
 		if (suggestion == null || student != suggestion.getUser()) return;
-		suggestionList.remove(suggestion);
+		suggestions.remove(suggestion);
 	}
 	
 	/**
@@ -92,9 +92,9 @@ public class SuggestionControl {
 	public ArrayList<Suggestion> getCampSuggestions(Camp camp){
 		// filter global array by camp
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
-		for (int i=0; i<this.suggestionList.size(); i++) {
-			if (camp == this.suggestionList.get(i).getCamp()) {
-				temp.add(this.suggestionList.get(i));
+		for (int i=0; i<this.suggestions.size(); i++) {
+			if (camp == this.suggestions.get(i).getCamp()) {
+				temp.add(this.suggestions.get(i));
 			}
 		}
 		return temp; // array of all suggestions belonging to one camp
@@ -109,9 +109,9 @@ public class SuggestionControl {
 	public ArrayList<Suggestion> getStudentSuggestions(User student){
 		//filter global array by student
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
-		for (int i=0; i<this.suggestionList.size(); i++ ) {
-			if (this.suggestionList.get(i).getUser() == student) {
-				temp.add(this.suggestionList.get(i)); // matching suggestions are added in
+		for (int i=0; i<this.suggestions.size(); i++ ) {
+			if (this.suggestions.get(i).getUser() == student) {
+				temp.add(this.suggestions.get(i)); // matching suggestions are added in
 			}
 		}
 		return temp;
