@@ -7,19 +7,26 @@ import camp_system.camp.CampSelect;
 import camp_system.user.User;
 
 public class EnquiryControl {
-    private ArrayList <Enquiry> enquiries;
+    private ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
 
     private EnquiryBuild enquiryBuild = new EnquiryBuild();
     private EnquirySelect enquirySelect = new EnquirySelect();
     private EnquiryEdit enquiryEdit = new EnquiryEdit();
     private EnquiryReply enquiryReply = new EnquiryReply();
     private CampSelect campSelect = new CampSelect();
+    private EnquiryParse enquiryParse = new EnquiryParse();
     
     /** Creates a new CampControl object with a default empty list */
-    public EnquiryControl() { this.enquiries = new ArrayList <Enquiry> (); }
+    public EnquiryControl() {
+        enquiries.addAll(enquiryParse.parse("camp_system\\data\\enquiries.csv"));
+    }
 
     public EnquiryControl(ArrayList <Enquiry> enquiries){
         this.enquiries = enquiries;
+    }
+
+    public void close() {
+        enquiryParse.write("camp_system\\data\\enquiries.csv", enquiries);
     }
 
     /*

@@ -18,4 +18,8 @@ public class DateParse {
     public Date date(String source) throws ParseException {
         return dateFormatter.parse(source);
     }
+
+    public String string(Date date) {
+        return dateFormatter.format(date);
+    }
 }

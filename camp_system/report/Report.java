@@ -64,15 +64,15 @@ public class Report {
 
         try (FileWriter fw = new FileWriter(file, false);
              BufferedWriter bw = new BufferedWriter(fw)) {
-            List<User> committee = camp.getCommitteeList();
+            List<String> committee = camp.getCommitteeList();
 
-            for (User user : committee) {
+            for (String user : committee) {
 
-                bw.write("Name: " + user.getName());
+                bw.write("Name: " + user);
                 bw.newLine();
 
-                bw.write("Total points: " + user.getPoint());
-                bw.newLine();
+                // bw.write("Total points: " + user.getPoint());
+                // bw.newLine();
             }
         }
     }

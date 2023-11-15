@@ -11,14 +11,22 @@ import camp_system.user.User;
  */
 public class SuggestionControl {
 	private ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
+	
 	private SuggestionBuild suggestionBuild = new SuggestionBuild();
 	private SuggestionEdit suggestionEdit = new SuggestionEdit();
 	private SuggestionSelect suggestionSelect = new SuggestionSelect();
 	private CampSelect campSelect = new CampSelect();
 	private SuggestionApprove suggestionApprove = new SuggestionApprove();
+	private SuggestionParse suggestionParse = new SuggestionParse();
     
     /** Creates a new CampControl object with a default empty list */
-    public SuggestionControl() { this.suggestions = new ArrayList<Suggestion>(); }
+    public SuggestionControl() {
+        suggestions.addAll(suggestionParse.parse("camp_system\\data\\suggestions.csv"));
+	}
+
+	public void close() {
+		suggestionParse.write("camp_system\\data\\suggestions.csv", suggestions);
+	}
 
 	/**
 	 * Used to set to set the suggestions attribute 

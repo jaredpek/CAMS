@@ -161,6 +161,13 @@ public class CampApp implements IBase {
             default: break;
         }
     }
+
+    public static void close() {
+        enquiryControl.close();
+        suggestionControl.close();
+        campControl.close();
+        userControl.close();
+    }
         
     public static void main(String[] args) throws ParseException, IOException {
         while (run) {
@@ -169,5 +176,6 @@ public class CampApp implements IBase {
             while (currentUser != null && currentUser.getRole() == Role.STUDENT) student();
             while (currentUser != null && currentUser.getRole() == Role.STAFF) staff();
         }
+        close();
     }
 }

@@ -6,9 +6,9 @@ package camp_system.suggestion;
  * @author Gokul Ramesh
  */
 public class Suggestion {
-	private Status status = Status.PROCESSING;
+	private Status status;
 	private String user;
-	private int camp;
+	private long camp;
 	private String message;
 	/**
 	 * Prints the suggestion stored in the message attribute
@@ -22,7 +22,14 @@ public class Suggestion {
 	 * @param camp The camp that the suggestion is for
 	 * @param message The suggestion string
 	 */
-	public Suggestion(String user, int camp, String message) {
+	public Suggestion(String user, long camp, String message) {
+		this.status = Status.PROCESSING;
+		this.user = user;
+		this.camp = camp;
+		this.message = message;
+	}
+	public Suggestion(Status status, String user, long camp, String message) {
+		this.status = status;
 		this.user = user;
 		this.camp = camp;
 		this.message = message;
@@ -42,13 +49,13 @@ public class Suggestion {
 	/**
 	 * @return the Camp that the user who made this Suggestion is from
 	 */
-	public int getCamp() {
+	public long getCamp() {
 		return camp;
 	}
 	/**
 	 * @param camp Set the camp attribute to this param
 	 */
-	protected void setCamp(int camp) {
+	protected void setCamp(long camp) {
 		this.camp = camp;
 	}
 	/**

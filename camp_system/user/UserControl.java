@@ -2,20 +2,19 @@ package camp_system.user;
 
 import java.util.ArrayList;
 
-import camp_system.csv_parser.CSVParse;
-
 public class UserControl {
     private ArrayList <User> users = new ArrayList <User> ();
-    private UserBuild userBuild = new UserBuild();
     private UserPassword userPassword = new UserPassword();
-    private CSVParse csvParse = new CSVParse();
+    private UserParse userParse = new UserParse();
 
     /** Creates a new CampControl object with a default empty list */
     public UserControl() {
-        ArrayList <String[]> studentData = csvParse.read("camp_system\\data\\students.csv");
-        ArrayList <String[]> staffData = csvParse.read("camp_system\\data\\staffs.csv");
-        users.addAll(userBuild.buildMany(studentData, Role.STUDENT));
-        users.addAll(userBuild.buildMany(staffData, Role.STAFF));
+        users.addAll(userParse.parse("camp_system\\data\\users.csv", Role.STUDENT));
+        users.addAll(userParse.parse("camp_system\\data\\users.csv", Role.STAFF));
+    }
+
+    public void close() {
+        userParse.write("camp_system\\data\\users.csv", users);
     }
     
     /**

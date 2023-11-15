@@ -1,5 +1,7 @@
 package camp_system.suggestion;
 
+import java.util.ArrayList;
+
 import camp_system.application.IBase;
 import camp_system.camp.Camp;
 import camp_system.user.User;
@@ -20,4 +22,21 @@ public class SuggestionBuild implements IBase {
 		System.out.printf("Suggestion: "); String message = scan.nextLine();
 		return new Suggestion(student.getUserID(), camp.getId(), message);
     }
+	public Suggestion build(String[] data) {
+        if (data.length < 4) return null;
+        Status status = Status.fromString(data[0]);
+        String user = data[1];
+        int camp = Integer.valueOf(data[2]);
+        String message = data[3];
+        return new Suggestion(status, user, camp, message);
+	}
+	public ArrayList <Suggestion> buildMany(ArrayList <String[]> data) {
+		ArrayList <Suggestion> suggestions = new ArrayList <Suggestion> ();
+		for (String[] entry : data) {
+			Suggestion suggestion = build(entry);
+			if (suggestion == null) continue;
+			suggestions.add(suggestion);
+		}
+		return suggestions;
+	}
 }

@@ -64,6 +64,7 @@ public class User {
      * Change password for the user
      * @param password this is the new password
      */
+    public String getPassword() { return password; }
     protected void setPassword(String password) {this.password = password;}
     
     public Boolean verifyCredentials(String userID, String password) {

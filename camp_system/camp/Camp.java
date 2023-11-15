@@ -9,7 +9,7 @@ import camp_system.user.Faculty;
  * Represent a camp that is available to students
  */
 public class Camp extends CampInformation {
-    private int id;
+    private long id;
     /** The status of a camp, if True, camp is active, else it is inactive */
     private Boolean active;
 
@@ -36,7 +36,7 @@ public class Camp extends CampInformation {
      * @param staffInCharge This is the staff that is in charge of the entire camp
      */
     public Camp(
-        int id, String name, Faculty group, String location, String description,
+        long id, String name, Faculty group, String location, String description,
         Date startDate, Date endDate, Date registerBy,
         int totalSlots, int committeeSlots,
         String staffInCharge
@@ -52,6 +52,24 @@ public class Camp extends CampInformation {
         this.committeeList = new ArrayList <String> ();
         this.attendeeList = new ArrayList <String> ();
         this.withdrawedList = new ArrayList <String> ();
+    }
+    
+    public Camp(
+        long id, Boolean active, String name, Faculty group, String location, String description,
+        Date startDate, Date endDate, Date registerBy, int totalSlots, int committeeSlots, String staffInCharge, 
+        ArrayList <String> committeeList, ArrayList <String> attendeeList, ArrayList <String> withdrawedList
+    ) {
+        super(
+            name, group, location, description, 
+            startDate, endDate, registerBy, 
+            totalSlots, committeeSlots, 
+            staffInCharge
+        );
+        this.id = id;
+        this.active = active;
+        this.committeeList = committeeList;
+        this.attendeeList = attendeeList;
+        this.withdrawedList = withdrawedList;
     }
 
     /** Print all the camp's details */
@@ -77,7 +95,7 @@ public class Camp extends CampInformation {
         for (String user : attendeeList) System.out.println(user);
     }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
 
     /**
      * Returns the current status of the camp, whether or not it is active
@@ -127,7 +145,7 @@ public class Camp extends CampInformation {
      * @return Boolean
      */
     public Boolean enrolledStaff(String staffInCharge) {
-        if (getStaffInCharge() == staffInCharge) return true;
+        if (getStaffInCharge().compareTo(staffInCharge) == 0) return true;
         return false;
     }
 
@@ -212,6 +230,12 @@ public class Camp extends CampInformation {
         if (!withinDate(new Date())) { System.out.println("Register date has already passed"); return; }
         committeeList.add(user);
     }
+
+    /**
+     * Returns a list of users that withdrawed from the camp
+     * @return ArrayList
+     */
+    public ArrayList <String> getWithdrawedList() { return withdrawedList; }
 
     /**
      * Returns whether the camp is open to a specified group

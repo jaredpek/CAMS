@@ -12,17 +12,20 @@ import camp_system.user.Role;
  */
 public class CampControl {
     /** List of all the available camps */
-    private ArrayList <Camp> camps;
-    private int counter = 0;
+    private ArrayList <Camp> camps = new ArrayList <Camp> ();
     private CampBuild campBuild = new CampBuild();
     private CampEdit campEdit = new CampEdit();
     private CampSelect campSelect = new CampSelect();
     private CampSort campSort = new CampSort();
     private CampEnrol campEnrol = new CampEnrol();
     private CampWithdraw campWithdraw = new CampWithdraw();
+    
+    private CampParse campParse = new CampParse();
 
     /** Creates a new CampControl object with a default empty list */
-    public CampControl() { this.camps = new ArrayList <Camp> (); }
+    public CampControl() {
+        camps.addAll(campParse.parse("camp_system\\data\\camps.csv"));
+    }
 
     /**
      * Creates a new CampControl object with an initial list of camps
@@ -30,6 +33,10 @@ public class CampControl {
      */
     public CampControl(ArrayList <Camp> camps) {
         this.camps = camps;
+    }
+
+    public void close() {
+        campParse.write("camp_system\\data\\camps.csv", camps);
     }
 
     /**
@@ -50,13 +57,13 @@ public class CampControl {
      */
     public void addCamp(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.build(user, counter++ + 1));
+        camps.add(campBuild.build(user));
         campSort.sortByAlphabetical(camps, 0);
     }
 
     public void addTemplate(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.template(user, counter++ + 1));
+        camps.add(campBuild.template(user));
     }
 
     /**

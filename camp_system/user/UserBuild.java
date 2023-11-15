@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 public class UserBuild {
     public User build(String[] data, Role role) {
-        if (data.length < 3) {
-            System.err.println("Error: CSV line does not have enough values: ");
-            return null;
-        }
+        if (data.length < 3) return null;
         String name = data[0];
         String userID = data[1].split("@")[0];
         Faculty faculty = Faculty.fromString(data[2]); // Convert the string to the Faculty enum
