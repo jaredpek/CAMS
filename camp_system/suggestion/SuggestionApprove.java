@@ -20,18 +20,16 @@ public class SuggestionApprove {
 		System.out.println("3: Exit");
 		// can just do a swtich statement here
 		int num = Scan.scan.nextInt(); Scan.scan.nextLine();
-		do {
-			switch(num){
-				case 1:
-					suggestion.setStatus(Status.ACCEPTED);
-					break;
-				case 2:
-					suggestion.setStatus(Status.REJECTED);
-					break; 
-				default:
-					System.out.println("Invalid Choice!");
-					break;
-			}
-		} while (num != 3);			
+		switch(num){
+			case 1:
+				suggestion.setStatus(Status.ACCEPTED);
+				break;
+			case 2:
+				suggestion.setStatus(Status.REJECTED);
+				break; 
+			default:
+				System.out.println("Invalid Choice!");
+				break;
+		}
     }
 }
