@@ -1,7 +1,9 @@
 package camp_system.user;
 
 import java.util.ArrayList;
-
+/**
+ * A class that build new user to an arraylist
+ */
 public class UserBuild {
     public static User build(String[] data) {
         if (data.length < 5) return null;

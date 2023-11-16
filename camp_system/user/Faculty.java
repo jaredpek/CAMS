@@ -1,8 +1,12 @@
 package camp_system.user;
-
+/**
+ * An enumeration of the possible faculties
+ */
 public enum Faculty {
     NBS, CCEB, EEE, CEE, MSE, SCSE, MAE, ADM, SOH, SSS, WKWSCI, SPMS, SBS, ASE, LKC, GC, NIE, RSIS, NTU;
-
+    /**
+     * A method to convert enum Faculty to String type
+     */
     public String toString() {
         switch (this) {
             case NBS: return "NBS"; 
@@ -27,7 +31,9 @@ public enum Faculty {
             default: return null;
         }
     }
-
+    /**
+     * A method to convert String to enum Faculty
+     */
     public static Faculty fromString(String faculty) {
         switch (faculty.toUpperCase()) {
             case "NBS": return NBS; 

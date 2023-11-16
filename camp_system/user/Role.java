@@ -1,8 +1,12 @@
 package camp_system.user;
-
+/**
+ * possible role for the user
+ */
 public enum Role {
     STUDENT, STAFF;
-
+    /**
+     * A method to convert enum Role to String type
+     */
     public String toString() {
         switch (this) {
             case STUDENT: return "STUDENT";
@@ -10,6 +14,9 @@ public enum Role {
             default: return null;
         }
     }
+    /**
+     * A method to convert String to enum Role
+     */
     public static Role fromString(String role) {
         role = role.toUpperCase();
         switch (role.toUpperCase()) {

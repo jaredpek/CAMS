@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import camp_system.csv_parser.CSVParse;
 
+/**
+ * static method to read users from the data base
+ */
 public class UserParse {
     public static ArrayList <User> parse(String file) {
         ArrayList <User> results = new ArrayList <User> ();
