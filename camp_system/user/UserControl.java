@@ -43,7 +43,10 @@ public class UserControl {
         // If the user ID and password do not match, return null.
         return null;
     }
-
+    /**
+     * to reset the password of the user
+     * @param user pass in an user object
+     */
     public static void resetPassword(User user) {
         UserPassword.reset(user);
     }

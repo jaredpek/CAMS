@@ -9,11 +9,8 @@ public class User {
      * 
      * @param name this is the name of the user
      * @param userID this is the user ID 
-     * @param password this is the password
      * @param faculty this is the faculty that the user belongs to
      * @param role this is the role of the user
-     * @param committeeOf this is the camp of the committee belongs to
-     * @param point this is the point of the user
      */
     public User (String name, String userID, Faculty faculty, Role role){
         this.name = name;
@@ -22,6 +19,14 @@ public class User {
         this.faculty = faculty;
         this.role = role;
     }
+    /**
+     * 
+     * @param name this is the name of the user
+     * @param userID this is the user ID 
+     * @param password this is the password of the user
+     * @param faculty this is the faculty that the user belongs to
+     * @param rolethis is the role of the user
+     */
     public User (String name, String userID, String password, Faculty faculty, Role role){
         this.name = name;
         this.userID = userID;
@@ -29,6 +34,10 @@ public class User {
         this.faculty = faculty;
         this.role = role;
     }
+
+    /**
+     * A method to print out the info of the user
+     */
     public void printInfo() {
         System.out.println("Name: " + name);
         System.out.println("User ID: " + userID);
