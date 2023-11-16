@@ -33,22 +33,6 @@ public class EnquiryControl implements IControl {
         enquiries.add(enquiry);
     }
 
-    /*
-     * Only allow Committee Member or Staff to reply to the enquiry
-     * Adds a point if the user is a Committee Member
-    */
-    public void reply(User user) {
-        ArrayList <Camp> camps = new ArrayList <Camp> ();
-        if (user.getRole() == Role.STUDENT) camps = campControl.getByCommittee(user);
-        if (user.getRole() == Role.STAFF) camps = campControl.getByStaff(user);
-        Camp camp = CampSelect.select(camps);
-        if (camp == null) return;
-        ArrayList <Enquiry> enquiries = getByCamp(camp);
-        Enquiry enquiry = EnquirySelect.select(enquiries);
-        if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
-        EnquiryReply.reply(user.getUserID(), enquiry);
-    }
-
     /* Allow Students to edit their enquiry
      * Only applicable when the enquiry is still processing
     */
@@ -67,6 +51,22 @@ public class EnquiryControl implements IControl {
         Enquiry enquiry = EnquirySelect.select(studentEnquiries);
         if (enquiry == null || user.getUserID() != enquiry.getStudent()) return;
         enquiries.remove(enquiry);
+    }
+
+    /*
+     * Only allow Committee Member or Staff to reply to the enquiry
+     * Adds a point if the user is a Committee Member
+    */
+    public void reply(User user) {
+        ArrayList <Camp> camps = new ArrayList <Camp> ();
+        if (user.getRole() == Role.STUDENT) camps = campControl.getByCommittee(user);
+        if (user.getRole() == Role.STAFF) camps = campControl.getByStaff(user);
+        Camp camp = CampSelect.select(camps);
+        if (camp == null) return;
+        ArrayList <Enquiry> enquiries = getByCamp(camp);
+        Enquiry enquiry = EnquirySelect.select(enquiries);
+        if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
+        EnquiryReply.reply(user.getUserID(), enquiry);
     }
 
     /* 
