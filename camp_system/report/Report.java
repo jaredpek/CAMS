@@ -8,10 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import camp_system.camp.Camp;
-import camp_system.user.User;
 
 public class Report {
-     public void participantReport (Camp camp) throws IOException
+     public static void participantReport (Camp camp) throws IOException
     {
         String path = "camp_system\\report\\generated\\participantReport_" + (new Date()).getTime();
         File file = new File(path);
@@ -57,7 +56,7 @@ public class Report {
                
            }
     }
-   public void performanceReport(Camp camp) throws IOException {
+   public static void performanceReport(Camp camp) throws IOException {
        
         String path = "camp_system\\report\\generated\\performanceReport_" + (new Date()).getTime();
         File file = new File(path);

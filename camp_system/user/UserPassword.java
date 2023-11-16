@@ -1,10 +1,10 @@
 package camp_system.user;
 
-import camp_system.application.IBase;
+import camp_system.scanner.Scan;
 
-public class UserPassword implements IBase {
-    public void reset(User user) {
-        System.out.printf("New Password: "); String password = scan.nextLine();
+public class UserPassword {
+    public static void reset(User user) {
+        System.out.printf("New Password: "); String password = Scan.scan.nextLine();
         user.setPassword(password);
     }
 }

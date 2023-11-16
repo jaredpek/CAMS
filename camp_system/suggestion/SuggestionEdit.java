@@ -1,11 +1,11 @@
 package camp_system.suggestion;
 
-import camp_system.application.IBase;
+import camp_system.scanner.Scan;
 
 /**
  * Used by User to edit any of the suggestions that they have made
  */
-public class SuggestionEdit implements IBase {
+public class SuggestionEdit {
 	/**
 	 * Used to edit the User's suggestions
 	 * 
@@ -13,10 +13,10 @@ public class SuggestionEdit implements IBase {
 	 * @param student the User that is deleting the suggestion
 	 * @param camps the camp that the Staff is in charge of
 	 */
-    public void edit(Suggestion suggestion){
+    public static void edit(Suggestion suggestion){
         // print all suggestions, and show which camp they are a part of
         // edit suggestion
-		System.out.println("Enter your edited suggestion"); String new_message = scan.nextLine();
+		System.out.println("Enter your edited suggestion"); String new_message = Scan.scan.nextLine();
 		suggestion.setMessage(new_message);
     }
 }

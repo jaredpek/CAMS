@@ -5,19 +5,16 @@ import java.util.ArrayList;
 import camp_system.csv_parser.CSVParse;
 
 public class EnquiryParse {
-    private CSVParse csvParse = new CSVParse();
-    private EnquiryBuild enquiryBuild = new EnquiryBuild();
-
-    public ArrayList <Enquiry> parse(String file) {
+    public static ArrayList <Enquiry> parse(String file) {
         ArrayList <Enquiry> results = new ArrayList <Enquiry> ();
         try {
-            ArrayList <String[]> campData = csvParse.read(file);
-            results = enquiryBuild.buildMany(campData);
+            ArrayList <String[]> campData = CSVParse.read(file);
+            results = EnquiryBuild.buildMany(campData);
         } catch (Exception e) {}
         return results;
     }
 
-    public void write(String file, ArrayList <Enquiry> enquiries) {
+    public static void write(String file, ArrayList <Enquiry> enquiries) {
         ArrayList <String> data = new ArrayList <String> ();
         for (Enquiry enquiry : enquiries) {
             data.add(
@@ -30,7 +27,7 @@ public class EnquiryParse {
             );
         }
         try {
-            csvParse.write(file, data);
+            CSVParse.write(file, data);
         } catch (Exception e) {}
         
     }

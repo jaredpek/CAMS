@@ -1,11 +1,11 @@
 package camp_system.suggestion;
 
-import camp_system.application.IBase;
+import camp_system.scanner.Scan;
 
 /**
  * Used by Staff to Approve or Reject a suggestion
  */
-public class SuggestionApprove implements IBase {
+public class SuggestionApprove {
 	/**
 	 * It is used by staff to approve/edit a suggestion that was 
 	 * directed to the camp that these staff are in charge of
@@ -13,13 +13,13 @@ public class SuggestionApprove implements IBase {
 	 * @param global the arraylist which contains all the suggestions
 	 * @param camp the camp that the Staff is in charge of
 	 */
-    public void ApproveDelete(Suggestion suggestion){
+    public static void ApproveDelete(Suggestion suggestion){
         System.out.println("What is your decison for this Suggestion");
 		System.out.println("1: Approved");
 		System.out.println("2: Rejected");
 		System.out.println("3: Exit");
 		// can just do a swtich statement here
-		int num = scan.nextInt(); scan.nextLine();
+		int num = Scan.scan.nextInt(); Scan.scan.nextLine();
 		do {
 			switch(num){
 				case 1:

@@ -2,10 +2,10 @@ package camp_system.camp;
 
 import java.util.ArrayList;
 
-import camp_system.application.IBase;
+import camp_system.scanner.Scan;
 
-public class CampSort implements IBase {
-    public void sortMenu() {
+public class CampSort {
+    public static void sortMenu() {
         System.out.println("Select Sort Method:");
         System.out.println("1: Group");
         System.out.println("2: Location");
@@ -13,7 +13,7 @@ public class CampSort implements IBase {
         System.out.println("4: End Date");
         System.out.println("5: Alphabetical Order (Default)");
     }
-    public void orderMenu() {
+    public static void orderMenu() {
         System.out.println("Select Order:");
         System.out.println("1: Ascending (Default)");
         System.out.println("2: Descending");
@@ -25,7 +25,7 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortByGroup(ArrayList <Camp> camps, int orderOption) {
+    public static ArrayList <Camp> sortByGroup(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getGroup().toString().compareTo(camp2.getGroup().toString())); break;
             default: camps.sort((camp1, camp2) -> - camp1.getGroup().toString().compareTo(camp2.getGroup().toString())); break;
@@ -39,7 +39,7 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortByLocation(ArrayList <Camp> camps, int orderOption) {
+    public static ArrayList <Camp> sortByLocation(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getLocation().toLowerCase().compareTo(camp2.getLocation().toLowerCase())); break;
             default: camps.sort((camp1, camp2) -> - camp1.getLocation().toLowerCase().compareTo(camp2.getLocation().toLowerCase())); break;
@@ -53,7 +53,7 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortByStartDate(ArrayList <Camp> camps, int orderOption) {
+    public static ArrayList <Camp> sortByStartDate(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getStartDate().compareTo(camp2.getStartDate())); break;
             default: camps.sort((camp1, camp2) -> - camp1.getStartDate().compareTo(camp2.getStartDate())); break;
@@ -67,7 +67,7 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortByEndDate(ArrayList <Camp> camps, int orderOption) {
+    public static ArrayList <Camp> sortByEndDate(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getEndDate().compareTo(camp2.getEndDate())); break;
             default: camps.sort((camp1, camp2) -> - camp1.getEndDate().compareTo(camp2.getEndDate())); break;
@@ -81,7 +81,7 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortByAlphabetical(ArrayList <Camp> camps, int orderOption) {
+    public static ArrayList <Camp> sortByAlphabetical(ArrayList <Camp> camps, int orderOption) {
         switch (orderOption) {
             case 1: camps.sort((camp1, camp2) -> camp1.getName().toLowerCase().compareTo(camp2.getName().toLowerCase())); break;
             default: camps.sort((camp1, camp2) -> - camp1.getName().toLowerCase().compareTo(camp2.getName().toLowerCase())); break;
@@ -96,11 +96,11 @@ public class CampSort implements IBase {
      * @param orderOption Order of camps to sort by (1 = Ascending, Others = Descneding)
      * @return ArrayList
      */
-    public ArrayList <Camp> sortCamps(ArrayList <Camp> camps) {
+    public static ArrayList <Camp> sortCamps(ArrayList <Camp> camps) {
         sortMenu();
-        System.out.printf("Sort Option: "); int sortOption = scan.nextInt(); scan.nextLine();
+        System.out.printf("Sort Option: "); int sortOption = Scan.scan.nextInt(); Scan.scan.nextLine();
         orderMenu();
-        System.out.printf("Order Option: "); int orderOption = scan.nextInt(); scan.nextLine();
+        System.out.printf("Order Option: "); int orderOption = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (sortOption) {
             case 1: return sortByGroup(camps, orderOption);
             case 2: return sortByLocation(camps, orderOption);

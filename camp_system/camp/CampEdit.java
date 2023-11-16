@@ -2,11 +2,12 @@ package camp_system.camp;
 
 import java.text.ParseException;
 
-import camp_system.application.IBase;
+import camp_system.date_parser.DateParse;
+import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
 
-public class CampEdit implements IBase {
-    public void menu() {
+public class CampEdit {
+    public static void menu() {
         System.out.println("Select Attribute to Edit:");
         System.out.println("1: Visibility");
         System.out.println("2: Name");
@@ -20,40 +21,40 @@ public class CampEdit implements IBase {
         System.out.println("10: Committee Slots");
     }
 
-    public void edit(Camp camp) throws ParseException {
+    public static void edit(Camp camp) throws ParseException {
         if (camp == null) return;
         menu();
-        int option = scan.nextInt(); scan.nextLine();
+        int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (option) {
             case 1:
-                System.out.printf("Enter New Visibility: "); Boolean active = scan.nextBoolean();
+                System.out.printf("Enter New Visibility: "); Boolean active = Scan.scan.nextBoolean();
                 camp.setActive(active); break;
             case 2:
-                System.out.printf("Enter New Name: "); String name = scan.nextLine();
+                System.out.printf("Enter New Name: "); String name = Scan.scan.nextLine();
                 camp.setName(name); break;
             case 3:
-                System.out.printf("Enter New Group: "); String group = scan.nextLine();
+                System.out.printf("Enter New Group: "); String group = Scan.scan.nextLine();
                 camp.setGroup(Faculty.fromString(group)); break;
             case 4:
-                System.out.printf("Enter New Location: "); String location = scan.nextLine();
+                System.out.printf("Enter New Location: "); String location = Scan.scan.nextLine();
                 camp.setLocation(location); break;
             case 5:
-                System.out.printf("Enter New Description: "); String description = scan.nextLine();
+                System.out.printf("Enter New Description: "); String description = Scan.scan.nextLine();
                 camp.setDescription(description); break;
             case 6:
-                System.out.printf("Enter New Start Date: "); String startDate = scan.nextLine();
-                camp.setStartDate(dateParse.date(startDate)); break;
+                System.out.printf("Enter New Start Date: "); String startDate = Scan.scan.nextLine();
+                camp.setStartDate(DateParse.date(startDate)); break;
             case 7:
-                System.out.printf("Enter New End Date: "); String endDate = scan.nextLine();
-                camp.setEndDate(dateParse.date(endDate)); break;
+                System.out.printf("Enter New End Date: "); String endDate = Scan.scan.nextLine();
+                camp.setEndDate(DateParse.date(endDate)); break;
             case 8:
-                System.out.printf("Enter New Date to Register By: "); String registerBy = scan.nextLine();
-                camp.setRegisterBy(dateParse.date(registerBy)); break;
+                System.out.printf("Enter New Date to Register By: "); String registerBy = Scan.scan.nextLine();
+                camp.setRegisterBy(DateParse.date(registerBy)); break;
             case 9:
-                System.out.printf("Enter New Total Slots: "); int totalSlots = scan.nextInt(); scan.nextLine();
+                System.out.printf("Enter New Total Slots: "); int totalSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
                 camp.setTotalSlots(totalSlots); break;
             case 10:
-                System.out.printf("Enter New Committee Slots: "); int committeeSlots = scan.nextInt(); scan.nextLine();
+                System.out.printf("Enter New Committee Slots: "); int committeeSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
                 camp.setCommitteeSlots(committeeSlots); break;
             default:
                 System.out.println("Invalid Option"); break;

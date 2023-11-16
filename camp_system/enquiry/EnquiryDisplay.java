@@ -3,7 +3,7 @@ package camp_system.enquiry;
 import java.util.ArrayList;
 
 public class EnquiryDisplay {
-    public void printEnquiries(ArrayList <Enquiry> enquiries) {
+    public static void printEnquiries(ArrayList <Enquiry> enquiries) {
         if (enquiries.size() <= 0) {
             System.out.println("No Enquiries Found");
             return;

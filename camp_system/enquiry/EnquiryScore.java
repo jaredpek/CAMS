@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EnquiryScore {
-    public HashMap <String, Integer> compute(ArrayList <Enquiry> enquiries, ArrayList <String> committee) {
+    public static HashMap <String, Integer> compute(ArrayList <Enquiry> enquiries, ArrayList <String> committee) {
         HashMap <String, Integer> result = new HashMap <String, Integer> ();
         for (String user : committee) {
             result.put(user, 0);
