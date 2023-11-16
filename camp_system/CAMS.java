@@ -17,18 +17,7 @@ import camp_system.view.StudentView;
 public class CAMS {
     private static User currentUser = null;
     private static Boolean run = true;
-
-    public static void login() {
-        AuthMenu.login();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
-        switch (option) {
-            case 1:
-                System.out.printf("Enter User ID: "); String userId = Scan.scan.nextLine();
-                System.out.printf("Enter Password: "); String password = Scan.scan.nextLine();
-                currentUser = UserControl.login(userId, password); break;
-            default: run = false; break;
-        }
-    }
+    private static UserControl userControl = new UserControl();
 
     public static void start() {
         EnquiryControl.start();
@@ -42,6 +31,18 @@ public class CAMS {
         SuggestionControl.close();
         CampControl.close();
         UserControl.close();
+    }
+
+    public static void login() {
+        AuthMenu.login();
+        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        switch (option) {
+            case 1:
+                System.out.printf("Enter User ID: "); String userId = Scan.scan.nextLine();
+                System.out.printf("Enter Password: "); String password = Scan.scan.nextLine();
+                currentUser = userControl.login(userId, password); break;
+            default: run = false; break;
+        }
     }
         
     public static void main(String[] args) throws ParseException, IOException {

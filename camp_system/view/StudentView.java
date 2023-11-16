@@ -15,33 +15,39 @@ import camp_system.user.User;
 import camp_system.user.UserControl;
 
 public class StudentView {
+    private static UserControl userControl = new UserControl();
+    private static CampControl campControl = new CampControl();
+    private static EnquiryControl enquiryControl = new EnquiryControl();
+    private static SuggestionControl suggestionControl = new SuggestionControl();
+    private static Report report = new Report();
+
     public static User show(User currentUser) throws IOException {
         StudentMenu.main();
         System.out.printf("Select Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (option) {
-            case 1: UserControl.resetPassword(currentUser); break;
+            case 1: userControl.resetPassword(currentUser); break;
             case 2: {
-                ArrayList <Camp> availableCamps = CampControl.getByGroup(currentUser.getFaculty());
+                ArrayList <Camp> availableCamps = campControl.getByGroup(currentUser.getFaculty());
                 CampDisplay.printCamps(availableCamps); break;
             }
             case 3: {
-                ArrayList <Camp> registeredCamps = CampControl.getByStudent(currentUser);
+                ArrayList <Camp> registeredCamps = campControl.getByStudent(currentUser);
                 CampDisplay.printCamps(registeredCamps); break;
             }
-            case 4: CampControl.registerCamp(currentUser); break;
-            case 5: CampControl.withdrawAttendee(currentUser); break;
+            case 4: campControl.registerCamp(currentUser); break;
+            case 5: campControl.withdrawAttendee(currentUser); break;
             case 6: {
                 StudentMenu.enquiry();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 switch (choice) {
                     case 1:
-                        EnquiryControl.add(currentUser); break;
+                        enquiryControl.add(currentUser); break;
                     case 2:
-                        EnquiryControl.edit(currentUser); break;
+                        enquiryControl.edit(currentUser); break;
                     case 3:
-                        EnquiryControl.delete(currentUser); break;
+                        enquiryControl.delete(currentUser); break;
                     case 4:
-                        EnquiryControl.reply(currentUser); break;
+                        enquiryControl.reply(currentUser); break;
                     default: break;
                 }
                 break;
@@ -51,21 +57,21 @@ public class StudentView {
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 switch (choice) {
                     case 1:
-                        SuggestionControl.add(currentUser); break;
+                        suggestionControl.add(currentUser); break;
                     case 2:
-                        SuggestionControl.edit(currentUser); break;
+                        suggestionControl.edit(currentUser); break;
                     case 3:
-                        SuggestionControl.delete(currentUser); break;
+                        suggestionControl.delete(currentUser); break;
                     default: break;
                 }
                 break;
             }
             case 8: {
-                ArrayList <Camp> committeeCamps = CampControl.getByCommittee(currentUser);
+                ArrayList <Camp> committeeCamps = campControl.getByCommittee(currentUser);
                 if (committeeCamps.size() <= 0) break;
                 CampDisplay.printCamps(committeeCamps);
                 Camp camp = CampSelect.select(committeeCamps);
-                Report.participantReport(camp);
+                report.participant(camp);
                 break;
             }
             case 9: currentUser = null; break;
@@ -73,5 +79,4 @@ public class StudentView {
         }
         return currentUser;
     }
-
 }

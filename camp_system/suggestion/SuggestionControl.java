@@ -1,6 +1,7 @@
 package camp_system.suggestion;
 import java.util.ArrayList;
 
+import camp_system.application.IControl;
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampSelect;
@@ -10,8 +11,9 @@ import camp_system.user.User;
  * Represents the suggestion manager that contains the controls for
  * all of the suggestions that can be used by User
  */
-public class SuggestionControl {
+public class SuggestionControl implements IControl, ISuggestion {
 	private static ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
+	private CampControl campControl = new CampControl();
 
 	public static void start() {
 		suggestions.addAll(SuggestionParse.parse("camp_system\\data\\suggestions.csv"));
@@ -27,8 +29,8 @@ public class SuggestionControl {
 	 * @param student the user that is trying to add the suggestion
 	 * @param camps the list of all existing camps
 	 */
-	public static void add(User student) {
-		ArrayList <Camp> camps = CampControl.getByCommittee(student);
+	public void add(User student) {
+		ArrayList <Camp> camps = campControl.getByCommittee(student);
 		Camp camp = CampSelect.select(camps);
 		if (!camp.enrolledCommittee(student.getUserID())) return;
 		Suggestion suggestion = SuggestionBuild.build(student, camp);
@@ -41,7 +43,7 @@ public class SuggestionControl {
 	 * @param student the user that is trying to add the suggestion
 	 * @param camps the list of all existing camps
 	 */
-	public static void edit(User student) {
+	public void edit(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
 		Suggestion suggestion = SuggestionSelect.select(studentSuggestions);
 		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
@@ -53,7 +55,7 @@ public class SuggestionControl {
 	 * 
 	 * @param student the user that is trying to add the suggestion
 	 */
-	public static void delete(User student) {
+	public void delete(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
 		Suggestion suggestion = SuggestionSelect.select(studentSuggestions);
 		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
@@ -66,7 +68,7 @@ public class SuggestionControl {
 	 * 
 	 * @param camp the camp that the Staff is in-charge of
 	 */
-	public static void approveRejectSuggestions(Camp camp){
+	public void approveRejectSuggestions(Camp camp){
 		ArrayList <Suggestion> campSuggestions = getByCamp(camp);
 		Suggestion suggestion = SuggestionSelect.select(campSuggestions);
 		SuggestionApprove.ApproveDelete(suggestion);
@@ -78,7 +80,7 @@ public class SuggestionControl {
 	 * @param camp the camp which we will get the suggestions for
 	 * @return arraylist of suggestions for the camp
 	 */
-	public static ArrayList<Suggestion> getByCamp(Camp camp){
+	public ArrayList<Suggestion> getByCamp(Camp camp){
 		// filter global array by camp
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<suggestions.size(); i++) {
@@ -95,7 +97,7 @@ public class SuggestionControl {
 	 * @param student the student whose suggestions we are getting
 	 * @return arraylist of suggestions made by that student
 	 */
-	public static ArrayList<Suggestion> getByStudent(User student){
+	public ArrayList<Suggestion> getByStudent(User student){
 		//filter global array by student
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<suggestions.size(); i++ ) {

@@ -1,7 +1,5 @@
 package camp_system.camp;
 
-import java.text.ParseException;
-
 import camp_system.date_parser.DateParse;
 import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
@@ -21,7 +19,7 @@ public class CampEdit {
         System.out.println("10: Committee Slots");
     }
 
-    public static void edit(Camp camp) throws ParseException {
+    public static void edit(Camp camp) {
         if (camp == null) return;
         menu();
         int option = Scan.scan.nextInt(); Scan.scan.nextLine();

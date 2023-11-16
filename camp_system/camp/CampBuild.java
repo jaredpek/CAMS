@@ -1,6 +1,5 @@
 package camp_system.camp;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +10,7 @@ import camp_system.user.Faculty;
 import camp_system.user.User;
 
 public class CampBuild {
-    public static Camp build(User user) throws ParseException {
+    public static Camp build(User user) {
         System.out.printf("Name: "); String name = Scan.scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(Scan.scan.nextLine());
         System.out.printf("Location: "); String location = Scan.scan.nextLine();
@@ -24,7 +23,7 @@ public class CampBuild {
         long id = (long) (new Date()).getTime();
         return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user.getUserID());
     }
-    public static Camp template(User user) throws ParseException {
+    public static Camp template(User user) {
         long id = (long) (new Date()).getTime();
         return new Camp(
             id, 
@@ -40,7 +39,7 @@ public class CampBuild {
             user.getUserID()
         );
     }
-    public static Camp build(String[] data) throws ParseException {
+    public static Camp build(String[] data) {
         if (data.length < 15) return null;
         long id = Long.parseLong(data[0]);
         Boolean active = Boolean.parseBoolean(data[1]);
@@ -63,7 +62,7 @@ public class CampBuild {
             committeeList, attendeeList, withdrawedList
         );
     }
-    public static ArrayList <Camp> buildMany(ArrayList <String[]> data) throws ParseException {
+    public static ArrayList <Camp> buildMany(ArrayList <String[]> data) {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
         for (String[] entry : data) {
             Camp camp = build(entry);

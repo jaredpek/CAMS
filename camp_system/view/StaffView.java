@@ -20,20 +20,26 @@ import camp_system.user.User;
 import camp_system.user.UserControl;
 
 public class StaffView {
+    private static UserControl userControl = new UserControl();
+    private static CampControl campControl = new CampControl();
+    private static EnquiryControl enquiryControl = new EnquiryControl();
+    private static SuggestionControl suggestionControl = new SuggestionControl();
+    private static Report report = new Report();
+
     public static User show(User currentUser) throws ParseException, IOException {
         StaffMenu.main();
         System.out.printf("Select Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (option) {
-            case 1: UserControl.resetPassword(currentUser); break;
+            case 1: userControl.resetPassword(currentUser); break;
             case 2: {
-                ArrayList <Camp> camps = CampControl.getAll(currentUser);
+                ArrayList <Camp> camps = campControl.getAll(currentUser);
                 CampDisplay.printCamps(camps); break;
             }
-            case 3: CampControl.add(currentUser); break;
-            case 4: CampControl.edit(currentUser); break;
-            case 5: CampControl.delete(currentUser); break;
+            case 3: campControl.add(currentUser); break;
+            case 4: campControl.edit(currentUser); break;
+            case 5: campControl.delete(currentUser); break;
             case 6: {
-                ArrayList <Camp> camps = CampControl.getAll(currentUser);
+                ArrayList <Camp> camps = campControl.getAll(currentUser);
                 Camp camp = CampSelect.select(camps);
                 if (camp != null) CampDisplay.printRoles(camp); 
                 break;
@@ -43,13 +49,13 @@ public class StaffView {
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 switch (choice) {
                     case 1: 
-                        ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
+                        ArrayList <Camp> camps = campControl.getByStaff(currentUser);
                         Camp camp = CampSelect.select(camps);
-                        ArrayList <Enquiry> enquiries = EnquiryControl.getByCamp(camp);
+                        ArrayList <Enquiry> enquiries = enquiryControl.getByCamp(camp);
                         EnquiryDisplay.printEnquiries(enquiries);
                         break;
                     case 2: 
-                        EnquiryControl.reply(currentUser);
+                        enquiryControl.reply(currentUser);
                         break;
                     default: break;
                 }
@@ -58,15 +64,15 @@ public class StaffView {
             case 8: {
                 StaffMenu.suggestion();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
-                ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
+                ArrayList <Camp> camps = campControl.getByStaff(currentUser);
                 Camp camp = CampSelect.select(camps);
                 switch (choice) {
                     case 1:
-                        ArrayList <Suggestion> suggestions = SuggestionControl.getByCamp(camp);
+                        ArrayList <Suggestion> suggestions = suggestionControl.getByCamp(camp);
                         SuggestionDisplay.printSuggestions(suggestions);
                         break;
                     case 2:
-                        SuggestionControl.approveRejectSuggestions(camp);
+                        suggestionControl.approveRejectSuggestions(camp);
                         break;
                     default:
                         break;
@@ -76,14 +82,14 @@ public class StaffView {
             case 9: {
                 StaffMenu.report();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
-                ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
+                ArrayList <Camp> camps = campControl.getByStaff(currentUser);
                 Camp camp = CampSelect.select(camps);
                 switch (choice) {
                     case 1:
-                        Report.participantReport(camp);
+                        report.participant(camp);
                         break;
                     case 2:
-                        Report.performanceReport(camp);
+                        report.performance(camp);
                         break;
                     default:
                         break;

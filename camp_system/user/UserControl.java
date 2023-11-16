@@ -2,7 +2,7 @@ package camp_system.user;
 
 import java.util.ArrayList;
 
-public class UserControl {
+public class UserControl implements IUser {
     private static ArrayList <User> users = new ArrayList <User> ();
 
     public static void start() {
@@ -22,7 +22,7 @@ public class UserControl {
      * return an arraylist of users
      * @return ArrayList
      */
-    public static ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers() {
         return users;
     }
 
@@ -32,7 +32,7 @@ public class UserControl {
      * @param password this is the user's password
      * @return User
      */
-    public static User login(String userID, String password) {
+    public User login(String userID, String password) {
         for (User user : users) {
             // Check if the user ID and password match.
             if (user.verifyCredentials(userID, password)) {
@@ -44,7 +44,7 @@ public class UserControl {
         return null;
     }
 
-    public static void resetPassword(User user) {
+    public void resetPassword(User user) {
         UserPassword.reset(user);
     }
 }

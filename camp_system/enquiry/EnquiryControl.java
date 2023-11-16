@@ -2,14 +2,16 @@ package camp_system.enquiry;
 
 import java.util.ArrayList;
 
+import camp_system.application.IControl;
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampSelect;
 import camp_system.user.Role;
 import camp_system.user.User;
 
-public class EnquiryControl {
+public class EnquiryControl implements IControl {
     private static ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
+    private CampControl campControl = new CampControl();
 
     public static void start() {
         enquiries.addAll(EnquiryParse.parse("camp_system\\data\\enquiries.csv"));
@@ -23,8 +25,8 @@ public class EnquiryControl {
      * Adds a new enquiry into the list of enquiries
      * Only available for Students
     */
-    public static void add(User user) {
-        ArrayList <Camp> camps = CampControl.getByGroup(user.getFaculty());
+    public void add(User user) {
+        ArrayList <Camp> camps = campControl.getByGroup(user.getFaculty());
         Camp camp = CampSelect.select(camps);
         if (camp == null) return;
         Enquiry enquiry = EnquiryBuild.build(user, camp);
@@ -35,10 +37,10 @@ public class EnquiryControl {
      * Only allow Committee Member or Staff to reply to the enquiry
      * Adds a point if the user is a Committee Member
     */
-    public static void reply(User user) {
+    public void reply(User user) {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
-        if (user.getRole() == Role.STUDENT) camps = CampControl.getByCommittee(user);
-        if (user.getRole() == Role.STAFF) camps = CampControl.getByStaff(user);
+        if (user.getRole() == Role.STUDENT) camps = campControl.getByCommittee(user);
+        if (user.getRole() == Role.STAFF) camps = campControl.getByStaff(user);
         Camp camp = CampSelect.select(camps);
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
@@ -50,7 +52,7 @@ public class EnquiryControl {
     /* Allow Students to edit their enquiry
      * Only applicable when the enquiry is still processing
     */
-    public static void edit(User user) {
+    public void edit(User user) {
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
         Enquiry enquiry = EnquirySelect.select(studentEnquiries);
         if (enquiry == null || user.getUserID() != enquiry.getStudent()) return;
@@ -60,7 +62,7 @@ public class EnquiryControl {
     /*
      * Allow only the student to delete their enquiry
     */
-    public static void delete(User user) {
+    public void delete(User user) {
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
         Enquiry enquiry = EnquirySelect.select(studentEnquiries);
         if (enquiry == null || user.getUserID() != enquiry.getStudent()) return;
@@ -70,7 +72,7 @@ public class EnquiryControl {
     /* 
      * Get the list of enquiry for the camp's committee member and staff
     */
-    public static ArrayList<Enquiry> getByCamp(Camp camp) {
+    public ArrayList<Enquiry> getByCamp(Camp camp) {
         ArrayList<Enquiry> campEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : enquiries) {
             if (enquiry.getCamp() == camp.getId()) campEnquiries.add(enquiry);
@@ -81,7 +83,7 @@ public class EnquiryControl {
     /* 
      * Allow students to see their own enquiry
     */
-    public static ArrayList <Enquiry> getByStudent(User student) {
+    public ArrayList <Enquiry> getByStudent(User student) {
         ArrayList<Enquiry> studentEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : enquiries) {
             if (enquiry.getStudent() == student.getUserID()) studentEnquiries.add(enquiry);

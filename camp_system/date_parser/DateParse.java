@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import camp_system.scanner.Scan;
+
 /** Represents a date parser object to parse String inputs into Date objects */
 
 public class DateParse {
@@ -15,8 +17,17 @@ public class DateParse {
      * @return Date
      * @throws ParseException
      */
-    public static Date date(String source) throws ParseException {
-        return dateFormatter.parse(source);
+    public static Date date(String source) {
+        Date date = null;
+        while (date == null) {
+            try {
+                date = dateFormatter.parse(source);
+            } catch (ParseException e) {
+                System.out.println("Date format must be '" + dateFormatter.toPattern() + "'");
+                System.out.printf("New Date: "); source = Scan.scan.nextLine();
+            }
+        }
+        return date;
     }
 
     public static String string(Date date) {

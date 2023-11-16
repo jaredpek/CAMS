@@ -16,71 +16,55 @@ import camp_system.suggestion.Suggestion;
 import camp_system.suggestion.SuggestionControl;
 import camp_system.suggestion.SuggestionScore;
 
-public class Report {
-    public static void participantReport (Camp camp) throws IOException {
+public class Report implements IReport {
+    private SuggestionControl suggestionControl = new SuggestionControl();
+    private EnquiryControl enquiryControl = new EnquiryControl();
+
+    public void participant (Camp camp) {
         String path = "camp_system\\report\\generated\\participantReport_" + (new Date()).getTime();
         File file = new File(path);
-        
-        try (
+
+        try {
             FileWriter fw = new FileWriter(file, false);
             BufferedWriter bw = new BufferedWriter(fw);
-        ) {
-            bw.write("Name: " + camp.getName());
-            bw.newLine();
-            
-            bw.write("Start Date: " + String.valueOf(camp.getStartDate()));
-            bw.newLine();
-        
-            bw.write("End Date: " + String.valueOf(camp.getEndDate()));
-            bw.newLine();
-        
-            bw.write("Registration Closing Date: " + String.valueOf(camp.getRegisterBy()));
-            bw.newLine();
-        
-            bw.write("Group: " + camp.getGroup());
-            bw.newLine();
-        
-            bw.write("Location: " + camp.getLocation());
-            bw.newLine();
-        
-            bw.write("Total Slots: " + camp.getTotalSlots());
-            bw.newLine();
-        
-            bw.write("Camp Committee Slots: " + camp.getCommitteeSlots());
-            bw.newLine();
-        
-            bw.write("Description: " + camp.getDescription());
-            bw.newLine();
-        
-            bw.write("Staff in Charge: " + camp.getStaffInCharge());
-            bw.newLine();
-        
-            bw.write("Attendee List: " + camp.getAttendeeList());
-            bw.newLine();
-        
-            bw.write("Camp Committee List: " + camp.getCommitteeList());
-            bw.newLine();
+            bw.write("Name: " + camp.getName()); bw.newLine();
+            bw.write("Start Date: " + String.valueOf(camp.getStartDate())); bw.newLine();
+            bw.write("End Date: " + String.valueOf(camp.getEndDate())); bw.newLine();
+            bw.write("Registration Closing Date: " + String.valueOf(camp.getRegisterBy())); bw.newLine();
+            bw.write("Group: " + camp.getGroup()); bw.newLine();
+            bw.write("Location: " + camp.getLocation()); bw.newLine();
+            bw.write("Total Slots: " + camp.getTotalSlots()); bw.newLine();
+            bw.write("Camp Committee Slots: " + camp.getCommitteeSlots()); bw.newLine();
+            bw.write("Description: " + camp.getDescription()); bw.newLine();
+            bw.write("Staff in Charge: " + camp.getStaffInCharge()); bw.newLine();
+            bw.write("Attendee List: " + camp.getAttendeeList()); bw.newLine();
+            bw.write("Camp Committee List: " + camp.getCommitteeList()); bw.newLine();
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Error generating participant report");
         }
     }
-   public static void performanceReport(Camp camp) throws IOException {
+
+    public void performance(Camp camp) {
         String path = "camp_system\\report\\generated\\performanceReport_"  +  (new Date()).getTime();
         File file = new File(path);
-
-        try (
+        
+        try {
             FileWriter fw = new FileWriter(file, false);
             BufferedWriter bw = new BufferedWriter(fw);
-        ) {
-            ArrayList <Enquiry> enquiries = EnquiryControl.getByCamp(camp);
-            ArrayList <Suggestion> suggestions = SuggestionControl.getByCamp(camp);
+            ArrayList <Enquiry> enquiries = enquiryControl.getByCamp(camp);
+            ArrayList <Suggestion> suggestions = suggestionControl.getByCamp(camp);
             ArrayList <String> committee = camp.getCommitteeList();
             HashMap <String, Integer> enquiryScores = EnquiryScore.compute(enquiries, committee);
             HashMap <String, Integer> suggestionScores = SuggestionScore.compute(suggestions, committee);
 
-            bw.write("User ID / Total Points");
+            bw.write("User ID / Total Points"); bw.newLine();
             for (String user : committee) {
-                bw.write(user + " / " + (enquiryScores.get(user) + suggestionScores.get(user)));
-                bw.newLine();
+                bw.write(user + " / " + (enquiryScores.get(user) + suggestionScores.get(user))); bw.newLine();
             }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("Error generating performance report");
         }
     }    
 }
