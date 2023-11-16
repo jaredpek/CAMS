@@ -1,16 +1,14 @@
 package camp_system.camp;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import camp_system.date_parser.DateParse;
 import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
 
-/**
- * Represents a filter and sorter class that modifies a list of camps based on certain requirements and in a specified order
- */
+/** Represents a filter class that filters a list of camps based on certain requirements */
 public class CampFilter {
+    /** The filter methods available to the user */
     public static void filterMenu() {
         System.out.println("Select Filter Field:");
         System.out.println("1: Group");
@@ -58,7 +56,7 @@ public class CampFilter {
      * @param startDate Specified start date to filter by
      * @return ArrayList
      */
-    public static ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) throws ParseException {
+    public static ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
             if (camp.getStartDate().compareTo(DateParse.date(startDate)) > 0) {
@@ -74,7 +72,7 @@ public class CampFilter {
      * @param endDate Specified end date to filter by
      * @return ArrayList
      */
-    public static ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) throws ParseException {
+    public static ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
             if (camp.getEndDate().compareTo(DateParse.date(endDate)) < 0) {
@@ -90,7 +88,7 @@ public class CampFilter {
      * @param option Camp attribute to filter by
      * @return ArrayList
      */
-    public static ArrayList <Camp> filterCamps(ArrayList <Camp> camps) throws ParseException {
+    public static ArrayList <Camp> filterCamps(ArrayList <Camp> camps) {
         filterMenu();
         System.out.printf("Filter Option: "); int option = Scan.scan.nextInt();
         switch (option) {

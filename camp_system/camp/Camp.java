@@ -5,11 +5,11 @@ import java.util.Date;
 
 import camp_system.user.Faculty;
 
-/**
- * Represent a camp that is available to students
- */
+/** Represent a camp that is available to students */
 public class Camp extends CampInformation {
+    /** Unique ID of the camp */
     private long id;
+
     /** The status of a camp, if True, camp is active, else it is inactive */
     private Boolean active;
 
@@ -54,6 +54,24 @@ public class Camp extends CampInformation {
         this.withdrawedList = new ArrayList <String> ();
     }
     
+    /**
+     * Creates a new Camp object with the relevant information
+     * @param id This is the unique ID of the camp
+     * @param active This is the visibility of the camp
+     * @param name This is the name of the camp
+     * @param group This is the group the camp is open to
+     * @param location This is where the camp will be held
+     * @param description This is the description of the camp
+     * @param startDate This is when the camp starts
+     * @param endDate This is the when the camp ends
+     * @param registerBy This is when students must register for the camp
+     * @param totalSlots This is the total number of slots available for the camp (both committee and attendees)
+     * @param committeeSlots This is the number of slots available for committee members
+     * @param staffInCharge This is the staff that is in charge of the entire camp
+     * @param committeeList This is the initial list of committee members
+     * @param attendeeList This is the initial list of attendees
+     * @param withdrawedList This is the initial list of students that withdrawed from the camp
+     */
     public Camp(
         long id, Boolean active, String name, Faculty group, String location, String description,
         Date startDate, Date endDate, Date registerBy, int totalSlots, int committeeSlots, String staffInCharge, 
@@ -72,8 +90,11 @@ public class Camp extends CampInformation {
         this.withdrawedList = withdrawedList;
     }
 
-    /** Print all the camp's details */
-    public void printCampDetails() {
+    /**
+     * Prints the details of the camp
+     * @param user This is the user object printing the camp details
+     */
+    public void printCampDetails(String user) {
         System.out.println("Name: " + getName());
         System.out.println("Start Date: " + getStartDate().toString());
         System.out.println("End Date: " + getEndDate().toString());
@@ -83,10 +104,6 @@ public class Camp extends CampInformation {
         System.out.println("Description: " + getDescription());
         System.out.println("Attendee Slots Remaining: " + (getTotalSlots() - getCommitteeSlots() - attendeeList.size()));
         System.out.println("Committee Slots Remaining: " + (getCommitteeSlots() - committeeList.size()));
-    }
-
-    public void printCampDetails(String user) {
-        this.printCampDetails();
         Role role = getCampRole(user);
         if (role != null) System.out.println("** You are a " + role + " of this camp");
     }
@@ -101,6 +118,10 @@ public class Camp extends CampInformation {
         System.out.println();
     }
 
+    /**
+     * Returns the ID of the camp
+     * @return long
+     */
     public long getId() { return id; }
 
     /**

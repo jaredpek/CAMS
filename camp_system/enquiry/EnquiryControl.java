@@ -26,8 +26,8 @@ public class EnquiryControl implements IControl {
      * Only available for Students
     */
     public void add(User user) {
-        ArrayList <Camp> camps = campControl.getByGroup(user.getFaculty());
-        Camp camp = CampSelect.select(camps);
+        ArrayList <Camp> camps = campControl.getByGroupNotCommittee(user);
+        Camp camp = CampSelect.select(camps, user.getUserID());
         if (camp == null) return;
         Enquiry enquiry = EnquiryBuild.build(user, camp);
         enquiries.add(enquiry);
@@ -61,7 +61,7 @@ public class EnquiryControl implements IControl {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
         if (user.getRole() == Role.STUDENT) camps = campControl.getByCommittee(user);
         if (user.getRole() == Role.STAFF) camps = campControl.getByStaff(user);
-        Camp camp = CampSelect.select(camps);
+        Camp camp = CampSelect.select(camps, user.getUserID());
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
         Enquiry enquiry = EnquirySelect.select(enquiries);
@@ -86,7 +86,7 @@ public class EnquiryControl implements IControl {
     public ArrayList <Enquiry> getByStudent(User student) {
         ArrayList<Enquiry> studentEnquiries = new ArrayList<Enquiry>();
         for (Enquiry enquiry : enquiries) {
-            if (enquiry.getStudent() == student.getUserID()) studentEnquiries.add(enquiry);
+            if (enquiry.getStudent().compareTo(student.getUserID()) == 0) studentEnquiries.add(enquiry);
         }
         return studentEnquiries;
     }

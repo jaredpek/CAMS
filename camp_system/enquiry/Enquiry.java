@@ -1,6 +1,5 @@
 package camp_system.enquiry;
 
-
 public class Enquiry {
     private Status status;
     private String student;

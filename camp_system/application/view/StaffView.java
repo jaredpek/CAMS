@@ -33,14 +33,14 @@ public class StaffView {
             case 1: userControl.resetPassword(currentUser); break;
             case 2: {
                 ArrayList <Camp> camps = campControl.getAll(currentUser);
-                CampDisplay.printCamps(camps, currentUser); break;
+                CampDisplay.printCamps(camps, currentUser.getUserID()); break;
             }
             case 3: campControl.add(currentUser); break;
             case 4: campControl.edit(currentUser); break;
             case 5: campControl.delete(currentUser); break;
             case 6: {
                 ArrayList <Camp> camps = campControl.getAll(currentUser);
-                Camp camp = CampSelect.select(camps);
+                Camp camp = CampSelect.select(camps, currentUser.getUserID());
                 if (camp != null) CampDisplay.printRoles(camp); break;
             }
             case 7: {
@@ -49,7 +49,7 @@ public class StaffView {
                 switch (choice) {
                     case 1: 
                         ArrayList <Camp> camps = campControl.getByStaff(currentUser);
-                        Camp camp = CampSelect.select(camps);
+                        Camp camp = CampSelect.select(camps, currentUser.getUserID());
                         ArrayList <Enquiry> enquiries = enquiryControl.getByCamp(camp);
                         EnquiryDisplay.printEnquiries(enquiries); break;
                     case 2:  enquiryControl.reply(currentUser); break;
@@ -61,7 +61,7 @@ public class StaffView {
                 StaffMenu.suggestion();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 ArrayList <Camp> camps = campControl.getByStaff(currentUser);
-                Camp camp = CampSelect.select(camps);
+                Camp camp = CampSelect.select(camps, currentUser.getUserID());
                 switch (choice) {
                     case 1:
                         ArrayList <Suggestion> suggestions = suggestionControl.getByCamp(camp);
@@ -75,7 +75,7 @@ public class StaffView {
                 StaffMenu.report();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 ArrayList <Camp> camps = campControl.getByStaff(currentUser);
-                Camp camp = CampSelect.select(camps);
+                Camp camp = CampSelect.select(camps, currentUser.getUserID());
                 switch (choice) {
                     case 1: report.participant(camp); break;
                     case 2: report.performance(camp); break;

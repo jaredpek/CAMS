@@ -17,16 +17,18 @@ public class StudentMenu {
     public static void enquiry() {
         Header.main();
         System.out.println("Available Options:");
-	    System.out.println("1: Add an Enquiry");    
-        System.out.println("2: Edit an Enquiry");
-        System.out.println("3: Delete an Enquiry");
-        System.out.println("4: Reply an Enquiry");
+        System.out.println("1: View my Enquiries");
+	    System.out.println("2: Add an Enquiry");    
+        System.out.println("3: Edit an Enquiry");
+        System.out.println("4: Delete an Enquiry");
+        System.out.println("5: Reply an Enquiry");
     }
     public static void suggestion() {
         Header.main();
         System.out.println("Available Options:");
-        System.out.println("1: Add a Suggestion");
-        System.out.println("2: Edit a Suggestion");
-        System.out.println("3: Delete a Suggestion");
+        System.out.println("1: View my Suggestions");
+        System.out.println("2: Add a Suggestion");
+        System.out.println("3: Edit a Suggestion");
+        System.out.println("4: Delete a Suggestion");
     }
 }

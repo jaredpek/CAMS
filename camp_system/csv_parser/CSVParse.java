@@ -7,7 +7,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/** Represents a class that reads and writes to and from a CSV file */
 public class CSVParse {
+    /**
+     * Returns a 2D list of strings based on data from a provided CSV file
+     * @param path Path to the CSV file
+     * @return ArrayList
+     */
     public static ArrayList <String[]> read(String path) {
         ArrayList <String[]> results = new ArrayList <String[]> ();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -16,19 +22,24 @@ public class CSVParse {
                 results.add(line.split(","));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error reading from CSV");
         }
         return results;
     }
-    public static void write(String path, ArrayList <String> data) throws IOException {
-        PrintWriter out = new PrintWriter(new FileWriter(path));
-        try {
-            for (String entry : data) {
-                out.println(entry);
-            }
-        }
-        finally {
+    /**
+     * Writes a list of strings to a CSV file
+     * @param path Path to the CSV file
+     * @param data List of strings to write to CSV
+     * @throws IOException 
+     */
+    public static void write(String path, ArrayList <String> data) {
+        try  {
+            PrintWriter out = new PrintWriter(new FileWriter(path));
+            for (String entry : data)  out.println(entry);
             out.close();
+        }
+        catch (IOException e) {
+            System.out.println("Error writing to CSV");
         }
     }
 }

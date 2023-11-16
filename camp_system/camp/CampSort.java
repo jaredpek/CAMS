@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import camp_system.scanner.Scan;
 
+/** Represents a class that sorts a list of camps in the required order */
 public class CampSort {
+    /** The sort methods available to the user */
     public static void sortMenu() {
         System.out.println("Select Sort Method:");
         System.out.println("1: Group");
@@ -13,6 +15,7 @@ public class CampSort {
         System.out.println("4: End Date");
         System.out.println("5: Alphabetical Order (Default)");
     }
+    /** The order of sorting available to the user */
     public static void orderMenu() {
         System.out.println("Select Order:");
         System.out.println("1: Ascending (Default)");

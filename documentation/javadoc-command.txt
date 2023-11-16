@@ -1,0 +1,1 @@
+<path to javadoc> -d .\documentation -author -private -noqualifier all -version camp_system.application camp_system.application.view camp_system.array_parser camp_system.camp camp_system.csv_parser camp_system.date_parser camp_system.enquiry camp_system.report camp_system.scanner camp_system.suggestion camp_system.user

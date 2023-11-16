@@ -9,7 +9,13 @@ import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
 import camp_system.user.User;
 
+/** Builds a new camp object */
 public class CampBuild {
+    /**
+     * Obtains user input and creates a new camp object
+     * @param user This is the user creating the object
+     * @return Camp
+     */
     public static Camp build(User user) {
         System.out.printf("Name: "); String name = Scan.scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(Scan.scan.nextLine());
@@ -23,6 +29,12 @@ public class CampBuild {
         long id = (long) (new Date()).getTime();
         return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user.getUserID());
     }
+
+    /**
+     * Creates a template camp object
+     * @param user This is the user creating the object
+     * @return Camp
+     */
     public static Camp template(User user) {
         long id = (long) (new Date()).getTime();
         return new Camp(
@@ -39,6 +51,12 @@ public class CampBuild {
             user.getUserID()
         );
     }
+
+    /**
+     * Parses an array of strings and creates a new camp object
+     * @param data Array of strings of camp details
+     * @return Camp
+     */
     public static Camp build(String[] data) {
         if (data.length < 15) return null;
         long id = Long.parseLong(data[0]);
@@ -62,6 +80,12 @@ public class CampBuild {
             committeeList, attendeeList, withdrawedList
         );
     }
+
+    /**
+     * Parses a 2D array of strings and creates a new list of camp objects
+     * @param data 2D array of strings, where each row contains the details of 1 camp
+     * @return ArrayList
+     */
     public static ArrayList <Camp> buildMany(ArrayList <String[]> data) {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
         for (String[] entry : data) {

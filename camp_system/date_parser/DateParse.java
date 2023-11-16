@@ -7,7 +7,6 @@ import java.util.Date;
 import camp_system.scanner.Scan;
 
 /** Represents a date parser object to parse String inputs into Date objects */
-
 public class DateParse {
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 

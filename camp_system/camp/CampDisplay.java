@@ -2,33 +2,20 @@ package camp_system.camp;
 
 import java.util.ArrayList;
 
-import camp_system.user.User;
-
+/** Represents a display class that is responsible for printing the camps */
 public class CampDisplay {
     /**
      * Prints the provided camp objects in the standardized format 
      * @param camps This is the list of camps to print
      */
-    public static void printCamps(ArrayList <Camp> camps) {
+    public static void printCamps(ArrayList <Camp> camps, String user) {
         if (camps.size() <= 0) {
             System.out.println("No Camps Found");
             return;
         }
         for (int i = 0; i < camps.size(); i ++) {
             System.out.printf("%d -> ", (i + 1));
-            camps.get(i).printCampDetails();
-            System.out.println();
-        }
-    }
-
-    public static void printCamps(ArrayList <Camp> camps, User user) {
-        if (camps.size() <= 0) {
-            System.out.println("No Camps Found");
-            return;
-        }
-        for (int i = 0; i < camps.size(); i ++) {
-            System.out.printf("%d -> ", (i + 1));
-            camps.get(i).printCampDetails(user.getUserID());
+            camps.get(i).printCampDetails(user);
             System.out.println();
         }
     }

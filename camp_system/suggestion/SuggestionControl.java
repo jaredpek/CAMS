@@ -31,7 +31,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void add(User student) {
 		ArrayList <Camp> camps = campControl.getByCommittee(student);
-		Camp camp = CampSelect.select(camps);
+		Camp camp = CampSelect.select(camps, student.getUserID());
 		if (camp == null || !camp.enrolledCommittee(student.getUserID())) return;
 		Suggestion suggestion = SuggestionBuild.build(student, camp);
 		suggestions.add(suggestion);
@@ -102,7 +102,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 		//filter global array by student
 		ArrayList<Suggestion> temp = new ArrayList<Suggestion>();
 		for (int i=0; i<suggestions.size(); i++ ) {
-			if (suggestions.get(i).getUser() == student.getUserID()) {
+			if (suggestions.get(i).getUser().compareTo(student.getUserID()) == 0) {
 				temp.add(suggestions.get(i)); // matching suggestions are added in
 			}
 		}

@@ -4,7 +4,9 @@ import camp_system.date_parser.DateParse;
 import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
 
+/** Represents a class that edits a specified camp */
 public class CampEdit {
+    /** This is the attributes of the camp that the user can edit */
     public static void menu() {
         System.out.println("Select Attribute to Edit:");
         System.out.println("1: Visibility");
@@ -19,6 +21,10 @@ public class CampEdit {
         System.out.println("10: Committee Slots");
     }
 
+    /**
+     * Obtain user input and edits the required camp
+     * @param camp This is the camp to edit
+     */
     public static void edit(Camp camp) {
         if (camp == null) return;
         menu();

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import camp_system.user.Faculty;
 import camp_system.user.User;
 
+/** An interface the implements methods to manipulate the list of camps */
 public interface ICamp {
     public ArrayList <Camp> getAll(User user);
     public ArrayList <Camp> getByGroup(Faculty group);
