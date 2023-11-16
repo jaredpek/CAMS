@@ -32,7 +32,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	public void add(User student) {
 		ArrayList <Camp> camps = campControl.getByCommittee(student);
 		Camp camp = CampSelect.select(camps);
-		if (!camp.enrolledCommittee(student.getUserID())) return;
+		if (camp == null || !camp.enrolledCommittee(student.getUserID())) return;
 		Suggestion suggestion = SuggestionBuild.build(student, camp);
 		suggestions.add(suggestion);
 	}

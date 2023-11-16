@@ -96,9 +96,9 @@ public class Camp extends CampInformation {
         System.out.printf("Total Slots = %d\n", this.getTotalSlots());
         System.out.printf("Committee (%d / %d)\n", committeeList.size(), this.getCommitteeSlots());
         for (String user : committeeList) System.out.println(user);
-        System.out.println();
         System.out.printf("\nAttendee (%d / %d)\n", attendeeList.size(), this.getTotalSlots() - this.getCommitteeSlots());
         for (String user : attendeeList) System.out.println(user);
+        System.out.println();
     }
 
     public long getId() { return id; }

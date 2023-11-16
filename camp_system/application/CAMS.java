@@ -1,8 +1,11 @@
-package camp_system;
+package camp_system.application;
 
 import java.io.IOException;
 import java.text.ParseException;
 
+import camp_system.application.view.AuthMenu;
+import camp_system.application.view.StaffView;
+import camp_system.application.view.StudentView;
 import camp_system.camp.CampControl;
 import camp_system.enquiry.EnquiryControl;
 import camp_system.scanner.Scan;
@@ -10,9 +13,6 @@ import camp_system.suggestion.SuggestionControl;
 import camp_system.user.Role;
 import camp_system.user.User;
 import camp_system.user.UserControl;
-import camp_system.view.AuthMenu;
-import camp_system.view.StaffView;
-import camp_system.view.StudentView;
 
 public class CAMS {
     private static User currentUser = null;

@@ -1,4 +1,4 @@
-package camp_system.view;
+package camp_system.application.view;
 
 import java.io.IOException;
 import java.util.ArrayList;

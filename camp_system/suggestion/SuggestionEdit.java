@@ -16,7 +16,7 @@ public class SuggestionEdit {
     public static void edit(Suggestion suggestion){
         // print all suggestions, and show which camp they are a part of
         // edit suggestion
-		System.out.println("Enter your edited suggestion"); String new_message = Scan.scan.nextLine();
+		System.out.printf("New Suggestion: "); String new_message = Scan.scan.nextLine();
 		suggestion.setMessage(new_message);
     }
 }

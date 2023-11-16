@@ -1,8 +1,9 @@
-package camp_system.view;
+package camp_system.application.view;
 
 public class StaffMenu {
     public static void main() {
-        System.out.println("Welcome to NTU CAMS!");
+        Header.main();
+        System.out.println("Available Options:");
         System.out.println("1: Reset Password");
         System.out.println("2: View All Camps");
         System.out.println("3: Create a Camp");
@@ -15,19 +16,20 @@ public class StaffMenu {
         System.out.println("10: Logout");
     }
     public static void enquiry() {
-        System.out.println("Staff Enquiry Menu");
-        System.out.println("--------------------------");
-        System.out.println("1: Get all Enquiries for Camp");
-        System.out.println("2: Reply to Enquiries");
+        Header.main();
+        System.out.println("Available Options:");
+        System.out.println("1: View all Enquiries for a Camp");
+        System.out.println("2: Reply to an Enquiry for a Camp");
     }
 	public static void suggestion(){
-        System.out.println("Staff Suggestion Menu");
-        System.out.println("--------------------------");
-        System.out.println("1: Get all Suggestions for Camp");
-        System.out.println("2: View/Approve Suggestions");
+        Header.main();
+        System.out.println("Available Options:");
+        System.out.println("1: View all Suggestions for a Camp");
+        System.out.println("2: Review a Suggestion for a Camp");
     }
     public static void report() {
-	    System.out.println("Report Menu");
+        Header.main();
+	    System.out.println("Available Options:");
         System.out.println("1. Participant Report");
         System.out.println("2. Performance Report");
     }
