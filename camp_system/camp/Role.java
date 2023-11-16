@@ -16,8 +16,7 @@ public enum Role {
     }
 
     public Role fromString(String role) {
-        role = role.toUpperCase();
-        switch (role) {
+        switch (role.toUpperCase()) {
             case "ATTENDEE": return ATTENDEE;
             case "COMMITTEE": return COMMITTEE;
             case "STAFF": return STAFF;

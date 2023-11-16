@@ -8,6 +8,9 @@ import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampDisplay;
 import camp_system.camp.CampSelect;
+import camp_system.enquiry.Enquiry;
+import camp_system.enquiry.EnquiryControl;
+import camp_system.enquiry.EnquiryDisplay;
 import camp_system.report.Report;
 import camp_system.scanner.Scan;
 import camp_system.suggestion.Suggestion;
@@ -36,6 +39,23 @@ public class StaffView {
                 break;
             }
             case 7: {
+                StaffMenu.enquiry();
+                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                switch (choice) {
+                    case 1: 
+                        ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
+                        Camp camp = CampSelect.select(camps);
+                        ArrayList <Enquiry> enquiries = EnquiryControl.getByCamp(camp);
+                        EnquiryDisplay.printEnquiries(enquiries);
+                        break;
+                    case 2: 
+                        EnquiryControl.reply(currentUser);
+                        break;
+                    default: break;
+                }
+                break;
+            }
+            case 8: {
                 StaffMenu.suggestion();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
@@ -53,7 +73,7 @@ public class StaffView {
                 }
                 break;
             }
-            case 8: {
+            case 9: {
                 StaffMenu.report();
                 System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
                 ArrayList <Camp> camps = CampControl.getByStaff(currentUser);
@@ -70,7 +90,7 @@ public class StaffView {
                 }
                 break;
             }
-            case 9: currentUser = null; break;
+            case 10: currentUser = null; break;
             default: break;
         }
         return currentUser;

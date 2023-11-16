@@ -14,19 +14,6 @@ public class CampControl {
     /** List of all the available camps */
     private static ArrayList <Camp> camps = new ArrayList <Camp> ();
 
-    // /** Creates a new CampControl object with a default empty list */
-    // public CampControl() {
-    //     camps.addAll(CampParse.parse("camp_system\\data\\camps.csv"));
-    // }
-
-    // /**
-    //  * Creates a new CampControl object with an initial list of camps
-    //  * @param camps This is the initial list of camps
-    //  */
-    // public CampControl(ArrayList <Camp> camps) {
-    //     this.camps = camps;
-    // }
-
     public static void start() {
         camps.addAll(CampParse.parse("camp_system\\data\\camps.csv"));
     }

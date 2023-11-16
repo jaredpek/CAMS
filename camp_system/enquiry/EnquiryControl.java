@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampSelect;
+import camp_system.user.Role;
 import camp_system.user.User;
 
 public class EnquiryControl {
@@ -35,13 +36,14 @@ public class EnquiryControl {
      * Adds a point if the user is a Committee Member
     */
     public static void reply(User user) {
-        ArrayList <Camp> camps = CampControl.getByCommittee(user);
+        ArrayList <Camp> camps = new ArrayList <Camp> ();
+        if (user.getRole() == Role.STUDENT) camps = CampControl.getByCommittee(user);
+        if (user.getRole() == Role.STAFF) camps = CampControl.getByStaff(user);
         Camp camp = CampSelect.select(camps);
         if (camp == null) return;
-        ArrayList <Enquiry> committeeEnquiries = getByCamp(camp);
-        Enquiry enquiry = EnquirySelect.select(committeeEnquiries);
-        if (!camp.enrolledCommittee(user.getUserID())) return;
-
+        ArrayList <Enquiry> enquiries = getByCamp(camp);
+        Enquiry enquiry = EnquirySelect.select(enquiries);
+        if (camp.enrolledCommittee(user.getUserID()) && camp.enrolledStaff(user.getUserID())) return;
         EnquiryReply.reply(user.getUserID(), enquiry);
     }
 

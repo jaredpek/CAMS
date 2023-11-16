@@ -16,7 +16,7 @@ public enum Status {
     }
 
     public static Status fromString(String status) {
-        switch (status) {
+        switch (status.toUpperCase()) {
             case "PROCESSING": return PROCESSING;
             case "REJECTED": return REJECTED;
             case "ACCEPTED": return ACCEPTED;
