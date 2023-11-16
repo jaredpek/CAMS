@@ -33,7 +33,7 @@ public class StaffView {
             case 1: userControl.resetPassword(currentUser); break;
             case 2: {
                 ArrayList <Camp> camps = campControl.getAll(currentUser);
-                CampDisplay.printCamps(camps); break;
+                CampDisplay.printCamps(camps, currentUser); break;
             }
             case 3: campControl.add(currentUser); break;
             case 4: campControl.edit(currentUser); break;
@@ -41,8 +41,7 @@ public class StaffView {
             case 6: {
                 ArrayList <Camp> camps = campControl.getAll(currentUser);
                 Camp camp = CampSelect.select(camps);
-                if (camp != null) CampDisplay.printRoles(camp); 
-                break;
+                if (camp != null) CampDisplay.printRoles(camp); break;
             }
             case 7: {
                 StaffMenu.enquiry();
@@ -52,11 +51,8 @@ public class StaffView {
                         ArrayList <Camp> camps = campControl.getByStaff(currentUser);
                         Camp camp = CampSelect.select(camps);
                         ArrayList <Enquiry> enquiries = enquiryControl.getByCamp(camp);
-                        EnquiryDisplay.printEnquiries(enquiries);
-                        break;
-                    case 2: 
-                        enquiryControl.reply(currentUser);
-                        break;
+                        EnquiryDisplay.printEnquiries(enquiries); break;
+                    case 2:  enquiryControl.reply(currentUser); break;
                     default: break;
                 }
                 break;
@@ -69,13 +65,9 @@ public class StaffView {
                 switch (choice) {
                     case 1:
                         ArrayList <Suggestion> suggestions = suggestionControl.getByCamp(camp);
-                        SuggestionDisplay.printSuggestions(suggestions);
-                        break;
-                    case 2:
-                        suggestionControl.approveRejectSuggestions(camp);
-                        break;
-                    default:
-                        break;
+                        SuggestionDisplay.printSuggestions(suggestions); break;
+                    case 2: suggestionControl.approveRejectSuggestions(camp); break;
+                    default: break;
                 }
                 break;
             }
@@ -85,14 +77,9 @@ public class StaffView {
                 ArrayList <Camp> camps = campControl.getByStaff(currentUser);
                 Camp camp = CampSelect.select(camps);
                 switch (choice) {
-                    case 1:
-                        report.participant(camp);
-                        break;
-                    case 2:
-                        report.performance(camp);
-                        break;
-                    default:
-                        break;
+                    case 1: report.participant(camp); break;
+                    case 2: report.performance(camp); break;
+                    default: break;
                 }
                 break;
             }

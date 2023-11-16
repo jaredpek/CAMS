@@ -45,7 +45,7 @@ public class EnquiryControl implements IControl {
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
         Enquiry enquiry = EnquirySelect.select(enquiries);
-        if (camp.enrolledCommittee(user.getUserID()) && camp.enrolledStaff(user.getUserID())) return;
+        if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
         EnquiryReply.reply(user.getUserID(), enquiry);
     }
 

@@ -85,6 +85,12 @@ public class Camp extends CampInformation {
         System.out.println("Committee Slots Remaining: " + (getCommitteeSlots() - committeeList.size()));
     }
 
+    public void printCampDetails(String user) {
+        this.printCampDetails();
+        Role role = getCampRole(user);
+        if (role != null) System.out.println("** You are a " + role + " of this camp");
+    }
+
     /** Print the roles of all the students in the camp */
     public void printRoles() {
         System.out.printf("Total Slots = %d\n", this.getTotalSlots());

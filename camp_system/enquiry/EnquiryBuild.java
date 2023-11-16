@@ -16,7 +16,7 @@ public class EnquiryBuild {
         if (data.length < 6) return null;
         Status status = Status.fromString(data[0]);
         String student = data[1];
-        int camp = Integer.valueOf(data[2]);
+        long camp = Long.valueOf(data[2]);
         String question = data[3];
         String reply = data[4];
         String repliedBy = data[5];

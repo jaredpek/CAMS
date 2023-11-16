@@ -71,6 +71,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	public void approveRejectSuggestions(Camp camp){
 		ArrayList <Suggestion> campSuggestions = getByCamp(camp);
 		Suggestion suggestion = SuggestionSelect.select(campSuggestions);
+		if (suggestion == null) return;
 		SuggestionApprove.ApproveDelete(suggestion);
 	}
 	

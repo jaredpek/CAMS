@@ -26,7 +26,7 @@ public class SuggestionBuild {
         if (data.length < 4) return null;
         Status status = Status.fromString(data[0]);
         String user = data[1];
-        int camp = Integer.valueOf(data[2]);
+        long camp = Long.valueOf(data[2]);
         String message = data[3];
         return new Suggestion(status, user, camp, message);
 	}
