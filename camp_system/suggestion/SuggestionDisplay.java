@@ -3,7 +3,7 @@ package camp_system.suggestion;
 import java.util.ArrayList;
 
 public class SuggestionDisplay {
-    public void printSuggestions(ArrayList <Suggestion> suggestions) {
+    public static void printSuggestions(ArrayList <Suggestion> suggestions) {
         if (suggestions.size() <= 0) {
             System.out.println("No Suggestions Found");
             return;

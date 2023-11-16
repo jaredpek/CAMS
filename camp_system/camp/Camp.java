@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import camp_system.user.Faculty;
-import camp_system.user.User;
 
 /**
  * Represent a camp that is available to students
  */
 public class Camp extends CampInformation {
+    private long id;
     /** The status of a camp, if True, camp is active, else it is inactive */
     private Boolean active;
 
     /** The list of attendees of the camp */
-    private ArrayList <User> attendeeList;
+    private ArrayList <String> attendeeList;
 
     /** The list of committee members of the camp */
-    private ArrayList <User> committeeList;
+    private ArrayList <String> committeeList;
 
     /** The list of attendees that previously withdrawed from the camp */
-    private ArrayList <User> withdrawedList;
+    private ArrayList <String> withdrawedList;
 
     /**
      * Creates a new Camp object with the relevant information
@@ -36,10 +36,10 @@ public class Camp extends CampInformation {
      * @param staffInCharge This is the staff that is in charge of the entire camp
      */
     public Camp(
-        String name, Faculty group, String location, String description,
+        long id, String name, Faculty group, String location, String description,
         Date startDate, Date endDate, Date registerBy,
         int totalSlots, int committeeSlots,
-        User staffInCharge
+        String staffInCharge
     ) {
         super(
             name, group, location, description, 
@@ -47,10 +47,29 @@ public class Camp extends CampInformation {
             totalSlots, committeeSlots, 
             staffInCharge
         );
+        this.id = id;
         this.active = true;
-        this.committeeList = new ArrayList <User> ();
-        this.attendeeList = new ArrayList <User> ();
-        this.withdrawedList = new ArrayList <User> ();
+        this.committeeList = new ArrayList <String> ();
+        this.attendeeList = new ArrayList <String> ();
+        this.withdrawedList = new ArrayList <String> ();
+    }
+    
+    public Camp(
+        long id, Boolean active, String name, Faculty group, String location, String description,
+        Date startDate, Date endDate, Date registerBy, int totalSlots, int committeeSlots, String staffInCharge, 
+        ArrayList <String> committeeList, ArrayList <String> attendeeList, ArrayList <String> withdrawedList
+    ) {
+        super(
+            name, group, location, description, 
+            startDate, endDate, registerBy, 
+            totalSlots, committeeSlots, 
+            staffInCharge
+        );
+        this.id = id;
+        this.active = active;
+        this.committeeList = committeeList;
+        this.attendeeList = attendeeList;
+        this.withdrawedList = withdrawedList;
     }
 
     /** Print all the camp's details */
@@ -70,11 +89,13 @@ public class Camp extends CampInformation {
     public void printRoles() {
         System.out.printf("Total Slots = %d\n", this.getTotalSlots());
         System.out.printf("Committee (%d / %d)\n", committeeList.size(), this.getCommitteeSlots());
-        for (User user : committeeList) System.out.println(user.getName());
+        for (String user : committeeList) System.out.println(user);
         System.out.println();
         System.out.printf("\nAttendee (%d / %d)\n", attendeeList.size(), this.getTotalSlots() - this.getCommitteeSlots());
-        for (User user : attendeeList) System.out.println(user.getName());
+        for (String user : attendeeList) System.out.println(user);
     }
+
+    public long getId() { return id; }
 
     /**
      * Returns the current status of the camp, whether or not it is active
@@ -103,7 +124,7 @@ public class Camp extends CampInformation {
      * @param student This is the student to check
      * @return Boolean
      */
-    public Boolean enrolledAttendee(User student) {
+    public Boolean enrolledAttendee(String student) {
         if (attendeeList.contains(student)) return true;
         return false;
     }
@@ -113,7 +134,7 @@ public class Camp extends CampInformation {
      * @param student
      * @return Boolean
      */
-    public Boolean enrolledCommittee(User student) {
+    public Boolean enrolledCommittee(String student) {
         if (committeeList.contains(student)) return true;
         return false;
     }
@@ -123,8 +144,8 @@ public class Camp extends CampInformation {
      * @param staffInCharge
      * @return Boolean
      */
-    public Boolean enrolledStaff(User staffInCharge) {
-        if (getStaffInCharge() == staffInCharge) return true;
+    public Boolean enrolledStaff(String staffInCharge) {
+        if (getStaffInCharge().compareTo(staffInCharge) == 0) return true;
         return false;
     }
 
@@ -133,7 +154,7 @@ public class Camp extends CampInformation {
      * @param student
      * @return Boolean
      */
-    public Boolean withdrawed(User student) {
+    public Boolean withdrawed(String student) {
         if (withdrawedList.contains(student)) return true;
         return false;
     }
@@ -161,13 +182,13 @@ public class Camp extends CampInformation {
      * Returns a list of all the attendees of the camp
      * @return ArrayList
      */
-    public ArrayList <User> getAttendeeList() { return attendeeList; }
+    public ArrayList <String> getAttendeeList() { return attendeeList; }
 
     /**
      * Adds an attendee to the camp if all requirements are fulfilled
      * @param user
      */
-    protected void addAttendee(User user) {
+    protected void addAttendee(String user) {
         if (!vacancyAttendee()) { System.out.println("No more slots for attendees"); return; }
         if (enrolledAttendee(user)) { System.out.println("Already enrolled as an attendee"); return; }
         if (enrolledCommittee(user)) { System.out.println("Already enrolled in the committee"); return; }
@@ -181,7 +202,7 @@ public class Camp extends CampInformation {
      * Withdraws an attendee from the camp
      * @param user
      */
-    protected void removeAttendee(User user) {
+    protected void removeAttendee(String user) {
         if (!enrolledAttendee(user)) {
             System.out.println("Not enrolled in this camp");
             return;
@@ -194,13 +215,13 @@ public class Camp extends CampInformation {
      * Returns a list of committee members of the camp
      * @return ArrayList
      */
-    public ArrayList <User> getCommitteeList() { return committeeList; }
+    public ArrayList <String> getCommitteeList() { return committeeList; }
 
     /**
      * Adds a committee member to the camp if all requirements are fulfilled
      * @param user
      */
-    protected void addCommittee(User user) {
+    protected void addCommittee(String user) {
         if (!vacancyCommittee()) { System.out.println("No more slots for attendees"); return; }
         if (enrolledAttendee(user)) { System.out.println("Already enrolled as an attendee"); return; }
         if (enrolledCommittee(user)) { System.out.println("Already enrolled in the committee"); return; }
@@ -209,6 +230,12 @@ public class Camp extends CampInformation {
         if (!withinDate(new Date())) { System.out.println("Register date has already passed"); return; }
         committeeList.add(user);
     }
+
+    /**
+     * Returns a list of users that withdrawed from the camp
+     * @return ArrayList
+     */
+    public ArrayList <String> getWithdrawedList() { return withdrawedList; }
 
     /**
      * Returns whether the camp is open to a specified group
@@ -225,7 +252,7 @@ public class Camp extends CampInformation {
      * @param user
      * @return Role
      */
-    public Role getCampRole(User user) {
+    public Role getCampRole(String user) {
         if (enrolledStaff(user)) return Role.STAFF;
         if (enrolledAttendee(user)) return Role.ATTENDEE;
         if (enrolledCommittee(user)) return Role.COMMITTEE;

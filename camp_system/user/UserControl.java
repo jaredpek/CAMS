@@ -2,27 +2,27 @@ package camp_system.user;
 
 import java.util.ArrayList;
 
-import camp_system.csv_parser.CSVParse;
-
 public class UserControl {
-    private ArrayList <User> users = new ArrayList <User> ();
-    private UserBuild userBuild = new UserBuild();
-    private UserPassword userPassword = new UserPassword();
-    private CSVParse csvParse = new CSVParse();
+    private static ArrayList <User> users = new ArrayList <User> ();
 
-    /** Creates a new CampControl object with a default empty list */
-    public UserControl() {
-        ArrayList <String[]> studentData = csvParse.read("camp_system\\data\\students.csv");
-        ArrayList <String[]> staffData = csvParse.read("camp_system\\data\\staffs.csv");
-        users.addAll(userBuild.buildMany(studentData, Role.STUDENT));
-        users.addAll(userBuild.buildMany(staffData, Role.STAFF));
+    public static void start() {
+        users.addAll(UserParse.parse("camp_system\\data\\users.csv"));
+    }
+
+    public static void startCSV() {
+        users.addAll(UserParse.parse("camp_system\\data\\original\\students.csv", Role.STUDENT));
+        users.addAll(UserParse.parse("camp_system\\data\\staffs.csv", Role.STAFF));
+    }
+
+    public static void close() {
+        UserParse.write("camp_system\\data\\users.csv", users);
     }
     
     /**
      * return an arraylist of users
      * @return ArrayList
      */
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         return users;
     }
 
@@ -32,7 +32,7 @@ public class UserControl {
      * @param password this is the user's password
      * @return User
      */
-    public User login(String userID, String password) {
+    public static User login(String userID, String password) {
         for (User user : users) {
             // Check if the user ID and password match.
             if (user.verifyCredentials(userID, password)) {
@@ -44,7 +44,7 @@ public class UserControl {
         return null;
     }
 
-    public void resetPassword(User user) {
-        userPassword.reset(user);
+    public static void resetPassword(User user) {
+        UserPassword.reset(user);
     }
 }

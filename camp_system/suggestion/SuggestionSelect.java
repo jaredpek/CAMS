@@ -2,15 +2,13 @@ package camp_system.suggestion;
 
 import java.util.ArrayList;
 
-import camp_system.application.IBase;
+import camp_system.scanner.Scan;
 
-public class SuggestionSelect implements IBase {
-    private SuggestionDisplay suggestionDisplay = new SuggestionDisplay();
-
-    public Suggestion select(ArrayList <Suggestion> suggestions) {
-        suggestionDisplay.printSuggestions(suggestions);
+public class SuggestionSelect {
+    public static Suggestion select(ArrayList <Suggestion> suggestions) {
+        SuggestionDisplay.printSuggestions(suggestions);
         if (suggestions.size() == 0) return null;
-        System.out.printf("Suggestion: "); int index = scan.nextInt(); scan.nextLine();
+        System.out.printf("Suggestion: "); int index = Scan.scan.nextInt(); Scan.scan.nextLine();
         return suggestions.get(index - 1);
     }
 }

@@ -12,23 +12,27 @@ import camp_system.user.Role;
  */
 public class CampControl {
     /** List of all the available camps */
-    private ArrayList <Camp> camps;
-    private CampBuild campBuild = new CampBuild();
-    private CampEdit campEdit = new CampEdit();
-    private CampSelect campSelect = new CampSelect();
-    private CampSort campSort = new CampSort();
-    private CampEnrol campEnrol = new CampEnrol();
-    private CampWithdraw campWithdraw = new CampWithdraw();
+    private static ArrayList <Camp> camps = new ArrayList <Camp> ();
 
-    /** Creates a new CampControl object with a default empty list */
-    public CampControl() { this.camps = new ArrayList <Camp> (); }
+    // /** Creates a new CampControl object with a default empty list */
+    // public CampControl() {
+    //     camps.addAll(CampParse.parse("camp_system\\data\\camps.csv"));
+    // }
 
-    /**
-     * Creates a new CampControl object with an initial list of camps
-     * @param camps This is the initial list of camps
-     */
-    public CampControl(ArrayList <Camp> camps) {
-        this.camps = camps;
+    // /**
+    //  * Creates a new CampControl object with an initial list of camps
+    //  * @param camps This is the initial list of camps
+    //  */
+    // public CampControl(ArrayList <Camp> camps) {
+    //     this.camps = camps;
+    // }
+
+    public static void start() {
+        camps.addAll(CampParse.parse("camp_system\\data\\camps.csv"));
+    }
+
+    public static void close() {
+        CampParse.write("camp_system\\data\\camps.csv", camps);
     }
 
     /**
@@ -36,7 +40,7 @@ public class CampControl {
      * @param user This is the user to check
      * @return Boolean
      */
-    private Boolean validUser(User user) {
+    private static Boolean validUser(User user) {
         if (user.getRole() == Role.STAFF) return true;
         System.out.println("Only Staff are permitted to conduct this operation");
         return false;
@@ -47,15 +51,15 @@ public class CampControl {
      * @param user This is the user (staff) that creates the camp
      * @throws ParseException
      */
-    public void addCamp(User user) throws ParseException {
+    public static void add(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.build(user));
-        campSort.sortByAlphabetical(camps, 0);
+        camps.add(CampBuild.build(user));
+        CampSort.sortByAlphabetical(camps, 0);
     }
 
-    public void addTemplate(User user) throws ParseException {
+    public static void addTemplate(User user) throws ParseException {
         if (!validUser(user)) return;
-        camps.add(campBuild.template(user));
+        camps.add(CampBuild.template(user));
     }
 
     /**
@@ -63,21 +67,21 @@ public class CampControl {
      * @param user This is the current user that is editing the camp
      * @throws ParseException
      */
-    public void editCamp(User user) throws ParseException {
+    public static void edit(User user) throws ParseException {
         if (!validUser(user)) return;
-        ArrayList <Camp> createdCamps = getStaffCamps(user);
-        Camp camp = campSelect.select(createdCamps);
-        campEdit.edit(camp);
+        ArrayList <Camp> createdCamps = getByStaff(user);
+        Camp camp = CampSelect.select(createdCamps);
+        CampEdit.edit(camp);
     }
 
     /**
      * Deletes a camp from the camp list
      * @param user This is the user that is deleting camps
      */
-    public void deleteCamp(User user) {
+    public static void delete(User user) {
         if (!validUser(user)) return;
-        ArrayList <Camp> createdCamps = getStaffCamps(user);
-        Camp camp = campSelect.select(createdCamps);
+        ArrayList <Camp> createdCamps = getByStaff(user);
+        Camp camp = CampSelect.select(createdCamps);
         camps.remove(camp);
     }
 
@@ -86,7 +90,7 @@ public class CampControl {
      * @param user This is the user that is querying all the camps
      * @return ArrayList
      */
-    public ArrayList <Camp> getAllCamps(User user) {
+    public static ArrayList <Camp> getAll(User user) {
         if (!validUser(user)) return null;
         return camps;
     }
@@ -96,7 +100,7 @@ public class CampControl {
      * @param group This is the group to check
      * @return ArrayList
      */
-    public ArrayList <Camp> getGroupCamps(Faculty group) {
+    public static ArrayList <Camp> getByGroup(Faculty group) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
             if (camp.isGroup(group)) result.add(camp);
@@ -109,10 +113,10 @@ public class CampControl {
      * @param user This is the user to check
      * @return ArrayList
      */
-    public ArrayList <Camp> getAttendeeCamps(User user) {
+    public static ArrayList <Camp> getByAttendee(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledAttendee(user)) result.add(camp);
+            if (camp.enrolledAttendee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -122,10 +126,10 @@ public class CampControl {
      * @param user This is the user to check
      * @return ArrayList
      */
-    public ArrayList <Camp> getCommitteeCamps(User user) {
+    public static ArrayList <Camp> getByCommittee(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledCommittee(user)) result.add(camp);
+            if (camp.enrolledCommittee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -135,10 +139,10 @@ public class CampControl {
      * @param user This is the user to check
      * @return ArrayList
      */
-    public ArrayList <Camp> getStudentCamps(User user) {
+    public static ArrayList <Camp> getByStudent(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledAttendee(user) || camp.enrolledCommittee(user)) result.add(camp);
+            if (camp.enrolledAttendee(user.getUserID()) || camp.enrolledCommittee(user.getUserID())) result.add(camp);
         }
         return result;
     }
@@ -148,25 +152,25 @@ public class CampControl {
      * @param user This is the user to check
      * @return ArrayList
      */
-    public ArrayList <Camp> getStaffCamps(User user) {
+    public static ArrayList <Camp> getByStaff(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledStaff(user)) result.add(camp);
+            if (camp.enrolledStaff(user.getUserID())) result.add(camp);
         }
         return result;
     }
     
-    public void registerCamp(User user) {
-        ArrayList <Camp> available = getGroupCamps(user.getFaculty());
-        campEnrol.register(user, available);
+    public static void registerCamp(User user) {
+        ArrayList <Camp> available = getByGroup(user.getFaculty());
+        CampEnrol.register(user.getUserID(), available);
     }
 
     /**
      * Withdraws an attendee from a camp
      * @param user This is the user to withdraw
      */
-    public void withdrawAttendee(User user) {
-        ArrayList <Camp> registered = getAttendeeCamps(user);
-        campWithdraw.attendee(user, registered);
+    public static void withdrawAttendee(User user) {
+        ArrayList <Camp> registered = getByAttendee(user);
+        CampWithdraw.attendee(user.getUserID(), registered);
     }
 }

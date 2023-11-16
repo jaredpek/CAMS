@@ -3,14 +3,15 @@ package camp_system.camp;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import camp_system.application.IBase;
+import camp_system.date_parser.DateParse;
+import camp_system.scanner.Scan;
 import camp_system.user.Faculty;
 
 /**
  * Represents a filter and sorter class that modifies a list of camps based on certain requirements and in a specified order
  */
-public class CampFilter implements IBase {
-    public void filterMenu() {
+public class CampFilter {
+    public static void filterMenu() {
         System.out.println("Select Filter Field:");
         System.out.println("1: Group");
         System.out.println("2: Location");
@@ -25,7 +26,7 @@ public class CampFilter implements IBase {
      * @param group Specified group to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByGroup(ArrayList <Camp> camps, Faculty group) {
+    public static ArrayList <Camp> filterByGroup(ArrayList <Camp> camps, Faculty group) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
             if (camp.getGroup() == group) {
@@ -41,7 +42,7 @@ public class CampFilter implements IBase {
      * @param location Specified location to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByLocation(ArrayList <Camp> camps, String location) {
+    public static ArrayList <Camp> filterByLocation(ArrayList <Camp> camps, String location) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
             if (camp.getLocation().toLowerCase() == location.toLowerCase()) {
@@ -57,10 +58,10 @@ public class CampFilter implements IBase {
      * @param startDate Specified start date to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) throws ParseException {
+    public static ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) throws ParseException {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.getStartDate().compareTo(dateParse.date(startDate)) > 0) {
+            if (camp.getStartDate().compareTo(DateParse.date(startDate)) > 0) {
                 result.add(camp);
             }
         }
@@ -73,10 +74,10 @@ public class CampFilter implements IBase {
      * @param endDate Specified end date to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) throws ParseException {
+    public static ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) throws ParseException {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.getEndDate().compareTo(dateParse.date(endDate)) < 0) {
+            if (camp.getEndDate().compareTo(DateParse.date(endDate)) < 0) {
                 result.add(camp);
             }
         }
@@ -89,24 +90,24 @@ public class CampFilter implements IBase {
      * @param option Camp attribute to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterCamps(ArrayList <Camp> camps) throws ParseException {
+    public static ArrayList <Camp> filterCamps(ArrayList <Camp> camps) throws ParseException {
         filterMenu();
-        System.out.printf("Filter Option: "); int option = scan.nextInt();
+        System.out.printf("Filter Option: "); int option = Scan.scan.nextInt();
         switch (option) {
             case 1: {
-                System.out.printf("Enter Group: "); String group = scan.nextLine();
+                System.out.printf("Enter Group: "); String group = Scan.scan.nextLine();
                 return filterByGroup(camps, Faculty.fromString(group));
             }
             case 2: {
-                System.out.printf("Enter Location: "); String location = scan.nextLine();
+                System.out.printf("Enter Location: "); String location = Scan.scan.nextLine();
                 return filterByLocation(camps, location);
             }
             case 3: {
-                System.out.printf("Enter Start Date: "); String startDate = scan.nextLine();
+                System.out.printf("Enter Start Date: "); String startDate = Scan.scan.nextLine();
                 return filterByStartDate(camps, startDate);
             }
             case 4: {
-                System.out.printf("Enter End Date: "); String endDate = scan.nextLine();
+                System.out.printf("Enter End Date: "); String endDate = Scan.scan.nextLine();
                 return filterByEndDate(camps, endDate);
             }
             default: return camps;

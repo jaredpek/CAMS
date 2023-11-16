@@ -10,7 +10,7 @@ public enum Role {
             default: return null;
         }
     }
-    public Role fromString(String role) {
+    public static Role fromString(String role) {
         role = role.toUpperCase();
         switch (role.toUpperCase()) {
             case "STUDENT": return STUDENT;

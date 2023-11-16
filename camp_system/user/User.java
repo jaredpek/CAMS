@@ -1,14 +1,10 @@
 package camp_system.user;
 
-import camp_system.camp.Camp;
-//import camp_system.enquiry.Enquiry;
-//import camp_system.suggestion.Suggestion;
 public class User {
     private String name, userID, password;
     private Faculty faculty;
     private Role role;
-    private Camp committeeOf;
-    private int point = 0;
+    
     /**
      * 
      * @param name this is the name of the user
@@ -23,6 +19,13 @@ public class User {
         this.name = name;
         this.userID = userID;
         this.password = "password";
+        this.faculty = faculty;
+        this.role = role;
+    }
+    public User (String name, String userID, String password, Faculty faculty, Role role){
+        this.name = name;
+        this.userID = userID;
+        this.password = password;
         this.faculty = faculty;
         this.role = role;
     }
@@ -64,32 +67,12 @@ public class User {
      * Change password for the user
      * @param password this is the new password
      */
+    public String getPassword() { return password; }
     protected void setPassword(String password) {this.password = password;}
     
     public Boolean verifyCredentials(String userID, String password) {
         if (this.userID.compareTo(userID) == 0 && this.password.compareTo(password) == 0) return true;
         return false;
-    }
-
-    /**
-     * return the camp name which the user belongs to
-     * @return Camp
-     */
-    public Camp getCommitteeOf() {return committeeOf;}
-    protected void setCommitteeOf(Camp committeeOf) {this.committeeOf = committeeOf;}
-    
-    /**
-     * return user's point
-     * @return int
-     */
-    public int getPoint() {return point;}
-    protected void setPoint(int point) {this.point = point;}
-    
-    /**
-     * add point for the user
-     */
-    public void addPoint(){
-        point++;
     }
 }
     

@@ -2,14 +2,12 @@ package camp_system.camp;
 
 import java.util.ArrayList;
 
-import camp_system.application.IBase;
-
-public class CampDisplay implements IBase {
+public class CampDisplay {
     /**
      * Prints the provided camp objects in the standardized format 
      * @param camps This is the list of camps to print
      */
-    public void printCamps(ArrayList <Camp> camps) {
+    public static void printCamps(ArrayList <Camp> camps) {
         if (camps.size() <= 0) {
             System.out.println("No Camps Found");
             return;
@@ -25,7 +23,7 @@ public class CampDisplay implements IBase {
      * Prints the roles of all the students in the specified camp
      * @param camps This is the list of camps to select from
      */
-    public void printRoles(Camp camp) {
+    public static void printRoles(Camp camp) {
         camp.printRoles();
     }
 }

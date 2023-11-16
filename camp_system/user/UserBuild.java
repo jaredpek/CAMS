@@ -3,11 +3,20 @@ package camp_system.user;
 import java.util.ArrayList;
 
 public class UserBuild {
-    public User build(String[] data, Role role) {
-        if (data.length < 3) {
-            System.err.println("Error: CSV line does not have enough values: ");
-            return null;
-        }
+    public static User build(String[] data) {
+        if (data.length < 5) return null;
+        String name = data[0];
+        String userID = data[1];
+        String password = data[2];
+        Faculty faculty = Faculty.fromString(data[3]);
+        Role role = Role.fromString(data[4]);
+
+        if (name == null || userID == null || faculty == null) return null;
+        return new User(name, userID, password, faculty, role);
+    }
+
+    public static User build(String[] data, Role role) {
+        if (data.length < 3) return null;
         String name = data[0];
         String userID = data[1].split("@")[0];
         Faculty faculty = Faculty.fromString(data[2]); // Convert the string to the Faculty enum
@@ -16,7 +25,17 @@ public class UserBuild {
         return new User(name, userID, faculty, role);
     }
 
-    public ArrayList <User> buildMany(ArrayList <String[]> userData, Role role) {
+    public static ArrayList <User> buildMany(ArrayList <String[]> userData) {
+        ArrayList <User> users = new ArrayList <User> ();
+        for (String[] data : userData) {
+            User user = build(data);
+            if (user == null) continue;
+            users.add(user);
+        }
+        return users;
+    }
+
+    public static ArrayList <User> buildMany(ArrayList <String[]> userData, Role role) {
         ArrayList <User> users = new ArrayList <User> ();
         for (String[] data : userData) {
             User user = build(data, role);
