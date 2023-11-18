@@ -13,7 +13,7 @@ import camp_system.user.User;
  */
 public class SuggestionControl implements IControl, ISuggestion {
 	private static ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
-	private CampControl campControl = new CampControl();
+	public static SuggestionControl instance = new SuggestionControl();
 
 	public static void start() {
 		suggestions.addAll(SuggestionParse.parse("camp_system\\data\\suggestions.csv"));
@@ -30,7 +30,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 * @param camps the list of all existing camps
 	 */
 	public void add(User student) {
-		ArrayList <Camp> camps = campControl.getByCommittee(student);
+		ArrayList <Camp> camps = CampControl.campControl.getByCommittee(student);
 		Camp camp = CampSelect.select(camps, student.getUserID());
 		if (camp == null || !camp.enrolledCommittee(student.getUserID())) return;
 		Suggestion suggestion = SuggestionBuild.build(student, camp);

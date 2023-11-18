@@ -11,6 +11,7 @@ import camp_system.user.Role;
 public class CampControl implements IControl, ICamp, IEnrolment {
     /** List of all the available camps */
     private static ArrayList <Camp> camps = new ArrayList <Camp> ();
+    public static CampControl campControl = new CampControl();
 
     /** Initialises the camp array with data from a CSV file */
     public static void start() {

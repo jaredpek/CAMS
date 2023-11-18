@@ -17,7 +17,6 @@ import camp_system.user.UserControl;
 public class CAMS {
     private static User currentUser = null;
     private static Boolean run = true;
-    private static UserControl userControl = new UserControl();
 
     public static void start() {
         EnquiryControl.start();
@@ -40,7 +39,7 @@ public class CAMS {
             case 1:
                 System.out.printf("Enter User ID: "); String userId = Scan.scan.nextLine();
                 System.out.printf("Enter Password: "); String password = Scan.scan.nextLine();
-                currentUser = userControl.login(userId, password); break;
+                currentUser = UserControl.userControl.login(userId, password); break;
             default: run = false; break;
         }
     }

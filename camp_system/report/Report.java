@@ -17,9 +17,8 @@ import camp_system.suggestion.SuggestionControl;
 import camp_system.suggestion.SuggestionScore;
 
 public class Report implements IReport {
-    private SuggestionControl suggestionControl = new SuggestionControl();
-    private EnquiryControl enquiryControl = new EnquiryControl();
-
+    public static Report report = new Report();
+    
     public void participant (Camp camp) {
         String path = "camp_system\\report\\generated\\participantReport_" + (new Date()).getTime();
         File file = new File(path);
@@ -52,8 +51,8 @@ public class Report implements IReport {
         try {
             FileWriter fw = new FileWriter(file, false);
             BufferedWriter bw = new BufferedWriter(fw);
-            ArrayList <Enquiry> enquiries = enquiryControl.getByCamp(camp);
-            ArrayList <Suggestion> suggestions = suggestionControl.getByCamp(camp);
+            ArrayList <Enquiry> enquiries = EnquiryControl.instance.getByCamp(camp);
+            ArrayList <Suggestion> suggestions = SuggestionControl.instance.getByCamp(camp);
             ArrayList <String> committee = camp.getCommitteeList();
             HashMap <String, Integer> enquiryScores = EnquiryScore.compute(enquiries, committee);
             HashMap <String, Integer> suggestionScores = SuggestionScore.compute(suggestions, committee);

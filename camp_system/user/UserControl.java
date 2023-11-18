@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class UserControl implements IUser {
     private static ArrayList <User> users = new ArrayList <User> ();
+    public static UserControl userControl = new UserControl();
 
     public static void start() {
         users.addAll(UserParse.parse("camp_system\\data\\users.csv"));
@@ -16,14 +17,6 @@ public class UserControl implements IUser {
 
     public static void close() {
         UserParse.write("camp_system\\data\\users.csv", users);
-    }
-    
-    /**
-     * return an arraylist of users
-     * @return ArrayList
-     */
-    public ArrayList<User> getUsers() {
-        return users;
     }
 
     /**
