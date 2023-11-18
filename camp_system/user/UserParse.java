@@ -24,7 +24,11 @@ public class UserParse {
         } catch (Exception e) {}
         return results;
     }
-
+    /**
+     * A method to write the data to a new csv file
+     * @param file file name
+     * @param users the array list that contains all users
+     */
     public static void write(String file, ArrayList <User> users) {
         ArrayList <String> data = new ArrayList <String> ();
         for (User user : users) {

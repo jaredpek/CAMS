@@ -25,7 +25,7 @@ public class User {
      * @param userID this is the user ID 
      * @param password this is the password of the user
      * @param faculty this is the faculty that the user belongs to
-     * @param rolethis is the role of the user
+     * @param role this is the role of the user
      */
     public User (String name, String userID, String password, Faculty faculty, Role role){
         this.name = name;
@@ -49,6 +49,10 @@ public class User {
      * @return String
      */
     public String getName() {return name;}
+    /**
+     * set user's name
+     * @param name new name
+     */
     protected void setName(String name) {this.name = name;}
 
     /**
@@ -56,6 +60,11 @@ public class User {
      * @return String
      */
     public String getUserID() {return userID;}
+
+    /**
+     * set user's ID
+     * @param userID new userID
+     */
     protected void setUserID(String userID) {this.userID = userID;}
 
     /**
@@ -63,6 +72,10 @@ public class User {
      * @return Faculty
      */
     public Faculty getFaculty() {return faculty;}
+    /**
+     * set user's faculty
+     * @param faculty new faculty
+     */
     protected void setFaculty(Faculty faculty) {this.faculty = faculty;}
 
     /**
@@ -70,15 +83,28 @@ public class User {
      * @return Role
      */
     public Role getRole() { return role;}
+    /**
+     * set user's role
+     * @param role new role
+     */
     protected void setRole(Role role) {this.role = role;}
 
+    /**
+     * return user's password
+     * @return password
+     */
+    public String getPassword() { return password; }
     /**
      * Change password for the user
      * @param password this is the new password
      */
-    public String getPassword() { return password; }
     protected void setPassword(String password) {this.password = password;}
-    
+    /**
+     * a method to verify user's credentials
+     * @param userID userID that login in
+     * @param password password that user inputs
+     * @return true if the user is authenticated/false if not
+     */
     public Boolean verifyCredentials(String userID, String password) {
         if (this.userID.compareTo(userID) == 0 && this.password.compareTo(password) == 0) return true;
         return false;
