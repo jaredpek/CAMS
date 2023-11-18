@@ -9,7 +9,7 @@ import camp_system.camp.CampSelect;
 import camp_system.user.Role;
 import camp_system.user.User;
 
-public class EnquiryControl implements IControl {
+public class EnquiryControl implements IControl, IEnquiry {
     private static ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
     public static EnquiryControl instance = new EnquiryControl();
 
