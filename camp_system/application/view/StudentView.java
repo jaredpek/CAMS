@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampDisplay;
+import camp_system.camp.CampFilter;
 import camp_system.camp.CampSelect;
+import camp_system.camp.CampSort;
 import camp_system.enquiry.Enquiry;
 import camp_system.enquiry.EnquiryControl;
 import camp_system.enquiry.EnquiryDisplay;
@@ -26,6 +28,8 @@ public class StudentView {
             case 1: UserControl.userControl.resetPassword(currentUser); break;
             case 2: {
                 ArrayList <Camp> availableCamps = CampControl.campControl.getByGroup(currentUser.getFaculty());
+                CampFilter.filterCamps(availableCamps);
+                CampSort.sortCamps(availableCamps);
                 CampDisplay.printCamps(availableCamps, currentUser.getUserID()); break;
             }
             case 3: {

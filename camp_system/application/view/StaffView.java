@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import camp_system.camp.Camp;
 import camp_system.camp.CampControl;
 import camp_system.camp.CampDisplay;
+import camp_system.camp.CampFilter;
 import camp_system.camp.CampSelect;
+import camp_system.camp.CampSort;
 import camp_system.enquiry.Enquiry;
 import camp_system.enquiry.EnquiryControl;
 import camp_system.enquiry.EnquiryDisplay;
@@ -26,8 +28,10 @@ public class StaffView {
         switch (option) {
             case 1: UserControl.userControl.resetPassword(currentUser); break;
             case 2: {
-                ArrayList <Camp> camps = CampControl.campControl.getAll(currentUser);
-                CampDisplay.printCamps(camps, currentUser.getUserID()); break;
+                ArrayList <Camp> availableCamps = CampControl.campControl.getAll(currentUser);
+                CampFilter.filterCamps(availableCamps);
+                CampSort.sortCamps(availableCamps);
+                CampDisplay.printCamps(availableCamps, currentUser.getUserID()); break;
             }
             case 3: CampControl.campControl.add(currentUser); break;
             case 4: CampControl.campControl.edit(currentUser); break;
