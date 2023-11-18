@@ -1,6 +1,7 @@
 package camp_system.enquiry;
 
 import camp_system.scanner.Scan;
+import camp_system.message.Status;
 
 public class EnquiryReply {
     public static void reply(String user, Enquiry enquiry){

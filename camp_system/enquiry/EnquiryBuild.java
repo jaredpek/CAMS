@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import camp_system.camp.Camp;
 import camp_system.scanner.Scan;
 import camp_system.user.User;
+import camp_system.message.Status;
 
 
 public class EnquiryBuild {

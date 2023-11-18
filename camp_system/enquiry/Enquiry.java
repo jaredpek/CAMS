@@ -1,5 +1,7 @@
 package camp_system.enquiry;
 
+import camp_system.message.Status;
+
 public class Enquiry {
     private Status status;
     private String student;

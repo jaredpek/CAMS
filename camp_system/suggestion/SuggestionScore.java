@@ -3,6 +3,8 @@ package camp_system.suggestion;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import camp_system.message.Status;
+
 public class SuggestionScore {
     public static HashMap <String, Integer> compute(ArrayList <Suggestion> suggestions, ArrayList <String> committee) {
         HashMap <String, Integer> result = new HashMap <String, Integer> ();

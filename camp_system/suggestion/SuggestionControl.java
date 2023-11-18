@@ -38,7 +38,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	}
 	
 	/**
-	 * Used by User to edit on of thier existing suggestions
+	 * Used by User to edit on of their existing suggestions
 	 * 
 	 * @param student the user that is trying to add the suggestion
 	 * @param camps the list of all existing camps

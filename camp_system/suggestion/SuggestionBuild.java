@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import camp_system.camp.Camp;
 import camp_system.scanner.Scan;
 import camp_system.user.User;
+import camp_system.message.Status;
 
 /**
  * Used to add a Suggestion by a User from a Camp

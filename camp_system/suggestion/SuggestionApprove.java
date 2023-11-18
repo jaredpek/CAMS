@@ -1,6 +1,7 @@
 package camp_system.suggestion;
 
 import camp_system.scanner.Scan;
+import camp_system.message.Status;
 
 /**
  * Used by Staff to Approve or Reject a suggestion
