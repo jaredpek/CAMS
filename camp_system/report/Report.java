@@ -53,7 +53,7 @@ public class Report implements IReport {
             switch(choice)
             {
                 case 1:
-                    ArrayList<String> attendees = camp.getAttendeeList()
+                    ArrayList<String> attendees = camp.getAttendeeList();
                     Collections.sort(attendees);
                      bw.write("Attendee List: "); 
                      bw.newLine();
