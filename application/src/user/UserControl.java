@@ -2,34 +2,46 @@ package user;
 
 import java.util.ArrayList;
 
+/** The control class for user objects */
 public class UserControl implements IUser {
+    /** The list of user objects */
     private static ArrayList <User> users = new ArrayList <User> ();
-    public static UserControl userControl = new UserControl();
 
+    /** Static instance to UserControl */
+    public static UserControl instance = new UserControl();
+
+    /** Initialise the list of users from CSV file */
     public static void start() {
-        users.addAll(UserParse.parse(".\\application\\data\\users.csv"));
+        users.addAll((new UserParse()).parse("data\\users.csv"));
     }
 
-    public static void startCSV() {
-        users.addAll(UserParse.parse(".\\application\\data\\original\\students.csv", Role.STUDENT));
-        users.addAll(UserParse.parse(".\\application\\data\\original\\staffs.csv", Role.STAFF));
-    }
-
+    /** Writes the list of users to CSV file */
     public static void close() {
-        UserParse.write(".\\data\\users.csv", users);
+        (new UserParse()).write("data\\users.csv", users);
+    }
+
+    /** 
+     * Prompts the user to reset his password if first login
+     * @param user The user to prompt a password reset
+     */
+    private void promptReset(User user) {
+        if (user.getLastLogin() != null) return;
+        System.out.println("Please reset your default password");
+        resetPassword(user);
     }
 
     /**
      * to authenticate user
      * @param userID this is the user's ID
      * @param password this is the user's password
-     * @return User
+     * @return user object for the user that is logged in
      */
     public User login(String userID, String password) {
         for (User user : users) {
             // Check if the user ID and password match.
             if (user.verifyCredentials(userID, password)) {
-                // Return the user object.
+                promptReset(user);
+                user.updateLastLogin();
                 return user;
             }
         }
@@ -37,6 +49,10 @@ public class UserControl implements IUser {
         return null;
     }
 
+    /** 
+     * Resets the password of a specific user
+     * @param user The user to reset password for
+     */
     public void resetPassword(User user) {
         UserPassword.reset(user);
     }

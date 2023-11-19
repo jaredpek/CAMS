@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import camp.Camp;
 import message.Status;
-import scanner.Scan;
+import scan.Scan;
 import user.User;
 
 /**
@@ -15,15 +15,20 @@ public class SuggestionBuild {
 	 * Creates a new suggestion, and adds this suggestion to the 
 	 * global list of Suggestions
 	 * 
-	 * @param global the arraylist which contains all the suggestions
 	 * @param student the user that is trying to add the suggestion
-	 * @param camps	the list of all existing camps
+	 * @param camp	the camp to make suggestion about
+	 * @return A new suggestion object
 	 */
-    public static Suggestion build(User student, Camp camp){
+    public Suggestion build(User student, Camp camp){
 		System.out.printf("Suggestion: "); String message = Scan.scan.nextLine();
 		return new Suggestion(student.getUserID(), camp.getId(), message);
     }
-	public static Suggestion build(String[] data) {
+	/**
+	 * Builds a new suggestion object from a list of strings
+	 * @param data The list of strings to parse
+	 * @return A new suggestion object
+	 */
+	public Suggestion build(String[] data) {
         if (data.length < 4) return null;
         Status status = Status.fromString(data[0]);
         String user = data[1];
@@ -31,7 +36,12 @@ public class SuggestionBuild {
         String message = data[3];
         return new Suggestion(status, user, camp, message);
 	}
-	public static ArrayList <Suggestion> buildMany(ArrayList <String[]> data) {
+	/**
+	 * Builds an arraylist of new suggestion objects
+	 * @param data The arraylist of a list of strings to parse
+	 * @return An arraylist of new suggestion objects
+	 */
+	public ArrayList <Suggestion> buildMany(ArrayList <String[]> data) {
 		ArrayList <Suggestion> suggestions = new ArrayList <Suggestion> ();
 		for (String[] entry : data) {
 			Suggestion suggestion = build(entry);

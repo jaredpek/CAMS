@@ -3,21 +3,22 @@ package enquiry;
 import java.util.ArrayList;
 
 import camp.Camp;
+import interfaces.IBuild;
 import message.Status;
-import scanner.Scan;
-import view.CAMS;
+import scan.Scan;
+import user.User;
 
 /** Builds a new enquiry object */
-public class EnquiryBuild {
+public class EnquiryBuild implements IBuild {
     /**
      * Obtain user input and creates a new enquiry object
-     * @param user This is the user creating the enquiry
      * @param camp This is the camp that the user wants to create an enquiry in
+     * @param user This is the user building the enquiry
      * @return Enquiry This is the enquiry to be added to the arraylist of enquiries
      */
-    public static Enquiry build(Camp camp){
+    public Enquiry build(Camp camp, User user){
         System.out.printf("Enquiry: "); String question = Scan.scan.nextLine();        
-        return new Enquiry(CAMS.currentUser.getUserID(), camp.getId(), question);
+        return new Enquiry(user.getUserID(), camp.getId(), question);
     }
 
     /**
@@ -25,7 +26,7 @@ public class EnquiryBuild {
      * @param data Array of strings of enquiry details
      * @return Enquiry
      */
-    public static Enquiry build(String[] data) {
+    public Enquiry build(String[] data) {
         if (data.length < 6) return null;
         Status status = Status.fromString(data[0]);
         String student = data[1];
@@ -41,7 +42,7 @@ public class EnquiryBuild {
      * @param data 2D array of strings, where each row contains the details of 1 enquiry
      * @return enquiries arraylist
      */
-    public static ArrayList <Enquiry> buildMany(ArrayList <String[]> data) {
+    public ArrayList <Enquiry> buildMany(ArrayList <String[]> data) {
         ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
         for (String[] entry : data) {
             Enquiry enquiry = build(entry);

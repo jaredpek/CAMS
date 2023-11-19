@@ -1,34 +1,34 @@
 package camp;
 
-import date_parser.DateParse;
-import scanner.Scan;
+import date.DateParse;
+import scan.Scan;
 import user.Faculty;
 
 /** Represents a class that edits a specified camp */
 public class CampEdit {
     /** This is the attributes of the camp that the user can edit */
-    public static void menu() {
+    public void menu() {
         System.out.println("Select Attribute to Edit:");
-        System.out.println("1: Visibility");
-        System.out.println("2: Name");
-        System.out.println("3: Group");
-        System.out.println("4: Location");
-        System.out.println("5: Description");
-        System.out.println("6: Start Date");
-        System.out.println("7: End Date");
-        System.out.println("8: Register By");
-        System.out.println("9: Total Slots (Inclusive of Committee Slots)");
-        System.out.println("10: Committee Slots");
+        System.out.println("1 - Visibility");
+        System.out.println("2 - Name");
+        System.out.println("3 - Group");
+        System.out.println("4 - Location");
+        System.out.println("5 - Description");
+        System.out.println("6 - Start Date");
+        System.out.println("7 - End Date");
+        System.out.println("8 - Register By");
+        System.out.println("9 - Total Slots (Inclusive of Committee Slots)");
+        System.out.println("10 - Committee Slots");
     }
 
     /**
      * Obtain user input and edits the required camp
      * @param camp This is the camp to edit
      */
-    public static void edit(Camp camp) {
+    public void edit(Camp camp) {
         if (camp == null) return;
         menu();
-        int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (option) {
             case 1:
                 System.out.printf("Enter New Visibility: "); Boolean active = Scan.scan.nextBoolean();
@@ -60,8 +60,7 @@ public class CampEdit {
             case 10:
                 System.out.printf("Enter New Committee Slots: "); int committeeSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
                 camp.setCommitteeSlots(committeeSlots); break;
-            default:
-                System.out.println("Invalid Option"); break;
+            default: break;
         }
     }
 }

@@ -1,6 +1,6 @@
 package suggestion;
 
-import scanner.Scan;
+import scan.Scan;
 
 /**
  * Used by User to edit any of the suggestions that they have made
@@ -8,13 +8,9 @@ import scanner.Scan;
 public class SuggestionEdit {
 	/**
 	 * Used to edit the User's suggestions
-	 * 
-	 * @param global the arraylist which contains all the suggestions
-	 * @param student the User that is deleting the suggestion
-	 * @param camps the camp that the Staff is in charge of
+	 * @param suggestion The suggestion to be edited
 	 */
-    public static void edit(Suggestion suggestion){
-        // print all suggestions, and show which camp they are a part of
+    public void edit(Suggestion suggestion){
         // edit suggestion
 		System.out.printf("New Suggestion: "); String new_message = Scan.scan.nextLine();
 		suggestion.setMessage(new_message);

@@ -6,6 +6,7 @@ public enum Faculty {
     NBS, CCEB, EEE, CEE, MSE, SCSE, MAE, ADM, SOH, SSS, WKWSCI, SPMS, SBS, ASE, LKC, GC, NIE, RSIS, NTU;
     /**
      * A method to convert enum Faculty to String type
+     * @return String of the respective enum
      */
     public String toString() {
         switch (this) {
@@ -33,6 +34,8 @@ public enum Faculty {
     }
     /**
      * A method to convert String to enum Faculty
+     * @param faculty The string to convert to enum
+     * @return Faculty enum
      */
     public static Faculty fromString(String faculty) {
         switch (faculty.toUpperCase()) {

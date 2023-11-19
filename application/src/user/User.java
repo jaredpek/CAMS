@@ -1,12 +1,29 @@
 package user;
 
+import java.util.Date;
+
+/** Represents a user objects who uses the system */
 public class User {
-    private String name, userID, password;
+    /** The name of the user */
+    private String name;
+
+    /** The user's unique userID */
+    private String userID;
+
+    /** The user's password */
+    private String password;
+
+    /** The user's faculty */
     private Faculty faculty;
+
+    /** The role of the user in NTU */
     private Role role;
+
+    /** The date when the user last logged-in */
+    private Date lastLogin;
     
     /**
-     * 
+     * Creates a new user object based on the given parameters
      * @param name this is the name of the user
      * @param userID this is the user ID 
      * @param faculty this is the faculty that the user belongs to
@@ -18,31 +35,24 @@ public class User {
         this.password = "password";
         this.faculty = faculty;
         this.role = role;
+        this.lastLogin = null;
     }
     /**
-     * 
+     * Creates a new user object based on the given parameters
      * @param name this is the name of the user
      * @param userID this is the user ID 
      * @param password this is the password of the user
      * @param faculty this is the faculty that the user belongs to
      * @param role this is the role of the user
+     * @param lastLogin this is the date that the user last logged-in
      */
-    public User (String name, String userID, String password, Faculty faculty, Role role){
+    public User (String name, String userID, String password, Faculty faculty, Role role, Date lastLogin){
         this.name = name;
         this.userID = userID;
         this.password = password;
         this.faculty = faculty;
         this.role = role;
-    }
-
-    /**
-     * A method to print out the info of the user
-     */
-    public void printInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("User ID: " + userID);
-        System.out.println("Faculty: " + faculty);
-        System.out.println("Role: " + role);
+        this.lastLogin = lastLogin;
     }
     /**
      * return user's name
@@ -109,5 +119,14 @@ public class User {
         if (this.userID.compareTo(userID) == 0 && this.password.compareTo(password) == 0) return true;
         return false;
     }
+    /** 
+     * returns the date when the user last logged-in 
+     * @return Date when user last logged in
+     */
+    public Date getLastLogin() { return lastLogin; }
+    /**
+     * Sets the new lastlogin date for the user to today
+     */
+    protected void updateLastLogin() { this.lastLogin = new Date(); }
 }
     

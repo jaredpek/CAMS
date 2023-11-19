@@ -4,38 +4,39 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import array_parser.ArrayParse;
-import date_parser.DateParse;
-import scanner.Scan;
+import date.DateInput;
+import date.DateParse;
+import interfaces.IBuild;
+import scan.Scan;
 import user.Faculty;
-import view.CAMS;
+import user.User;
 
 /** Builds a new camp object */
-public class CampBuild {
-    /**
-     * Obtains user input and creates a new camp object
-     * @param user This is the user creating the object
+public class CampBuild implements IBuild {
+    /** Obtains user input and creates a new camp object
+     * @param user This is the user building the camp
      * @return Camp
      */
-    public static Camp build() {
+    public Camp build(User user) {
         System.out.printf("Name: "); String name = Scan.scan.nextLine();
         System.out.printf("Group: "); Faculty group = Faculty.fromString(Scan.scan.nextLine());
         System.out.printf("Location: "); String location = Scan.scan.nextLine();
         System.out.printf("Description: "); String description = Scan.scan.nextLine();
-        System.out.printf("Start Date: "); Date startDate = DateParse.date(Scan.scan.nextLine());
-        System.out.printf("End Date: "); Date endDate = DateParse.date(Scan.scan.nextLine());
-        System.out.printf("Register By: "); Date registerBy = DateParse.date(Scan.scan.nextLine());
+        Date startDate = DateInput.date("Start Date");
+        Date endDate = DateInput.date("End Date");
+        Date registerBy = DateInput.date("Register By");
         System.out.printf("Total Slots: "); int totalSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
         System.out.printf("Committee Slots: "); int committeeSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
         long id = (long) (new Date()).getTime();
-        return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, CAMS.currentUser.getUserID());
+        return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user.getUserID());
     }
 
     /**
      * Creates a template camp object
-     * @param user This is the user creating the object
+     * @param user This is the user building the camp
      * @return Camp
      */
-    public static Camp template() {
+    public Camp template(User user) {
         long id = (long) (new Date()).getTime();
         return new Camp(
             id, 
@@ -48,7 +49,7 @@ public class CampBuild {
             DateParse.date("10-12-2023 23:59"), 
             100, 
             10, 
-            CAMS.currentUser.getUserID()
+            user.getUserID()
         );
     }
 
@@ -57,7 +58,7 @@ public class CampBuild {
      * @param data Array of strings of camp details
      * @return Camp
      */
-    public static Camp build(String[] data) {
+    public Camp build(String[] data) {
         if (data.length < 15) return null;
         long id = Long.parseLong(data[0]);
         Boolean active = Boolean.parseBoolean(data[1]);
@@ -86,7 +87,7 @@ public class CampBuild {
      * @param data 2D array of strings, where each row contains the details of 1 camp
      * @return ArrayList
      */
-    public static ArrayList <Camp> buildMany(ArrayList <String[]> data) {
+    public ArrayList <Camp> buildMany(ArrayList <String[]> data) {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
         for (String[] entry : data) {
             Camp camp = build(entry);

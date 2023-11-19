@@ -2,13 +2,20 @@ package suggestion;
 
 import java.util.ArrayList;
 
-import scanner.Scan;
+import scan.Scan;
 
+/** Represents a class used to select a specific suggestion */
 public class SuggestionSelect {
-    public static Suggestion select(ArrayList <Suggestion> suggestions) {
-        SuggestionDisplay.printSuggestions(suggestions);
+    /**
+     * Obtains input and returns a suggestion object
+     * @param suggestions The list of suggestions to select from
+     * @return The selected suggestion object
+     */
+    public Suggestion select(ArrayList <Suggestion> suggestions) {
+        (new SuggestionDisplay()).suggestions(suggestions);
         if (suggestions.size() == 0) return null;
         System.out.printf("Option: "); int index = Scan.scan.nextInt(); Scan.scan.nextLine();
-        return suggestions.get(index - 1);
+        if (1 <= index && index <= suggestions.size()) return suggestions.get(index - 1);
+        return null;
     }
 }

@@ -4,11 +4,24 @@ package message;
  * Contains the content of the message, and the details of the user making it
  */
 public abstract class Message {
+    /** The current status of the message */
     private Status status;
+
+    /** The user that sent the message */
 	private String user;
+
+    /** The id of the camp */
 	private long camp;
+
+    /** The message sent by the user */
 	private String message;
 
+    /**
+     * Creates a new message object based on given inputs
+     * @param user The user id making the message
+     * @param camp The camp id of the message
+     * @param message The message to be sent
+     */
     public Message(String user, long camp, String message) {
         this.status = Status.PROCESSING;
         this.user = user;
@@ -16,6 +29,13 @@ public abstract class Message {
         this.message = message;
     }
 
+    /**
+     * Creates a new message object based on given inputs
+     * @param status The current status of the message
+     * @param user The user id making the message
+     * @param camp The camp id of the message
+     * @param message The message to be sent
+     */
     public Message(Status status, String user, long camp, String message) {
         this.status = status;
         this.user = user;
@@ -24,48 +44,42 @@ public abstract class Message {
     }
     
     /**
+     * Returns the current status of the suggestion
 	 * @return the status of the suggestion
 	 */
     public Status getStatus() {
         return status;
     }
     /**
+     * Sets the new status of the suggestion
 	 * @param status Set the status attribute to this param
 	 */
     protected void setStatus(Status status) {
         this.status = status;
     }
     /**
+     * Returns the userID of the user making the suggestion
 	 * @return the User who made this Suggestion
 	 */
     public String getUser() {
         return user;
     }
     /**
-	 * @param user Set the user attribute to this param
-	 */
-    protected void setUser(String user) {
-        this.user = user;
-    }
-    /**
+     * Returns the id of the camp that the suggestion is for
 	 * @return the Camp that the user who made this Suggestion is from
 	 */
     public long getCamp() {
         return camp;
     }
     /**
-	 * @param camp Set the camp attribute to this param
-	 */
-    protected void setCamp(long camp) {
-        this.camp = camp;
-    }
-    /**
+     * Returns the suggestion made by the user
 	 * @return the message that the User made
 	 */
     public String getMessage() {
         return message;
     }
     /** 
+     * Sets a new message to be sent
 	 * @param message Set the message attribute to this param
 	 */
     protected void setMessage(String message) {

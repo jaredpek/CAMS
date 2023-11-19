@@ -3,24 +3,36 @@ package user;
 import java.util.ArrayList;
 
 import csv_parser.CSVParse;
+import date.DateParse;
 
 /**
- * static method to read users from the data base
+ * methods to read users from the data base
  */
 public class UserParse {
-    public static ArrayList <User> parse(String file) {
+    /**
+     * Builds an arraylist of user objects from a CSV file
+     * @param file The CSV file to parse as user data
+     * @return Arraylist of new user objects
+     */
+    public ArrayList <User> parse(String file) {
         ArrayList <User> results = new ArrayList <User> ();
         try {
             ArrayList <String[]> campData = CSVParse.read(file);
-            results = UserBuild.buildMany(campData);
+            results = (new UserBuild()).buildMany(campData);
         } catch (Exception e) {}
         return results;
     }
-    public static ArrayList <User> parse(String file, Role role) {
+    /**
+     * Builds an arraylist of user objects of a specific role based on a CSV file
+     * @param file The path to the CSV file
+     * @param role The role to create the students for
+     * @return Arraylist of new user objects
+     */
+    public ArrayList <User> parse(String file, Role role) {
         ArrayList <User> results = new ArrayList <User> ();
         try {
             ArrayList <String[]> campData = CSVParse.read(file);
-            results = UserBuild.buildMany(campData, role);
+            results = (new UserBuild()).buildMany(campData, role);
         } catch (Exception e) {}
         return results;
     }
@@ -29,7 +41,7 @@ public class UserParse {
      * @param file file name
      * @param users the array list that contains all users
      */
-    public static void write(String file, ArrayList <User> users) {
+    public void write(String file, ArrayList <User> users) {
         ArrayList <String> data = new ArrayList <String> ();
         for (User user : users) {
             data.add(
@@ -37,7 +49,8 @@ public class UserParse {
                 user.getUserID() + "," +
                 user.getPassword() + "," +
                 user.getFaculty() + "," +
-                user.getRole()
+                user.getRole() + "," +
+                DateParse.string(user.getLastLogin())
             );
         }
         try {

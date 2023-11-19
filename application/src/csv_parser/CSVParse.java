@@ -30,7 +30,6 @@ public class CSVParse {
      * Writes a list of strings to a CSV file
      * @param path Path to the CSV file
      * @param data List of strings to write to CSV
-     * @throws IOException 
      */
     public static void write(String path, ArrayList <String> data) {
         try  {

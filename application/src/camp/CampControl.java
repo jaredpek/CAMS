@@ -2,80 +2,86 @@ package camp;
 
 import java.util.ArrayList;
 
-import control.IControl;
+import interfaces.IControl;
 import user.Faculty;
 import user.Role;
 import user.User;
-import view.CAMS;
 
 /** Represents a control class that manages a list of camps */
 public class CampControl implements IControl, ICamp, IEnrolment {
     /** List of all the available camps */
     private static ArrayList <Camp> camps = new ArrayList <Camp> ();
-    public static CampControl campControl = new CampControl();
+
+    /** Static instance of CampControl */
+    public static CampControl instance = new CampControl();
 
     /** Initialises the camp array with data from a CSV file */
     public static void start() {
-        camps.addAll(CampParse.parse(".\\application\\data\\camps.csv"));
+        camps.addAll((new CampParse()).parse("data\\camps.csv"));
     }
 
     /** Saves the camp array to the CSV file */
     public static void close() {
-        CampParse.write(".\\application\\data\\camps.csv", camps);
+        (new CampParse()).write("data\\camps.csv", camps);
     }
 
     /**
      * Returns whether or not a user can add, edit or delete camps
-     * @param user This is the user to check
+     * @param user The user to check
      * @return Boolean
      */
-    private Boolean isStaff() {
-        if (CAMS.currentUser.getRole() == Role.STAFF) return true;
+    private Boolean isStaff(User user) {
+        if (user.getRole() == Role.STAFF) return true;
         System.out.println("Only Staff are permitted to conduct this operation");
         return false;
     }
 
-    /**
-     * Adds a new camp to the list of available camps
-     * @param user This is the user (staff) that creates the camp
+    /** 
+     * Adds a new camp to the list of available camps 
+     * @param user The user adding the camp
      */
-    public void add() {
-        if (!isStaff()) return;
-        camps.add(CampBuild.build());
-        CampSort.sortByAlphabetical(camps, 0);
+    public void add(User user) {
+        if (!isStaff(user)) return;
+        camps.add((new CampBuild()).build(user));
+        (new CampSort()).sortByAlphabetical(camps, 0);
     }
 
-    /**
-     * Adds a new camp to the list of available camps
-     * @param user This is the user (staff) that creates the camp
+    /** 
+     * Adds a new camp to the list of available camps 
+     * @param user The user adding the camp
      */
-    public void addTemplate() {
-        if (!isStaff()) return;
-        camps.add(CampBuild.template());
+    public void addTemplate(User user) {
+        if (!isStaff(user)) return;
+        camps.add((new CampBuild()).template(user));
     }
 
-    /**
-     * Edits the camp that is required in the camp list
-     * @param user This is the current user that is editing the camp
+    /** 
+     * Edits the camp that is required in the camp list 
+     * @param user The user editting the camp
      */
-    public void edit() {
-        if (!isStaff()) return;
-        ArrayList <Camp> createdCamps = getByStaff(CAMS.currentUser);
-        Camp camp = CampSelect.select(createdCamps, CAMS.currentUser.getUserID());
-        CampEdit.edit(camp);
+    public void edit(User user) {
+        if (!isStaff(user)) return;
+        ArrayList <Camp> createdCamps = getByStaff(user);
+        Camp camp = (new CampSelect()).select(createdCamps, user.getUserID());
+        (new CampEdit()).edit(camp);
     }
 
-    /**
+    /** 
      * Deletes a camp from the camp list
-     * @param user This is the user that is deleting camps
+     * @param user The user deleting the camp
      */
-    public void delete() {
-        if (!isStaff()) return;
-        ArrayList <Camp> createdCamps = getByStaff(CAMS.currentUser);
-        Camp camp = CampSelect.select(createdCamps, CAMS.currentUser.getUserID());
+    public void delete(User user) {
+        if (!isStaff(user)) return;
+        ArrayList <Camp> createdCamps = getByStaff(user);
+        Camp camp = (new CampSelect()).select(createdCamps, user.getUserID());
         camps.remove(camp);
     }
 
+    /**
+     * Returns a camp with the required id
+     * @param id This is the id of the camp
+     * @return Camp
+     */
     public Camp getCamp(long id) {
         for (Camp camp : camps) {
             if (camp.getId() == id) return camp;
@@ -83,13 +89,13 @@ public class CampControl implements IControl, ICamp, IEnrolment {
         return null;
     }
 
-    /**
-     * Returns a list of all the camps available
-     * @param user This is the user that is querying all the camps
-     * @return ArrayList
+    /** 
+     * Returns a list of all the camps available 
+     * @param user The user getting all the camps
+     * @return Arraylist of camp objects
      */
-    public ArrayList <Camp> getAll() {
-        if (!isStaff()) return null;
+    public ArrayList <Camp> getAll(User user) {
+        if (!isStaff(user)) return null;
         return camps;
     }
 
@@ -177,7 +183,7 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void registerCamp(User user) {
         ArrayList <Camp> available = getByGroup(user.getFaculty());
-        CampEnrol.register(user.getUserID(), available);
+        (new CampEnrol()).register(user.getUserID(), available);
     }
 
     /**
@@ -186,6 +192,6 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void withdrawAttendee(User user) {
         ArrayList <Camp> registered = getByAttendee(user);
-        CampWithdraw.attendee(user.getUserID(), registered);
+        (new CampWithdraw()).attendee(user.getUserID(), registered);
     }
 }

@@ -24,6 +24,7 @@ public class Camp extends CampInformation {
 
     /**
      * Creates a new Camp object with the relevant information
+     * @param id This is the camp's id
      * @param name This is the camp's name
      * @param group This is the group the camp is open to
      * @param location This is where the camp will be held
@@ -90,16 +91,6 @@ public class Camp extends CampInformation {
         this.withdrawedList = withdrawedList;
     }
 
-    /** Print the roles of all the students in the camp */
-    public void printRoles() {
-        System.out.printf("Total Slots = %d\n", this.getTotalSlots());
-        System.out.printf("Committee (%d / %d)\n", committeeList.size(), this.getCommitteeSlots());
-        for (String user : committeeList) System.out.println(user);
-        System.out.printf("\nAttendee (%d / %d)\n", attendeeList.size(), this.getTotalSlots() - this.getCommitteeSlots());
-        for (String user : attendeeList) System.out.println(user);
-        System.out.println();
-    }
-
     /**
      * Returns the ID of the camp
      * @return long
@@ -140,7 +131,7 @@ public class Camp extends CampInformation {
 
     /**
      * Returns whether or not a student is enrolled as a committee member
-     * @param student
+     * @param student This is the student to check
      * @return Boolean
      */
     public Boolean enrolledCommittee(String student) {
@@ -150,7 +141,7 @@ public class Camp extends CampInformation {
 
     /**
      * Returns whether or not a staff is the staff in charge of the camp
-     * @param staffInCharge
+     * @param staffInCharge This is the staff to check
      * @return Boolean
      */
     public Boolean enrolledStaff(String staffInCharge) {
@@ -160,7 +151,7 @@ public class Camp extends CampInformation {
 
     /**
      * Returns whether of not a student has previously withdrawed from the camp
-     * @param student
+     * @param student This is the student to check
      * @return Boolean
      */
     public Boolean withdrawed(String student) {
@@ -195,7 +186,7 @@ public class Camp extends CampInformation {
 
     /**
      * Adds an attendee to the camp if all requirements are fulfilled
-     * @param user
+     * @param user This is the user to add as attendee
      */
     protected void addAttendee(String user) {
         if (!vacancyAttendee()) { System.out.println("No more slots for attendees"); return; }
@@ -209,7 +200,7 @@ public class Camp extends CampInformation {
 
     /**
      * Withdraws an attendee from the camp
-     * @param user
+     * @param user This is the user to remove as attendee
      */
     protected void removeAttendee(String user) {
         if (!enrolledAttendee(user)) {
@@ -228,7 +219,7 @@ public class Camp extends CampInformation {
 
     /**
      * Adds a committee member to the camp if all requirements are fulfilled
-     * @param user
+     * @param user This is the user to add as committee
      */
     protected void addCommittee(String user) {
         if (!vacancyCommittee()) { System.out.println("No more slots for attendees"); return; }
@@ -248,7 +239,7 @@ public class Camp extends CampInformation {
 
     /**
      * Returns whether the camp is open to a specified group
-     * @param group
+     * @param group This is the group to check
      * @return Boolean
      */
     public Boolean isGroup(Faculty group) {
@@ -258,7 +249,7 @@ public class Camp extends CampInformation {
 
     /**
      * Returns the role of a user in the camp
-     * @param user
+     * @param user This is the user to check role
      * @return Role
      */
     public Role getCampRole(String user) {

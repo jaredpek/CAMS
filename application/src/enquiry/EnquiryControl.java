@@ -5,81 +5,96 @@ import java.util.ArrayList;
 import camp.Camp;
 import camp.CampControl;
 import camp.CampSelect;
-import control.IControl;
+import interfaces.IControl;
+import message.Status;
 import user.Role;
 import user.User;
-import view.CAMS;
 
 /** Represents a control call that manages a list of enquiries */
 public class EnquiryControl implements IControl, IEnquiry {
     /** List of all the available enquiries */
     private static ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();
+
+    /** Static instance of EnquiryControl */
     public static EnquiryControl instance = new EnquiryControl();
 
     /** Initialises the enquiry array with data from a CSV file */
     public static void start() {
-        enquiries.addAll(EnquiryParse.parse(".\\application\\data\\enquiries.csv"));
+        enquiries.addAll((new EnquiryParse()).parse("data\\enquiries.csv"));
     }
 
      /** Saves the enquiry array to the CSV file */
     public static void close() {
-        EnquiryParse.write(".\\application\\data\\enquiries.csv", enquiries);
+        (new EnquiryParse()).write("data\\enquiries.csv", enquiries);
     }
 
-    /*
+	/**
+	 * Checks whether a enquiry has already been reviewed
+	 * @param enquiry The enquiry to check
+	 * @return Boolean, true if has been reviewed
+	 */
+	private Boolean isReviewed(Enquiry enquiry) {
+		if (enquiry.getStatus() == Status.PROCESSING) return false;
+		System.out.println("Enquiry has already been " + enquiry.getStatus().toString());
+		return true;
+	}
+
+    /**
      * Adds a new enquiry into the list of enquiries
      * Only available for Students
-     * @param user This is to check the user
+     * @param user The user adding the enquiry
     */
-    public void add() {
-        ArrayList <Camp> camps = CampControl.campControl.getByGroupNotCommittee(CAMS.currentUser);
-        Camp camp = CampSelect.select(camps, CAMS.currentUser.getUserID());
+    public void add(User user) {
+        ArrayList <Camp> camps = CampControl.instance.getByGroupNotCommittee(user);
+        Camp camp = (new CampSelect()).select(camps, user.getUserID());
         if (camp == null) return;
-        Enquiry enquiry = EnquiryBuild.build(camp);
+        Enquiry enquiry = (new EnquiryBuild()).build(camp, user);
         enquiries.add(enquiry);
     }
 
-    /* Allow Students to edit their enquiry
+    /**
+     * Allow Students to edit their enquiry
      * Only applicable when the enquiry is still processing
-     * @param user This is the user (student) that edits the enquiry
+     * @param user The user editting the enquiry
     */
-    public void edit() {
-        ArrayList <Enquiry> studentEnquiries = getByStudent(CAMS.currentUser);
-        Enquiry enquiry = EnquirySelect.select(studentEnquiries);
-        if (enquiry == null || CAMS.currentUser.getUserID() != enquiry.getUser()) return;
-        EnquiryEdit.edit(enquiry);
+    public void edit(User user) {
+        String currentUser = user.getUserID();
+        ArrayList <Enquiry> studentEnquiries = getByStudent(user);
+        Enquiry enquiry = (new EnquirySelect()).select(studentEnquiries);
+        if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
+        (new EnquiryEdit()).edit(enquiry);
     }
 
-    /*
-     * Allow only the student to delete their enquiry
-     * @param user This is the user (student) that wants to delete the enquiry
-    */
-    public void delete() {
-        ArrayList <Enquiry> studentEnquiries = getByStudent(CAMS.currentUser);
-        Enquiry enquiry = EnquirySelect.select(studentEnquiries);
-        if (enquiry == null || CAMS.currentUser.getUserID() != enquiry.getUser()) return;
+    /** 
+     * Allow only the student to delete their enquiry 
+     * @param user The user deleting the enquiry
+     */
+    public void delete(User user) {
+        String currentUser = user.getUserID();
+        ArrayList <Enquiry> studentEnquiries = getByStudent(user);
+        Enquiry enquiry = (new EnquirySelect()).select(studentEnquiries);
+        if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
         enquiries.remove(enquiry);
     }
 
-    /*
+    /** 
      * Only allow Committee Member or Staff to reply to the enquiry
-     * Adds a point if the user is a Committee Member
-     * @param user This is the user (Committee Member) that wants to reply to the enquiry
-    */
-    public void reply() {
-        User user = CAMS.currentUser;
+     * @param user The user replying to the enquiry
+     */
+    public void reply(User user) {
         ArrayList <Camp> camps = new ArrayList <Camp> ();
-        if (user.getRole() == Role.STUDENT) camps = CampControl.campControl.getByCommittee(user);
-        if (user.getRole() == Role.STAFF) camps = CampControl.campControl.getByStaff(user);
-        Camp camp = CampSelect.select(camps, user.getUserID());
+        if (user.getRole() == Role.STUDENT) camps = CampControl.instance.getByCommittee(user);
+        if (user.getRole() == Role.STAFF) camps = CampControl.instance.getByStaff(user);
+        Camp camp = (new CampSelect()).select(camps, user.getUserID());
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
-        Enquiry enquiry = EnquirySelect.select(enquiries);
+        Enquiry enquiry = (new EnquirySelect()).select(enquiries);
+        if (enquiry == null || isReviewed(enquiry)) return;
         if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
-        EnquiryReply.reply(user.getUserID(), enquiry);
+        (new EnquiryReply()).reply(user.getUserID(), enquiry);
     }
 
-    /* 
+    /**
      * Get the list of enquiry for the camp's committee member and staff
      * @param camp This is the list of camp that the user is in charge of
     */
@@ -91,7 +106,7 @@ public class EnquiryControl implements IControl, IEnquiry {
         return campEnquiries;
     }
 
-    /* 
+    /** 
      * Allow students to see their own enquiry
      * @param student This is the user that has access to their own enquiry
      * @return studentEnquiries This is the enquiries that the student made

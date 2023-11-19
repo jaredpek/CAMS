@@ -1,21 +1,21 @@
 package view;
 
-
-import java.io.IOException;
-import java.text.ParseException;
-
 import camp.CampControl;
 import enquiry.EnquiryControl;
-import scanner.Scan;
+import scan.Scan;
 import suggestion.SuggestionControl;
 import user.Role;
 import user.User;
 import user.UserControl;
 
-public class CAMS {
-    public static User currentUser = null;
+/** The main CAMS application */
+public class CAMs {
+    /** Static reference to current logged-in user */
+    private static User currentUser = null;
+    /** Application run state */
     private static Boolean run = true;
 
+    /** Initialisation for all control classes */
     public static void start() {
         EnquiryControl.start();
         SuggestionControl.start();
@@ -23,6 +23,7 @@ public class CAMS {
         UserControl.start();
     }
 
+    /** Close and save data for all control classes */
     public static void close() {
         EnquiryControl.close();
         SuggestionControl.close();
@@ -30,26 +31,35 @@ public class CAMS {
         UserControl.close();
     }
 
+    /** Obtains user input and logs in a user if authentication is successful */
     public static void login() {
         AuthMenu.login();
         System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         switch (option) {
             case 1:
-                System.out.printf("Enter User ID: "); String userId = Scan.scan.nextLine();
-                System.out.printf("Enter Password: "); String password = Scan.scan.nextLine();
-                currentUser = UserControl.userControl.login(userId, password); break;
-            default: run = false; break;
+                System.out.printf("User ID: "); String userId = Scan.scan.nextLine();
+                System.out.printf("Password: "); String password = Scan.scan.nextLine();
+                currentUser = UserControl.instance.login(userId, password); break;
+            case 2: run = false; break;
+            default: break;
         }
     }
-        
-    public static void main(String[] args) throws ParseException, IOException {
+    
+    /** The main method of the application */
+    public static void main(String[] args) {
         start();
         while (run) {
-            login();
-            if (currentUser == null) continue;
-            while (currentUser != null && currentUser.getRole() == Role.STUDENT) currentUser = StudentView.show(currentUser);
-            while (currentUser != null && currentUser.getRole() == Role.STAFF) currentUser = StaffView.show(currentUser);
+            try {
+                login();
+                if (currentUser == null) continue;
+                while (currentUser != null && currentUser.getRole() == Role.STUDENT) currentUser = StudentView.show(currentUser);
+                while (currentUser != null && currentUser.getRole() == Role.STAFF) currentUser = StaffView.show(currentUser);
+            } catch (Exception e) {
+                System.out.println("Error, Restarting CAMs");
+                continue;
+            }
         }
+        System.out.println("Exiting CAMs");
         close();
     }
 }

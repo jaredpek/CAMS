@@ -1,6 +1,6 @@
 package user;
 
-import scanner.Scan;
+import scan.Scan;
 /**
  * A method to reset user's password
  */

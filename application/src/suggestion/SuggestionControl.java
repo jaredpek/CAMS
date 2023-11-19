@@ -4,65 +4,73 @@ import java.util.ArrayList;
 import camp.Camp;
 import camp.CampControl;
 import camp.CampSelect;
-import control.IControl;
+import interfaces.IControl;
+import message.Status;
 import user.User;
-import view.CAMS;
 
 /**
  * Represents the suggestion manager that contains the controls for
  * all of the suggestions that can be used by User
  */
 public class SuggestionControl implements IControl, ISuggestion {
+	/** The list of suggestion objects */
 	private static ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
+
+	/** Static instance to SuggestionControl */
 	public static SuggestionControl instance = new SuggestionControl();
 
+	/** Initialises the list of suggestions */
 	public static void start() {
-		suggestions.addAll(SuggestionParse.parse(".\\application\\data\\suggestions.csv"));
+		suggestions.addAll((new SuggestionParse()).parse("data\\suggestions.csv"));
 	}
 
+	/** Saves the list of suggestions */
 	public static void close() {
-		SuggestionParse.write(".\\application\\data\\suggestions.csv", suggestions);
+		(new SuggestionParse()).write("data\\suggestions.csv", suggestions);
 	}
 
-	/**
-	 * Used by User to add a new suggestion
-	 * 
-	 * @param student the user that is trying to add the suggestion
-	 * @param camps the list of all existing camps
+	/** 
+	 * Used by User to add a new suggestion 
+     * @param student The student adding a suggestion
 	 */
-	public void add() {
-		User student = CAMS.currentUser;
-		ArrayList <Camp> camps = CampControl.campControl.getByCommittee(student);
-		Camp camp = CampSelect.select(camps, student.getUserID());
-		if (camp == null || !camp.enrolledCommittee(student.getUserID())) return;
-		Suggestion suggestion = SuggestionBuild.build(student, camp);
+	public void add(User student) {
+		ArrayList <Camp> camps = CampControl.instance.getByCommittee(student);
+		Camp camp = (new CampSelect()).select(camps, student.getUserID());
+        if (camp == null) return;
+		Suggestion suggestion = (new SuggestionBuild()).build(student, camp);
 		suggestions.add(suggestion);
 	}
-	
+
 	/**
-	 * Used by User to edit on of their existing suggestions
-	 * 
-	 * @param student the user that is trying to add the suggestion
-	 * @param camps the list of all existing camps
+	 * Checks whether a suggestion has already been reviewed
+	 * @param suggestion The suggestion to check
+	 * @return Boolean, true if has been reviewed
 	 */
-	public void edit() {
-		User student = CAMS.currentUser;
-		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
-		Suggestion suggestion = SuggestionSelect.select(studentSuggestions);
-		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
-		SuggestionEdit.edit(suggestion);
+	private Boolean isReviewed(Suggestion suggestion) {
+		if (suggestion.getStatus() == Status.PROCESSING) return false;
+		System.out.println("Suggestion has already been " + suggestion.getStatus().toString());
+		return true;
 	}
 	
-	/**
-	 * Used by User to delete on of thier existing Suggestions
-	 * 
-	 * @param student the user that is trying to add the suggestion
+	/** 
+	 * Used by User to edit on of their existing suggestions
+     * @param student The student editting a suggestion 
 	 */
-	public void delete() {
-		User student = CAMS.currentUser;
+	public void edit(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
-		Suggestion suggestion = SuggestionSelect.select(studentSuggestions);
-		if (suggestion == null || student.getUserID() != suggestion.getUser()) return;
+		Suggestion suggestion = (new SuggestionSelect()).select(studentSuggestions);
+		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
+		(new SuggestionEdit()).edit(suggestion);
+	}
+	
+	/** 
+	 * Used by User to delete on of thier existing Suggestions 
+     * @param student The student deleting a suggestion
+	 */
+	public void delete(User student) {
+		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
+		Suggestion suggestion = (new SuggestionSelect()).select(studentSuggestions);
+		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
 		suggestions.remove(suggestion);
 	}
 	
@@ -74,9 +82,9 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void approveRejectSuggestions(Camp camp){
 		ArrayList <Suggestion> campSuggestions = getByCamp(camp);
-		Suggestion suggestion = SuggestionSelect.select(campSuggestions);
+		Suggestion suggestion = (new SuggestionSelect()).select(campSuggestions);
 		if (suggestion == null) return;
-		SuggestionApprove.ApproveDelete(suggestion);
+		if (!isReviewed(suggestion)) (new SuggestionApproveReject()).ApproveReject(suggestion);
 	}
 	
 	/**

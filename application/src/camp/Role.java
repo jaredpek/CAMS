@@ -4,7 +4,10 @@ package camp;
 public enum Role {
     ATTENDEE, COMMITTEE, STAFF;
 
-    /** Returns the string representation of the enumerable */
+    /** 
+     * Returns the string representation of the enumerable 
+     * @return The String for the respective enum
+     */
     public String toString() {
         switch (this) {
             case ATTENDEE: return "ATTENDEE";

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import array_parser.ArrayParse;
 import csv_parser.CSVParse;
-import date_parser.DateParse;
+import date.DateParse;
 
 /** Represents a class that reads and writes camp objects to and from a CSV */
 public class CampParse {
@@ -13,11 +13,11 @@ public class CampParse {
      * @param file The path to the CSV file to read
      * @return ArrayList of camp objects
      */
-    public static ArrayList <Camp> parse(String file) {
+    public ArrayList <Camp> parse(String file) {
         ArrayList <Camp> results = new ArrayList <Camp> ();
         try {
             ArrayList <String[]> campData = CSVParse.read(file);
-            results = CampBuild.buildMany(campData);
+            results = (new CampBuild()).buildMany(campData);
         } catch (Exception e) {}
         return results;
     }
@@ -27,7 +27,7 @@ public class CampParse {
      * @param file The path to write the CSV file to
      * @param camps The list of camps to write to the CSV file
      */
-    public static void write(String file, ArrayList <Camp> camps) {
+    public void write(String file, ArrayList <Camp> camps) {
         ArrayList <String> data = new ArrayList <String> ();
         for (Camp camp : camps) {
             data.add(

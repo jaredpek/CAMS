@@ -11,11 +11,11 @@ public class EnquiryParse {
      * @param file The parth to the CSV file to read
      * @return ArrayList of enquiry objects
      */
-    public static ArrayList <Enquiry> parse(String file) {
+    public ArrayList <Enquiry> parse(String file) {
         ArrayList <Enquiry> results = new ArrayList <Enquiry> ();
         try {
             ArrayList <String[]> campData = CSVParse.read(file);
-            results = EnquiryBuild.buildMany(campData);
+            results = (new EnquiryBuild()).buildMany(campData);
         } catch (Exception e) {}
         return results;
     }
@@ -25,7 +25,7 @@ public class EnquiryParse {
      * @param file The path to write the CSV file to
      * @param enquiries The list of enquiries to write to the CSV file
      */
-    public static void write(String file, ArrayList <Enquiry> enquiries) {
+    public void write(String file, ArrayList <Enquiry> enquiries) {
         ArrayList <String> data = new ArrayList <String> ();
         for (Enquiry enquiry : enquiries) {
             data.add(
