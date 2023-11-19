@@ -10,7 +10,7 @@ public class EnquiryParse {
      * Create a new list of enquiry objects from a provided CSV file
      * @param file The parth to the CSV file to read
      * @return ArrayList of enquiry objects
-     *//
+     */
     public static ArrayList <Enquiry> parse(String file) {
         ArrayList <Enquiry> results = new ArrayList <Enquiry> ();
         try {
