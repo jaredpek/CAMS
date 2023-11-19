@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -19,12 +21,19 @@ import camp_system.suggestion.SuggestionScore;
 public class Report implements IReport {
     public static Report report = new Report();
     
+
+    public void participantFilterMenu()
+    {
+        System.out.println("Select filter option: ");
+        System.out.println("1. Attendee list");
+        System.out.println("2. Committee list");
+    }
     /**
      * generates a particpant report for the specified camp
      * report includes Camp Information and the attendee/committee list
      * @param camp is the object for which the participant report is to generate
      */
-    public void participant (Camp camp) {
+    public void participant (Camp camp, int choice) {
         String path = "camp_system\\report\\generated\\participantReport_" + (new Date()).getTime();
         File file = new File(path);
 
@@ -41,8 +50,32 @@ public class Report implements IReport {
             bw.write("Camp Committee Slots: " + camp.getCommitteeSlots()); bw.newLine();
             bw.write("Description: " + camp.getDescription()); bw.newLine();
             bw.write("Staff in Charge: " + camp.getStaffInCharge()); bw.newLine();
-            bw.write("Attendee List: " + camp.getAttendeeList()); bw.newLine();
-            bw.write("Camp Committee List: " + camp.getCommitteeList()); bw.newLine();
+            switch(choice)
+            {
+                case 1:
+                    ArrayList<String> attendees = camp.getAttendeeList()
+                    Collections.sort(attendees);
+                     bw.write("Attendee List: "); 
+                     bw.newLine();
+                     for(String attendee : attendees)
+                     {
+                        bw.write(attendee);
+                        bw.newLine();
+                     }
+                    break;
+
+                case 2:
+                    ArrayList<String> committees = camp.getCommitteeList();
+                    Collections.sort(committees);
+                    bw.write("Camp Committee List: "); 
+                    bw.newLine();
+                    for(String committee : committees)
+                    {
+                        bw.write(committee);
+                        bw.newLine();
+                    }
+                    break;
+            }
             bw.close();
         } catch (IOException e) {
             System.out.println("Error generating participant report");
