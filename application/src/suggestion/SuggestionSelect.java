@@ -1,0 +1,14 @@
+package suggestion;
+
+import java.util.ArrayList;
+
+import scanner.Scan;
+
+public class SuggestionSelect {
+    public static Suggestion select(ArrayList <Suggestion> suggestions) {
+        SuggestionDisplay.printSuggestions(suggestions);
+        if (suggestions.size() == 0) return null;
+        System.out.printf("Option: "); int index = Scan.scan.nextInt(); Scan.scan.nextLine();
+        return suggestions.get(index - 1);
+    }
+}
