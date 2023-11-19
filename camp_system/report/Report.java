@@ -19,6 +19,11 @@ import camp_system.suggestion.SuggestionScore;
 public class Report implements IReport {
     public static Report report = new Report();
     
+    /**
+     * generates a particpant report for the specified camp
+     * report includes Camp Information and the attendee/committee list
+     * @param camp is the object for which the participant report is to generate
+     */
     public void participant (Camp camp) {
         String path = "camp_system\\report\\generated\\participantReport_" + (new Date()).getTime();
         File file = new File(path);
@@ -44,6 +49,12 @@ public class Report implements IReport {
         }
     }
 
+    /**
+     * generates a performance report for the specified camp. 
+     * Report includes a list of committee members and the points obtained from 
+     * replying to enquiries and creating/completing suggestions
+     * @param camp is the object for which the performance report is to generate
+     */
     public void performance(Camp camp) {
         String path = "camp_system\\report\\generated\\performanceReport_"  +  (new Date()).getTime();
         File file = new File(path);
