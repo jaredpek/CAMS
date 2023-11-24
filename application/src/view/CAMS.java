@@ -9,7 +9,7 @@ import user.User;
 import user.UserControl;
 
 /** The main CAMS application */
-public class CAMS {
+public class CAMs {
     /** Static reference to current logged-in user */
     private static User currentUser = null;
     /** Application run state */
