@@ -54,7 +54,7 @@ public class Report implements IReport {
         menu();
         System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
         if (option < 1 || option > 3) return;
-        String path = "reports\\participantReport_" + (new Date()).getTime() + ".txt";
+        String path = "application\\reports\\participantReport_" + (new Date()).getTime() + ".txt";
         try {
             PrintWriter out = new PrintWriter(new FileWriter(path));
             general(out, camp, user);
@@ -105,7 +105,7 @@ public class Report implements IReport {
      */
     public void performance(Camp camp, User user) {
         if (camp == null) return;
-        String path = "reports\\performanceReport_"  +  (new Date()).getTime() + ".txt";
+        String path = "application\\reports\\performanceReport_"  +  (new Date()).getTime() + ".txt";
         try {
             PrintWriter out = new PrintWriter(new FileWriter(path));
             ArrayList <Enquiry> enquiries = EnquiryControl.instance.getByCamp(camp);
