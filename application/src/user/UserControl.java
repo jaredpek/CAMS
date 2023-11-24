@@ -12,12 +12,12 @@ public class UserControl implements IUser {
 
     /** Initialise the list of users from CSV file */
     public static void start() {
-        users.addAll((new UserParse()).parse("data\\users.csv"));
+        users.addAll((new UserParse()).parse("application\\data\\users.csv"));
     }
 
     /** Writes the list of users to CSV file */
     public static void close() {
-        (new UserParse()).write("data\\users.csv", users);
+        (new UserParse()).write("application\\data\\users.csv", users);
     }
 
     /** 

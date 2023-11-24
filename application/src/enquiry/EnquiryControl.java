@@ -20,12 +20,12 @@ public class EnquiryControl implements IControl, IEnquiry {
 
     /** Initialises the enquiry array with data from a CSV file */
     public static void start() {
-        enquiries.addAll((new EnquiryParse()).parse("data\\enquiries.csv"));
+        enquiries.addAll((new EnquiryParse()).parse("application\\data\\enquiries.csv"));
     }
 
      /** Saves the enquiry array to the CSV file */
     public static void close() {
-        (new EnquiryParse()).write("data\\enquiries.csv", enquiries);
+        (new EnquiryParse()).write("application\\data\\enquiries.csv", enquiries);
     }
 
 	/**

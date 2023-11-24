@@ -21,12 +21,12 @@ public class SuggestionControl implements IControl, ISuggestion {
 
 	/** Initialises the list of suggestions */
 	public static void start() {
-		suggestions.addAll((new SuggestionParse()).parse("data\\suggestions.csv"));
+		suggestions.addAll((new SuggestionParse()).parse("application\\data\\suggestions.csv"));
 	}
 
 	/** Saves the list of suggestions */
 	public static void close() {
-		(new SuggestionParse()).write("data\\suggestions.csv", suggestions);
+		(new SuggestionParse()).write("application\\data\\suggestions.csv", suggestions);
 	}
 
 	/** 
