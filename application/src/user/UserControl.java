@@ -12,12 +12,12 @@ public class UserControl implements IUser {
 
     /** Initialise the list of users from CSV file */
     public static void start() {
-        users.addAll((new UserParse()).parse("application\\data\\users.csv"));
+        users.addAll((new UserParse()).parse("data\\users.csv"));
     }
 
     /** Writes the list of users to CSV file */
     public static void close() {
-        (new UserParse()).write("application\\data\\users.csv", users);
+        (new UserParse()).write("data\\users.csv", users);
     }
 
     /** 
@@ -46,7 +46,6 @@ public class UserControl implements IUser {
             }
         }
         // If the user ID and password do not match, return null.
-        //System.out.println("Invalid UserID or password. Please try again.");
         return null;
     }
 
