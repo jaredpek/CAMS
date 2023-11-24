@@ -9,7 +9,7 @@ import user.User;
 import user.UserControl;
 
 /** The main CAMS application */
-public class CAMs {
+public class CAMS {
     /** Static reference to current logged-in user */
     private static User currentUser = null;
     /** Application run state */
@@ -39,7 +39,11 @@ public class CAMs {
             case 1:
                 System.out.printf("User ID: "); String userId = Scan.scan.nextLine();
                 System.out.printf("Password: "); String password = Scan.scan.nextLine();
-                currentUser = UserControl.instance.login(userId, password); break;
+                currentUser = UserControl.instance.login(userId, password); 
+                if (currentUser == null) {
+                    System.out.println("Invalid UserID or password. Please try again.");
+                }
+                break;
             case 2: run = false; break;
             default: break;
         }
