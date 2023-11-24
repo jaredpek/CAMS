@@ -17,12 +17,12 @@ public class CampControl implements IControl, ICamp, IEnrolment {
 
     /** Initialises the camp array with data from a CSV file */
     public static void start() {
-        camps.addAll((new CampParse()).parse("application\\data\\camps.csv"));
+        camps.addAll((new CampParse()).parse("data\\camps.csv"));
     }
 
     /** Saves the camp array to the CSV file */
     public static void close() {
-        (new CampParse()).write("application\\data\\camps.csv", camps);
+        (new CampParse()).write("data\\camps.csv", camps);
     }
 
     /**
