@@ -172,7 +172,7 @@ public class CampControl implements IControl, ICamp, IEnrolment {
     public ArrayList <Camp> getByStaff(User user) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.enrolledStaff(user.getUserID()) && camp.getActive()) result.add(camp);
+            if (camp.enrolledStaff(user.getUserID())) result.add(camp);
         }
         return result;
     }

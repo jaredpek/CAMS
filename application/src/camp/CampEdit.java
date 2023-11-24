@@ -1,6 +1,6 @@
 package camp;
 
-import date.DateParse;
+import date.DateInput;
 import scan.Scan;
 import user.Faculty;
 
@@ -46,14 +46,14 @@ public class CampEdit {
                 System.out.printf("Enter New Description: "); String description = Scan.scan.nextLine();
                 camp.setDescription(description); break;
             case 6:
-                System.out.printf("Enter New Start Date: "); String startDate = Scan.scan.nextLine();
-                camp.setStartDate(DateParse.date(startDate)); break;
+                System.out.printf("Enter New Start Date: ");
+                camp.setStartDate(DateInput.date("Start Date: ")); break;
             case 7:
-                System.out.printf("Enter New End Date: "); String endDate = Scan.scan.nextLine();
-                camp.setEndDate(DateParse.date(endDate)); break;
+                System.out.printf("Enter New End Date: ");
+                camp.setEndDate(DateInput.date("End Date: ")); break;
             case 8:
-                System.out.printf("Enter New Date to Register By: "); String registerBy = Scan.scan.nextLine();
-                camp.setRegisterBy(DateParse.date(registerBy)); break;
+                System.out.printf("Enter New Date to Register By: ");
+                camp.setRegisterBy(DateInput.date("Register By: ")); break;
             case 9:
                 System.out.printf("Enter New Total Slots: "); int totalSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
                 camp.setTotalSlots(totalSlots); break;
