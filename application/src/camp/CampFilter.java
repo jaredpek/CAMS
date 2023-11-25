@@ -1,8 +1,9 @@
 package camp;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import date.DateParse;
+import date.DateInput;
 import scan.Scan;
 import user.Faculty;
 
@@ -56,10 +57,10 @@ public class CampFilter {
      * @param startDate Specified start date to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, String startDate) {
+    public ArrayList <Camp> filterByStartDate(ArrayList <Camp> camps, Date startDate) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.getStartDate().compareTo(DateParse.date(startDate)) > 0) {
+            if (camp.getStartDate().compareTo(startDate) > 0) {
                 result.add(camp);
             }
         }
@@ -72,10 +73,10 @@ public class CampFilter {
      * @param endDate Specified end date to filter by
      * @return ArrayList
      */
-    public ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, String endDate) {
+    public ArrayList <Camp> filterByEndDate(ArrayList <Camp> camps, Date endDate) {
         ArrayList <Camp> result = new ArrayList <Camp> ();
         for (Camp camp: camps) {
-            if (camp.getEndDate().compareTo(DateParse.date(endDate)) < 0) {
+            if (camp.getEndDate().compareTo(endDate) < 0) {
                 result.add(camp);
             }
         }
@@ -100,12 +101,12 @@ public class CampFilter {
                 return filterByLocation(camps, location);
             }
             case 3: {
-                System.out.printf("Enter Start Date: "); String startDate = Scan.scan.nextLine();
-                return filterByStartDate(camps, startDate);
+                System.out.printf("Enter Start Date: ");
+                return filterByStartDate(camps, DateInput.date("Start Date: "));
             }
             case 4: {
-                System.out.printf("Enter End Date: "); String endDate = Scan.scan.nextLine();
-                return filterByEndDate(camps, endDate);
+                System.out.printf("Enter End Date: ");
+                return filterByEndDate(camps, DateInput.date("End Date: "));
             }
             default: return camps;
         }
