@@ -41,7 +41,7 @@ public class CAMS {
                 System.out.printf("Password: "); String password = Scan.scan.nextLine();
                 currentUser = UserControl.instance.login(userId, password);
                 if (currentUser == null) {
-                    System.out.println("Invalid UserID or password. Please try again.");
+                    System.out.println("Invalid UserID or Password. Please try again.");
                 }
                 break;
             case 2: run = false; break;

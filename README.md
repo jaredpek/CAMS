@@ -32,7 +32,7 @@ The Camp Application and Management System (CAMs) for NTU SC2002
 ### Running the Application
 - To run the application, run the jar file that has been created
   - Navigate to the 'application' directory of this repository: ```cd <path to the application directory>```
-  - Run the 'application.sh' script: ```bash application.sh```
+  - Run the 'application.jar' file: ```java --enable-preview -jar application.jar```
   - No other actions required to start the application
 - Objects will be automatically initialised via our CSV files provided in the 'data' folder
   - View the CSV files by navgiating to the 'data' directory: ```cd <path to the data directory>```
