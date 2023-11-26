@@ -39,17 +39,6 @@ public class SuggestionControl implements IControl, ISuggestion {
 		Suggestion suggestion = suggestionBuild.build(student, camp);
 		suggestions.add(suggestion);
 	}
-
-	/**
-	 * Checks whether a suggestion has already been reviewed
-	 * @param suggestion The suggestion to check
-	 * @return Boolean, true if has been reviewed
-	 */
-	private Boolean isReviewed(Suggestion suggestion) {
-		if (Message.reviewed(suggestion)) return false;
-		System.out.println("Suggestion has already been " + suggestion.getStatus().toString());
-		return true;
-	}
 	
 	/** 
 	 * Used by User to edit on of their existing suggestions
@@ -58,7 +47,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	public void edit(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
+		if (suggestion == null || Message.reviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
 		suggestionEdit.edit(suggestion);
 	}
 	
@@ -69,7 +58,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	public void delete(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
 		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
-		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
+		if (suggestion == null || Message.reviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
 		suggestions.remove(suggestion);
 	}
 	
@@ -83,7 +72,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 		ArrayList <Suggestion> campSuggestions = getByCamp(camp);
 		Suggestion suggestion = suggestionSelect.select(campSuggestions);
 		if (suggestion == null) return;
-		if (!isReviewed(suggestion)) suggestionApproveReject.ApproveReject(suggestion);
+		if (!Message.reviewed(suggestion)) suggestionApproveReject.ApproveReject(suggestion);
 	}
 	
 	/**

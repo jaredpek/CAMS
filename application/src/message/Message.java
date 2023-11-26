@@ -93,6 +93,7 @@ public abstract class Message {
      */
     public static Boolean reviewed(Message message) {
 		if (message.getStatus() == Status.PROCESSING) return false;
+        System.out.printf("This has already been %s\n", message.getStatus());
         return true;
     }
 }

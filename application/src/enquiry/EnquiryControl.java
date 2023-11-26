@@ -31,17 +31,6 @@ public class EnquiryControl implements IControl, IEnquiry {
         enquiryParse.write("data\\enquiries.csv", enquiries);
     }
 
-	/**
-	 * Checks whether a enquiry has already been reviewed
-	 * @param enquiry The enquiry to check
-	 * @return Boolean, true if has been reviewed
-	 */
-	private Boolean isReviewed(Enquiry enquiry) {
-		if (Message.reviewed(enquiry)) return false;
-		System.out.println("Enquiry has already been " + enquiry.getStatus().toString());
-		return true;
-	}
-
     /**
      * Adds a new enquiry into the list of enquiries
      * Only available for Students
@@ -64,7 +53,7 @@ public class EnquiryControl implements IControl, IEnquiry {
         String currentUser = user.getUserID();
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
+        if (enquiry == null || Message.reviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
         enquiryEdit.edit(enquiry);
     }
 
@@ -76,7 +65,7 @@ public class EnquiryControl implements IControl, IEnquiry {
         String currentUser = user.getUserID();
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
         Enquiry enquiry = enquirySelect.select(studentEnquiries);
-        if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
+        if (enquiry == null || Message.reviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
         enquiries.remove(enquiry);
     }
 
@@ -92,7 +81,7 @@ public class EnquiryControl implements IControl, IEnquiry {
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
         Enquiry enquiry = enquirySelect.select(enquiries);
-        if (enquiry == null || isReviewed(enquiry)) return;
+        if (enquiry == null || Message.reviewed(enquiry)) return;
         if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
         enquiryReply.reply(user.getUserID(), enquiry);
     }
