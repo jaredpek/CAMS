@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import scan.Scan;
 
-/** Represents a class that selects a specific camp */
+/** 
+ * Represents a class that selects a specific camp
+ * @author Jared Pek
+ */
 public class CampSelect {
     /**
      * Obtains user input and selects a camp from the list

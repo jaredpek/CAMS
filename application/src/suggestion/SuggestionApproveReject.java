@@ -5,6 +5,7 @@ import scan.Scan;
 
 /**
  * Used by Staff to Approve or Reject a suggestion
+ * @author Gokul Ramesh
  */
 public class SuggestionApproveReject {
 	/**

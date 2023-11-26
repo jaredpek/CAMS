@@ -10,7 +10,10 @@ import message.Status;
 import user.Role;
 import user.User;
 
-/** Represents a control call that manages a list of enquiries */
+/** 
+ * Represents a control call that manages a list of enquiries
+ * @author Tan Yoong Ken
+ */
 public class EnquiryControl implements IControl, IEnquiry {
     /** List of all the available enquiries */
     private static ArrayList <Enquiry> enquiries = new ArrayList <Enquiry> ();

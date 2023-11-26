@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import date.DateParse;
 
-/** Represents a display class that is responsible for printing the camps */
+/** 
+ * Represents a display class that is responsible for printing the camps
+ * @author Jared Pek
+ */
 public class CampDisplay {
     /** This is the table header to be printed */
     public void header() {

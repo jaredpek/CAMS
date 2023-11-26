@@ -8,7 +8,10 @@ import user.Role;
 import user.User;
 import user.UserControl;
 
-/** The main CAMS application */
+/** 
+ * The main CAMS application
+ * @author Jared Pek
+ */
 public class CAMS {
     /** Static reference to current logged-in user */
     private static User currentUser = null;

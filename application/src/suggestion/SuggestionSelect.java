@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import scan.Scan;
 
-/** Represents a class used to select a specific suggestion */
+/** 
+ * Represents a class used to select a specific suggestion
+ * @author Gokul Ramesh
+ */
 public class SuggestionSelect {
     /**
      * Obtains input and returns a suggestion object

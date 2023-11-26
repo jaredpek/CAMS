@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import scan.Scan;
 
-/** Represents a class that sorts a list of camps in the required order */
+/** 
+ * Represents a class that sorts a list of camps in the required order
+ * @author Jared Pek, Rachel Phuar Yi Ling
+ */
 public class CampSort {
     /** The sort methods available to the user */
     public void sortMenu() {

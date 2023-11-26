@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import csv_parser.CSVParse;
 
-/** Represents a class that reads and writes suggestion objects to and from a CSV*/
+/** 
+ * Represents a class that reads and writes suggestion objects to and from a CSV
+ * @author Gokul Ramesh
+ */
 public class SuggestionParse {
     /**
      * Creates a list of suggestion objects from a CSV file

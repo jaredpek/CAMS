@@ -4,7 +4,10 @@ import java.util.Date;
 
 import scan.Scan;
 
-/** Represents a class to obtain a date input */
+/** 
+ * Represents a class to obtain a date input
+ * @author Jared Pek
+ */
 public class DateInput {
     /**
      * Obtains user input and returns a new date object

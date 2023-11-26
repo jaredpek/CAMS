@@ -7,7 +7,10 @@ import date.DateInput;
 import scan.Scan;
 import user.Faculty;
 
-/** Represents a filter class that filters a list of camps based on certain requirements */
+/** 
+ * Represents a filter class that filters a list of camps based on certain requirements
+ * @author Jared Pek, Rachel Phuar Yi Ling
+ */
 public class CampFilter {
     /** The filter methods available to the user */
     public void filterMenu() {

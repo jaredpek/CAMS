@@ -4,6 +4,7 @@ import scan.Scan;
 
 /**
  * Used by User to edit any of the suggestions that they have made
+ * @author Gokul Ramesh
  */
 public class SuggestionEdit {
 	/**

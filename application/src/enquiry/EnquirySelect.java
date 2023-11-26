@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import scan.Scan;
 
-/** Represents a class that selects a list of enquiries */
+/** 
+ * Represents a class that selects a list of enquiries
+ * @author Tan Yoong Ken
+ */
 public class EnquirySelect {
     /** 
      * Prints out the list of enquiries and allow user to select the specific enquiry 

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import scan.Scan;
 
-/** Represents a class that handles the enrolment to the camp */
+/** 
+ * Represents a class that handles the enrolment to the camp
+ * @author Jared Pek
+ */
 public class CampEnrol {
     /**
      * Registers an attendee to a camp

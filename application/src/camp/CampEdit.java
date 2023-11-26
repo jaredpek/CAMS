@@ -4,7 +4,10 @@ import date.DateInput;
 import scan.Scan;
 import user.Faculty;
 
-/** Represents a class that edits a specified camp */
+/** 
+ * Represents a class that edits a specified camp
+ * @author Jared Pek
+ */
 public class CampEdit {
     /** This is the attributes of the camp that the user can edit */
     public void menu() {

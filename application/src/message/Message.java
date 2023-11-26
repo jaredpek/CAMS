@@ -2,6 +2,7 @@ package message;
 
 /**
  * Contains the content of the message, and the details of the user making it
+ * @author Jared Pek, Gokul Ramesh
  */
 public abstract class Message {
     /** The current status of the message */

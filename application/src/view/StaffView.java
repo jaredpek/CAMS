@@ -20,7 +20,10 @@ import user.User;
 import user.UserControl;
 import user.UserDisplay;
 
-/** Represents the main view class for staff */
+/** 
+ * Represents the main view class for staff
+ * @author Jared Pek
+ */
 public class StaffView {
     /** 
      * The logic flow for staff after login

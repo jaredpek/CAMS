@@ -6,6 +6,7 @@ import user.Faculty;
 
 /**
  * Represents the core camp information for a camp
+ * @author Jared Pek
  */
 public class CampInformation {
     /** Name of the camp */

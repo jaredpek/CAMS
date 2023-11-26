@@ -3,7 +3,10 @@ package report;
 import camp.Camp;
 import user.User;
 
-/** Represents an interface that report must implement */
+/** 
+ * Represents an interface that report must implement
+ * @author Rachel Phuar Yi Ling
+ */
 public interface IReport {
     /**
      * Generates a report of the participants in the camp

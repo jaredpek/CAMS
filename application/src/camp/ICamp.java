@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import user.Faculty;
 import user.User;
 
-/** An interface the implements methods to manipulate the list of camps */
+/** 
+ * An interface the implements methods to manipulate the list of camps
+ * @author Jared Pek
+ */
 public interface ICamp {
     /** 
      * Method to get all camps in the list 

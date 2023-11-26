@@ -7,7 +7,10 @@ import user.Faculty;
 import user.Role;
 import user.User;
 
-/** Represents a control class that manages a list of camps */
+/** 
+ * Represents a control class that manages a list of camps
+ * @author Jared Pek
+ */
 public class CampControl implements IControl, ICamp, IEnrolment {
     /** List of all the available camps */
     private static ArrayList <Camp> camps = new ArrayList <Camp> ();

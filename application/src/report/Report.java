@@ -19,7 +19,10 @@ import suggestion.SuggestionControl;
 import suggestion.SuggestionScore;
 import user.User;
 
-/** Represents a report class that users can use to generate reports */
+/** 
+ * Represents a report class that users can use to generate reports
+ * @author Rachel Phuar Yi Ling
+ */
 public class Report implements IReport {
     /** Static instance of Report */
     public static Report instance = new Report();

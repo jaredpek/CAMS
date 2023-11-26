@@ -2,7 +2,10 @@ package enquiry;
 
 import scan.Scan;
 
-/** Represents a class that edits the enquiry */
+/** 
+ * Represents a class that edits the enquiry
+ * @author Tan Yoong Ken
+ */
 public class EnquiryEdit {
     /**
      * Obtain user input and edits the required enquiry

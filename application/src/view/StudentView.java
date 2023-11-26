@@ -20,7 +20,10 @@ import user.User;
 import user.UserControl;
 import user.UserDisplay;
 
-/** Represents the main view class for students */
+/** 
+ * Represents the main view class for students
+ * @author Jared Pek
+ */
 public class StudentView {
     /** 
      * The logic flow for students after login 

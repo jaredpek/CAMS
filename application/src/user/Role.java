@@ -1,6 +1,7 @@
 package user;
 /**
  * possible role for the user
+ * @author Qiang ZhiQin
  */
 public enum Role {
     STUDENT, STAFF;

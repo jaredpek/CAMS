@@ -7,7 +7,8 @@ import date.DateParse;
 import interfaces.IBuild;
 
 /**
- * A class that build new user to an arraylist
+ * A class that build new user objects
+ * @author Qiang ZhiQin
  */
 public class UserBuild implements IBuild {
     /**

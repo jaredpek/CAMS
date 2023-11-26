@@ -11,7 +11,10 @@ import scan.Scan;
 import user.Faculty;
 import user.User;
 
-/** Builds a new camp object */
+/** 
+ * Builds a new camp object
+ * @author Jared Pek
+ */
 public class CampBuild implements IBuild {
     /** Obtains user input and creates a new camp object
      * @param user This is the user building the camp

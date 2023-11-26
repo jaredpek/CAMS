@@ -4,7 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/** Represents a date parser object to parse String inputs into Date objects */
+/** 
+ * Represents a date parser object to parse String inputs into Date objects
+ * @author Jared Pek
+ */
 public class DateParse {
     /** Static instance to the simple date formatter of a fixed string format */
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");

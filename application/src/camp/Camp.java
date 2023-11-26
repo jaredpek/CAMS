@@ -5,7 +5,10 @@ import java.util.Date;
 
 import user.Faculty;
 
-/** Represent a camp that is available to students */
+/** 
+ * Represent a camp that is available to students
+ * @author Jared Pek
+ */
 public class Camp extends CampInformation {
     /** Unique ID of the camp */
     private long id;

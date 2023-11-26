@@ -3,7 +3,10 @@ package enquiry;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/** Represents a class that computes the scores of commitee members based on enquiries */
+/** 
+ * Represents a class that computes the scores of commitee members based on enquiries
+ * @author Tan Yoong Ken
+ */
 public class EnquiryScore {
     /**
      * Computes the scores of committee members based on enquiries

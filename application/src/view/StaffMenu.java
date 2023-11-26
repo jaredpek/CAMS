@@ -1,6 +1,9 @@
 package view;
 
-/** Represents the menu that is rqeuired for Staff */
+/** 
+ * Represents the menu that is rqeuired for Staff
+ * @author Jared Pek, Gokul Ramesh, Qiang ZhiQin, Rachel Phuar Yi Ling, Tan Yoong Ken
+ */
 public class StaffMenu {
     /** The main menu that staff will see */
     public static void main() {

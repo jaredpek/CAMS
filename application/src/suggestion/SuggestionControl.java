@@ -9,8 +9,8 @@ import message.Status;
 import user.User;
 
 /**
- * Represents the suggestion manager that contains the controls for
- * all of the suggestions that can be used by User
+ * Represents the suggestion manager that contains the controls for all of the suggestions that can be used by User
+ * @author Gokul Ramesh
  */
 public class SuggestionControl implements IControl, ISuggestion {
 	/** The list of suggestion objects */

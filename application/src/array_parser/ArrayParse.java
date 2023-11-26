@@ -2,7 +2,10 @@ package array_parser;
 
 import java.util.ArrayList;
 
-/** Represents an array to parse an array to and from a string representation */
+/** 
+ * Represents an array to parse an array to and from a string representation
+ * @author Jared Pek
+ */
 public class ArrayParse {
     /**
      * Returns a string based on a list of strings using '-' as a delimitter

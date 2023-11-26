@@ -4,7 +4,6 @@ import message.*;
 
 /**
  * Represents a Suggestion made by the User from a Camp
- * 
  * @author Gokul Ramesh
  */
 public class Suggestion extends Message {
