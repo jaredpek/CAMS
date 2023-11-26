@@ -20,7 +20,7 @@ public class IntInput {
                 number = Scan.scan.nextInt(); Scan.scan.nextLine();
             } catch (Exception e) {
                 if (Scan.scan.hasNext()) Scan.scan.nextLine();
-                System.out.println("Invalid integer input.");
+                System.out.println("Invalid integer input");
             }
         } while (number == '\0');
         return number;

@@ -23,5 +23,4 @@ public class EnquiryReply {
         enquiry.setStatus(Status.REPLIED);
         enquiry.setRepliedBy(user);
     }
-    
 }
