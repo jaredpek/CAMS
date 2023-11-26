@@ -11,12 +11,10 @@ import java.util.HashMap;
 import camp.Camp;
 import enquiry.Enquiry;
 import enquiry.EnquiryControl;
-import enquiry.EnquiryScore;
 import input.date.DateParse;
 import input.integer.IntInput;
 import suggestion.Suggestion;
 import suggestion.SuggestionControl;
-import suggestion.SuggestionScore;
 import user.User;
 
 /** 
@@ -114,8 +112,8 @@ public class Report implements IReport {
             ArrayList <Enquiry> enquiries = EnquiryControl.instance.getByCamp(camp);
             ArrayList <Suggestion> suggestions = SuggestionControl.instance.getByCamp(camp);
             ArrayList <String> committees = camp.getCommitteeList();
-            HashMap <String, Integer> enquiryScores = (new EnquiryScore()).compute(enquiries, committees);
-            HashMap <String, Integer> suggestionScores = (new SuggestionScore()).compute(suggestions, committees);
+            HashMap <String, Integer> enquiryScores = enquiryScore.compute(enquiries, committees);
+            HashMap <String, Integer> suggestionScores = suggestionScore.compute(suggestions, committees);
 
             general(out, camp, user);
             out.printf("User ID | Enquiry Points | Suggestion Points | Total Points\n");

@@ -10,6 +10,16 @@ import user.User;
  * @author Jared Pek
  */
 public interface ICamp {
+    /** A CampParse object */
+    public CampParse campParse = new CampParse();
+    /** A CampBuild object */
+    public CampBuild campBuild = new CampBuild();
+    /** A CampEdit object */
+    public CampEdit campEdit = new CampEdit();
+    /** A CampSort object */
+    public CampSort campSort = new CampSort();
+    /** A CampSelect object */
+    public CampSelect campSelect = new CampSelect();
     /** 
      * Method to get all camps in the list 
      * @param user The user getting all the camps

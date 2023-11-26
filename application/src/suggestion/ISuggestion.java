@@ -3,6 +3,7 @@ package suggestion;
 import java.util.ArrayList;
 
 import camp.Camp;
+import camp.CampSelect;
 import user.User;
 
 /** 
@@ -10,6 +11,18 @@ import user.User;
  * @author Gokul Ramesh
  */
 public interface ISuggestion {
+    /** A SuggestionParse object */
+    public SuggestionParse suggestionParse = new SuggestionParse();
+    /** A SuggestionBuild object */
+    public SuggestionBuild suggestionBuild = new SuggestionBuild();
+    /** A SuggestionEdit object */
+    public SuggestionEdit suggestionEdit = new SuggestionEdit();
+    /** A SuggestionSelect object */
+    public SuggestionSelect suggestionSelect = new SuggestionSelect();
+    /** A SuggestionApproveReject object */
+    public SuggestionApproveReject suggestionApproveReject = new SuggestionApproveReject();
+    /** A CampSelect object */
+    public CampSelect campSelect = new CampSelect();
     /**
      * Method to set a new status for a suggestion
      * @param camp The camp that the suggestions to filter by

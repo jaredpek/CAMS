@@ -3,9 +3,8 @@ import java.util.ArrayList;
 
 import camp.Camp;
 import camp.CampControl;
-import camp.CampSelect;
 import interfaces.IControl;
-import message.Status;
+import message.Message;
 import user.User;
 
 /**
@@ -21,12 +20,12 @@ public class SuggestionControl implements IControl, ISuggestion {
 
 	/** Initialises the list of suggestions */
 	public static void start() {
-		suggestions.addAll((new SuggestionParse()).parse("data\\suggestions.csv"));
+		suggestions.addAll(suggestionParse.parse("data\\suggestions.csv"));
 	}
 
 	/** Saves the list of suggestions */
 	public static void close() {
-		(new SuggestionParse()).write("data\\suggestions.csv", suggestions);
+		suggestionParse.write("data\\suggestions.csv", suggestions);
 	}
 
 	/** 
@@ -35,9 +34,9 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void add(User student) {
 		ArrayList <Camp> camps = CampControl.instance.getByCommittee(student);
-		Camp camp = (new CampSelect()).select(camps, student.getUserID());
+		Camp camp = campSelect.select(camps, student.getUserID());
         if (camp == null) return;
-		Suggestion suggestion = (new SuggestionBuild()).build(student, camp);
+		Suggestion suggestion = suggestionBuild.build(student, camp);
 		suggestions.add(suggestion);
 	}
 
@@ -47,7 +46,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 * @return Boolean, true if has been reviewed
 	 */
 	private Boolean isReviewed(Suggestion suggestion) {
-		if (suggestion.getStatus() == Status.PROCESSING) return false;
+		if (Message.reviewed(suggestion)) return false;
 		System.out.println("Suggestion has already been " + suggestion.getStatus().toString());
 		return true;
 	}
@@ -58,9 +57,9 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void edit(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
-		Suggestion suggestion = (new SuggestionSelect()).select(studentSuggestions);
+		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
 		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
-		(new SuggestionEdit()).edit(suggestion);
+		suggestionEdit.edit(suggestion);
 	}
 	
 	/** 
@@ -69,7 +68,7 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void delete(User student) {
 		ArrayList <Suggestion> studentSuggestions = getByStudent(student);
-		Suggestion suggestion = (new SuggestionSelect()).select(studentSuggestions);
+		Suggestion suggestion = suggestionSelect.select(studentSuggestions);
 		if (suggestion == null || isReviewed(suggestion) || suggestion.getUser().compareTo(student.getUserID()) != 0) return;
 		suggestions.remove(suggestion);
 	}
@@ -82,9 +81,9 @@ public class SuggestionControl implements IControl, ISuggestion {
 	 */
 	public void approveRejectSuggestions(Camp camp){
 		ArrayList <Suggestion> campSuggestions = getByCamp(camp);
-		Suggestion suggestion = (new SuggestionSelect()).select(campSuggestions);
+		Suggestion suggestion = suggestionSelect.select(campSuggestions);
 		if (suggestion == null) return;
-		if (!isReviewed(suggestion)) (new SuggestionApproveReject()).ApproveReject(suggestion);
+		if (!isReviewed(suggestion)) suggestionApproveReject.ApproveReject(suggestion);
 	}
 	
 	/**
