@@ -1,10 +1,14 @@
 package camp;
 
-import date.DateInput;
-import scan.Scan;
+import input.Scan;
+import input.date.DateInput;
+import input.integer.IntInput;
 import user.Faculty;
 
-/** Represents a class that edits a specified camp */
+/** 
+ * Represents a class that edits a specified camp
+ * @author Jared Pek
+ */
 public class CampEdit {
     /** This is the attributes of the camp that the user can edit */
     public void menu() {
@@ -28,7 +32,7 @@ public class CampEdit {
     public void edit(Camp camp) {
         if (camp == null) return;
         menu();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1:
                 System.out.printf("Enter New Visibility: "); Boolean active = Scan.scan.nextBoolean();
@@ -46,20 +50,15 @@ public class CampEdit {
                 System.out.printf("Enter New Description: "); String description = Scan.scan.nextLine();
                 camp.setDescription(description); break;
             case 6:
-                System.out.printf("Enter New Start Date: ");
-                camp.setStartDate(DateInput.date("Start Date: ")); break;
+                camp.setStartDate(DateInput.date("Enter New Start Date")); break;
             case 7:
-                System.out.printf("Enter New End Date: ");
-                camp.setEndDate(DateInput.date("End Date: ")); break;
+                camp.setEndDate(DateInput.date("Enter New End Date")); break;
             case 8:
-                System.out.printf("Enter New Date to Register By: ");
-                camp.setRegisterBy(DateInput.date("Register By: ")); break;
+                camp.setRegisterBy(DateInput.date("Enter New Register By")); break;
             case 9:
-                System.out.printf("Enter New Total Slots: "); int totalSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
-                camp.setTotalSlots(totalSlots); break;
+                camp.setTotalSlots(IntInput.integer("Enter New Total Slots")); break;
             case 10:
-                System.out.printf("Enter New Committee Slots: "); int committeeSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
-                camp.setCommitteeSlots(committeeSlots); break;
+                camp.setCommitteeSlots(IntInput.integer("Enter New Committee Slots")); break;
             default: break;
         }
     }

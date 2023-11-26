@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import array_parser.ArrayParse;
 import csv_parser.CSVParse;
-import date.DateParse;
+import input.date.DateParse;
 
-/** Represents a class that reads and writes camp objects to and from a CSV */
+/** 
+ * Represents a class that reads and writes camp objects to and from a CSV
+ * @author Jared Pek
+ */
 public class CampParse {
     /**
      * Creates a new list of camp objects from a provided CSV file

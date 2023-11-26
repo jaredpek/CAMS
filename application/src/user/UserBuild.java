@@ -3,11 +3,12 @@ package user;
 import java.util.ArrayList;
 import java.util.Date;
 
-import date.DateParse;
+import input.date.DateParse;
 import interfaces.IBuild;
 
 /**
- * A class that build new user to an arraylist
+ * A class that build new user objects
+ * @author Qiang ZhiQin
  */
 public class UserBuild implements IBuild {
     /**

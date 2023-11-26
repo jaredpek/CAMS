@@ -3,7 +3,10 @@ package enquiry;
 import message.Message;
 import message.Status;
 
-/** Represent a camp that is available to students */
+/** 
+ * Represent a camp that is available to students
+ * @author Tan Yoong Ken
+ */
 public class Enquiry extends Message {
     /** The reply to the enquiry */
     private String reply;

@@ -1,10 +1,11 @@
 package suggestion;
 
+import input.integer.IntInput;
 import message.Status;
-import scan.Scan;
 
 /**
  * Used by Staff to Approve or Reject a suggestion
+ * @author Gokul Ramesh
  */
 public class SuggestionApproveReject {
 	/**
@@ -19,7 +20,7 @@ public class SuggestionApproveReject {
 		System.out.println("2 - Reject Suggestion");
 		System.out.println("3 - Exit");
 		// can just do a swtich statement here
-		System.out.printf("Option: "); int num = Scan.scan.nextInt(); Scan.scan.nextLine();
+		int num = IntInput.integer("Option");
 		switch(num){
 			case 1:
 				suggestion.setStatus(Status.ACCEPTED);

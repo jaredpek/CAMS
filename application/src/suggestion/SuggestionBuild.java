@@ -3,15 +3,16 @@ package suggestion;
 import java.util.ArrayList;
 
 import camp.Camp;
+import input.Scan;
 import interfaces.IBuild;
 import message.Status;
-import scan.Scan;
 import user.User;
 
 /**
  * Used to add a Suggestion by a User from a Camp
+ * @author Gokul Ramesh
  */
-public class SuggestionBuild implements IBuild{
+public class SuggestionBuild implements IBuild {
 	/**
 	 * Creates a new suggestion, and adds this suggestion to the 
 	 * global list of Suggestions

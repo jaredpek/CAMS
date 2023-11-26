@@ -5,7 +5,10 @@ import java.util.HashMap;
 
 import message.Status;
 
-/** Represents a class that computes the scores of commitee members based on suggestions */
+/** 
+ * Represents a class that computes the scores of commitee members based on suggestions
+ * @author Gokul Ramesh
+ */
 public class SuggestionScore {
     /**
      * Computes the scores of students from suggestions

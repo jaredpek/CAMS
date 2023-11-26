@@ -1,6 +1,9 @@
 package view;
 
-/** Represents the CAMS header to be printed */
+/** 
+ * Represents the CAMS header to be printed
+ * @author Jared Pek
+ */
 public class Header {
     /** The header view to be printed */
     public static void main() {

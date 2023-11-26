@@ -2,7 +2,10 @@ package camp;
 
 import java.util.ArrayList;
 
-/** Represents a class that handles withdrawls from the camp */
+/** 
+ * Represents a class that handles withdrawls from the camp
+ * @author Jared Pek
+ */
 public class CampWithdraw {
     /**
      * Withdraws an attendee from a camp

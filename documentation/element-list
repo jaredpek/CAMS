@@ -1,12 +1,13 @@
 array_parser
 camp
 csv_parser
-date
 enquiry
+input
+input.date
+input.integer
 interfaces
 message
 report
-scan
 suggestion
 user
 view

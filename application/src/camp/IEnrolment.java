@@ -2,7 +2,10 @@ package camp;
 
 import user.User;
 
-/** An interface that represents the required methods for camp participant management */
+/** 
+ * An interface that represents the required methods for camp participant management
+ * @author Jared Pek
+ */
 public interface IEnrolment {
     /**
      * Registers a user to the camp

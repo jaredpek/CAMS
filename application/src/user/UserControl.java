@@ -2,7 +2,10 @@ package user;
 
 import java.util.ArrayList;
 
-/** The control class for user objects */
+/** 
+ * The control class for user objects
+ * @author Qiang ZhiQin
+ */
 public class UserControl implements IUser {
     /** The list of user objects */
     private static ArrayList <User> users = new ArrayList <User> ();

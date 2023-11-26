@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import camp.Camp;
 import camp.CampControl;
 import camp.CampSort;
-import date.DateParse;
+import input.date.DateParse;
 
-/** Represents a class to display user objects */
+/** 
+ * Represents a class to display user objects 
+ * @author Qiang ZhiQin
+ */
 public class UserDisplay {
     /**
      * Methods to print the details of a specific user

@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import array_parser.ArrayParse;
-import date.DateInput;
-import date.DateParse;
+import input.Scan;
+import input.date.DateInput;
+import input.date.DateParse;
+import input.integer.IntInput;
 import interfaces.IBuild;
-import scan.Scan;
 import user.Faculty;
 import user.User;
 
-/** Builds a new camp object */
+/** 
+ * Builds a new camp object
+ * @author Jared Pek
+ */
 public class CampBuild implements IBuild {
     /** Obtains user input and creates a new camp object
      * @param user This is the user building the camp
@@ -25,8 +29,8 @@ public class CampBuild implements IBuild {
         Date startDate = DateInput.date("Start Date");
         Date endDate = DateInput.date("End Date");
         Date registerBy = DateInput.date("Register By");
-        System.out.printf("Total Slots: "); int totalSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
-        System.out.printf("Committee Slots: "); int committeeSlots = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int totalSlots = IntInput.integer("Total Slots");
+        int committeeSlots = IntInput.integer("Committee Slots");
         long id = (long) (new Date()).getTime();
         return new Camp(id, name, group, location, description, startDate, endDate, registerBy, totalSlots, committeeSlots, user.getUserID());
     }

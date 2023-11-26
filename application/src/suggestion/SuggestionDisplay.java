@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import camp.Camp;
 import camp.CampControl;
 
-/** The display class for suggestion objects */
+/** 
+ * The display class for suggestion objects
+ * @author Gokul Ramesh
+ */
 public class SuggestionDisplay {
     /** The table header to be printed */
     public void header() {

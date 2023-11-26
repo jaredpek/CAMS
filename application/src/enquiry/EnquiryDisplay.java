@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import camp.Camp;
 import camp.CampControl;
 
-/** Represent a display class that is responsible for printing the enquiries */
+/** 
+ * Represent a display class that is responsible for printing the enquiries
+ * @author Tan Yoong Ken
+ */
 public class EnquiryDisplay {
     /** The table header to the printed */
     public void header() {

@@ -1,6 +1,7 @@
 package user;
 /**
  * An enumeration of the possible faculties
+ * @author Qiang ZhiQin
  */
 public enum Faculty {
     NBS, CCEB, EEE, CEE, MSE, SCSE, MAE, ADM, SOH, SSS, WKWSCI, SPMS, SBS, ASE, LKC, GC, NIE, RSIS, NTU;

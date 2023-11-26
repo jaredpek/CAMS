@@ -1,6 +1,9 @@
 package view;
 
-/** Represents the menus required by students */
+/** 
+ * Represents the menus required by students
+ * @author Jared Pek, Gokul Ramesh, Qiang ZhiQin, Rachel Phuar Yi Ling, Tan Yoong Ken
+ */
 public class StudentMenu {
     /** The main menu for students */
     public static void main() {

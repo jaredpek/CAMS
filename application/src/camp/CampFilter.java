@@ -3,11 +3,15 @@ package camp;
 import java.util.ArrayList;
 import java.util.Date;
 
-import date.DateInput;
-import scan.Scan;
+import input.Scan;
+import input.date.DateInput;
+import input.integer.IntInput;
 import user.Faculty;
 
-/** Represents a filter class that filters a list of camps based on certain requirements */
+/** 
+ * Represents a filter class that filters a list of camps based on certain requirements
+ * @author Jared Pek, Rachel Phuar Yi Ling
+ */
 public class CampFilter {
     /** The filter methods available to the user */
     public void filterMenu() {
@@ -90,7 +94,7 @@ public class CampFilter {
      */
     public ArrayList <Camp> filterCamps(ArrayList <Camp> camps) {
         filterMenu();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1: {
                 System.out.printf("Enter Group: "); String group = Scan.scan.nextLine();

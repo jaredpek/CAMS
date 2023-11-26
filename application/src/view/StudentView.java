@@ -11,8 +11,8 @@ import camp.CampSort;
 import enquiry.Enquiry;
 import enquiry.EnquiryControl;
 import enquiry.EnquiryDisplay;
+import input.integer.IntInput;
 import report.Report;
-import scan.Scan;
 import suggestion.Suggestion;
 import suggestion.SuggestionControl;
 import suggestion.SuggestionDisplay;
@@ -20,7 +20,10 @@ import user.User;
 import user.UserControl;
 import user.UserDisplay;
 
-/** Represents the main view class for students */
+/** 
+ * Represents the main view class for students
+ * @author Jared Pek
+ */
 public class StudentView {
     /** 
      * The logic flow for students after login 
@@ -29,7 +32,7 @@ public class StudentView {
      */
     public static User show(User user) {
         StudentMenu.main();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1:  (new UserDisplay()).user(user); break;
             case 2: UserControl.instance.resetPassword(user); return null;
@@ -45,7 +48,7 @@ public class StudentView {
             }
             case 5: {
                 StudentMenu.enrolment();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 switch (choice) {
                     case 1: CampControl.instance.registerCamp(user); break;
                     case 2: CampControl.instance.withdrawAttendee(user); break;
@@ -55,7 +58,7 @@ public class StudentView {
             }
             case 6: {
                 StudentMenu.enquiry();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 switch (choice) {
                     case 1: 
                         ArrayList <Enquiry> enquiries = EnquiryControl.instance.getByStudent(user); 
@@ -70,7 +73,7 @@ public class StudentView {
             }
             case 7: {
                 StudentMenu.suggestion();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 switch (choice) {
                     case 1: 
                         ArrayList <Suggestion> suggestions = SuggestionControl.instance.getByStudent(user);

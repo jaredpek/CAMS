@@ -2,7 +2,10 @@ package interfaces;
 
 import user.User;
 
-/** Represents an interface that control classes must implements */
+/** 
+ * Represents an interface that control classes must implements
+ * @author Jared Pek
+ */
 public interface IControl {
     /** 
      * Method to add objects to collection 

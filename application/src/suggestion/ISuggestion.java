@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import camp.Camp;
 import user.User;
 
-/** Represents an interface that the suggestion control must implement */
+/** 
+ * Represents an interface that the suggestion control must implement 
+ * @author Gokul Ramesh
+ */
 public interface ISuggestion {
     /**
      * Method to set a new status for a suggestion

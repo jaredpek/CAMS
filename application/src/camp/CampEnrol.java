@@ -2,9 +2,12 @@ package camp;
 
 import java.util.ArrayList;
 
-import scan.Scan;
+import input.integer.IntInput;
 
-/** Represents a class that handles the enrolment to the camp */
+/** 
+ * Represents a class that handles the enrolment to the camp
+ * @author Jared Pek
+ */
 public class CampEnrol {
     /**
      * Registers an attendee to a camp
@@ -45,7 +48,7 @@ public class CampEnrol {
      */
     public void register(String user, ArrayList <Camp> available) {
         menu();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1: attendee(user, available); break;
             case 2: committee(user, available); break;

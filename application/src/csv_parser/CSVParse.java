@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/** Represents a class that reads and writes to and from a CSV file */
+/** 
+ * Represents a class that reads and writes to and from a CSV file
+ * @author Jared Pek, Qiang ZhiQin
+ */
 public class CSVParse {
     /**
      * Returns a 2D list of strings based on data from a provided CSV file

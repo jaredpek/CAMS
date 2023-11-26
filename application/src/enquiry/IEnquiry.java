@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import camp.Camp;
 import user.User;
 
-/** An interface that implements methods to manipulate the list of enquiries*/
+/** 
+ * An interface that implements methods to manipulate the list of enquiries
+ * @author Tan Yoong Ken
+ */
 public interface IEnquiry {
     /** 
      * Method to reply to enquiry 

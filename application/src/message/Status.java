@@ -2,6 +2,7 @@ package message;
 
 /**
  * The four possible statuses that a message may have
+ * @author Jared Pek
  */
 public enum Status {
     PROCESSING, REPLIED, REJECTED, ACCEPTED;

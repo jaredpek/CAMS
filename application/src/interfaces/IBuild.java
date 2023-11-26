@@ -2,7 +2,10 @@ package interfaces;
 
 import java.util.ArrayList;
 
-/** Represents an interface for object builder classes */
+/** 
+ * Represents an interface for object builder classes
+ * @author Jared Pek
+ */
 public interface IBuild {
     /**
      * Builds a new object based on an array of strings

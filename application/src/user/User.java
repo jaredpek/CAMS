@@ -2,7 +2,10 @@ package user;
 
 import java.util.Date;
 
-/** Represents a user objects who uses the system */
+/** 
+ * Represents a user objects who uses the system
+ * @author Qiang ZhiQin
+ */
 public class User {
     /** The name of the user */
     private String name;

@@ -1,9 +1,10 @@
 package suggestion;
 
-import scan.Scan;
+import input.Scan;
 
 /**
  * Used by User to edit any of the suggestions that they have made
+ * @author Gokul Ramesh
  */
 public class SuggestionEdit {
 	/**

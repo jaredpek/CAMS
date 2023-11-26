@@ -1,6 +1,9 @@
 package camp;
 
-/** An enumeration of the possible roles in the camp */
+/** 
+ * An enumeration of the possible roles in the camp
+ * @author Jared Pek
+ */
 public enum Role {
     ATTENDEE, COMMITTEE, STAFF;
 

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import csv_parser.CSVParse;
 
-/** Represents a class that reads and writes enquiry objects to and from a CSV*/
+/** 
+ * Represents a class that reads and writes enquiry objects to and from a CSV
+ * @author Tan Yoong Ken
+ */
 public class EnquiryParse {
     /** 
      * Create a new list of enquiry objects from a provided CSV file

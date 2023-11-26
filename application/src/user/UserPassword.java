@@ -1,8 +1,9 @@
 package user;
 
-import scan.Scan;
+import input.Scan;
 /**
  * A method to reset user's password
+ * @author Qiang ZhiQin
  */
 public class UserPassword {
     /**

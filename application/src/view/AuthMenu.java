@@ -1,6 +1,9 @@
 package view;
 
-/** Represents the menus required for user authentication */
+/** 
+ * Represents the menus required for user authentication
+ * @author Qiang ZhiQin
+ */
 public class AuthMenu {
     /** The login menu */
     public static void login() {

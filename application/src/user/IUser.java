@@ -1,6 +1,9 @@
 package user;
 
-/** Represents an interface that UserControl must implement */
+/** 
+ * Represents an interface that UserControl must implement
+ * @author Qiang ZhiQin
+ */
 public interface IUser {
     /**
      * Authenticates a user using userId and password

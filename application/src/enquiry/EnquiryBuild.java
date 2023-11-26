@@ -3,12 +3,15 @@ package enquiry;
 import java.util.ArrayList;
 
 import camp.Camp;
+import input.Scan;
 import interfaces.IBuild;
 import message.Status;
-import scan.Scan;
 import user.User;
 
-/** Builds a new enquiry object */
+/** 
+ * Builds a new enquiry object
+ * @author Tan Yoong Ken
+ */
 public class EnquiryBuild implements IBuild {
     /**
      * Obtain user input and creates a new enquiry object
