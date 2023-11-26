@@ -2,7 +2,7 @@ package camp;
 
 import java.util.ArrayList;
 
-import date.DateParse;
+import input.date.DateParse;
 
 /** 
  * Represents a display class that is responsible for printing the camps

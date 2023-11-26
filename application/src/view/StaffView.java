@@ -11,8 +11,8 @@ import camp.CampSort;
 import enquiry.Enquiry;
 import enquiry.EnquiryControl;
 import enquiry.EnquiryDisplay;
+import input.integer.IntInput;
 import report.Report;
-import scan.Scan;
 import suggestion.Suggestion;
 import suggestion.SuggestionControl;
 import suggestion.SuggestionDisplay;
@@ -32,7 +32,7 @@ public class StaffView {
      */
     public static User show(User user) {
         StaffMenu.main();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1: (new UserDisplay()).user(user); break;
             case 2: UserControl.instance.resetPassword(user); return null;
@@ -49,7 +49,7 @@ public class StaffView {
             }
             case 5: {
                 StaffMenu.camp();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 switch (choice) {
                     case 1: CampControl.instance.add(user); break;
                     case 2: CampControl.instance.edit(user); break;
@@ -60,7 +60,7 @@ public class StaffView {
             }
             case 6: {
                 StaffMenu.enquiry();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 switch (choice) {
                     case 1: 
                         ArrayList <Camp> camps = CampControl.instance.getByStaff(user);
@@ -75,7 +75,7 @@ public class StaffView {
             }
             case 7: {
                 StaffMenu.suggestion();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 ArrayList <Camp> camps = CampControl.instance.getByStaff(user);
                 Camp camp = (new CampSelect()).select(camps, user.getUserID());
                 if (camp == null) break;
@@ -90,7 +90,7 @@ public class StaffView {
             }
             case 8: {
                 StaffMenu.report();
-                System.out.printf("Option: "); int choice = Scan.scan.nextInt(); Scan.scan.nextLine();
+                int choice = IntInput.integer("Option");
                 ArrayList <Camp> camps = CampControl.instance.getByStaff(user);
                 Camp camp = (new CampSelect()).select(camps, user.getUserID());
                 if (camp == null) break;

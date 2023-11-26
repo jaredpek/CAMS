@@ -2,7 +2,7 @@ package enquiry;
 
 import java.util.ArrayList;
 
-import scan.Scan;
+import input.integer.IntInput;
 
 /** 
  * Represents a class that selects a list of enquiries
@@ -17,7 +17,7 @@ public class EnquirySelect {
     public Enquiry select(ArrayList <Enquiry> enquiries) {
         (new EnquiryDisplay()).enquiries(enquiries);
         if (enquiries.size() == 0) return null;
-        System.out.printf("Option: "); int index = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int index = IntInput.integer("Option");
         if (1 <= index && index <= enquiries.size()) return enquiries.get(index - 1);
         return null;
     }

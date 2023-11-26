@@ -9,11 +9,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 import camp.Camp;
-import date.DateParse;
 import enquiry.Enquiry;
 import enquiry.EnquiryControl;
 import enquiry.EnquiryScore;
-import scan.Scan;
+import input.date.DateParse;
+import input.integer.IntInput;
 import suggestion.Suggestion;
 import suggestion.SuggestionControl;
 import suggestion.SuggestionScore;
@@ -55,7 +55,7 @@ public class Report implements IReport {
     public void participant(Camp camp, User user) {
         if (camp == null) return;
         menu();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         if (option < 1 || option > 3) return;
         String path = "reports\\participantReport_" + (new Date()).getTime() + ".txt";
         try {

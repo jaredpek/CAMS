@@ -2,7 +2,7 @@ package camp;
 
 import java.util.ArrayList;
 
-import scan.Scan;
+import input.integer.IntInput;
 
 /** 
  * Represents a class that sorts a list of camps in the required order
@@ -102,9 +102,9 @@ public class CampSort {
      */
     public ArrayList <Camp> sortCamps(ArrayList <Camp> camps) {
         sortMenu();
-        System.out.printf("Option: "); int sortOption = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int sortOption = IntInput.integer("Option");
         orderMenu();
-        System.out.printf("Option: "); int orderOption = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int orderOption = IntInput.integer("Option");
         switch (sortOption) {
             case 1: return sortByGroup(camps, orderOption);
             case 2: return sortByLocation(camps, orderOption);

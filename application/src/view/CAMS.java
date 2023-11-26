@@ -2,7 +2,8 @@ package view;
 
 import camp.CampControl;
 import enquiry.EnquiryControl;
-import scan.Scan;
+import input.Scan;
+import input.integer.IntInput;
 import suggestion.SuggestionControl;
 import user.Role;
 import user.User;
@@ -37,7 +38,7 @@ public class CAMS {
     /** Obtains user input and logs in a user if authentication is successful */
     public static void login() {
         AuthMenu.login();
-        System.out.printf("Option: "); int option = Scan.scan.nextInt(); Scan.scan.nextLine();
+        int option = IntInput.integer("Option");
         switch (option) {
             case 1:
                 System.out.printf("User ID: "); String userId = Scan.scan.nextLine();

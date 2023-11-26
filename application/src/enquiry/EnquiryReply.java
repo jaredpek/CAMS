@@ -1,7 +1,7 @@
 package enquiry;
 
+import input.Scan;
 import message.Status;
-import scan.Scan;
 
 /** 
  * Represents a class that replies an enquiry

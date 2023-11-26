@@ -1,6 +1,6 @@
 package enquiry;
 
-import scan.Scan;
+import input.Scan;
 
 /** 
  * Represents a class that edits the enquiry

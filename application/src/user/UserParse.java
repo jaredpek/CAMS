@@ -3,7 +3,7 @@ package user;
 import java.util.ArrayList;
 
 import csv_parser.CSVParse;
-import date.DateParse;
+import input.date.DateParse;
 
 /**
  * methods to read users  and write from the database

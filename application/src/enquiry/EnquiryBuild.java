@@ -3,9 +3,9 @@ package enquiry;
 import java.util.ArrayList;
 
 import camp.Camp;
+import input.Scan;
 import interfaces.IBuild;
 import message.Status;
-import scan.Scan;
 import user.User;
 
 /** 
