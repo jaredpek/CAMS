@@ -7,6 +7,8 @@ package user;
 public interface IUser {
     /** A UserParse object */
     public UserParse userParse = new UserParse();
+    /** A UserPassword object */
+    public UserPassword userPassword = new UserPassword();
     /**
      * Authenticates a user using userId and password
      * @param userID The userID of the student

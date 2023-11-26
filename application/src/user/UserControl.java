@@ -57,6 +57,6 @@ public class UserControl implements IUser {
      * @param user The user to reset password for
      */
     public void resetPassword(User user) {
-        UserPassword.reset(user);
+        userPassword.reset(user);
     }
 }
