@@ -20,12 +20,12 @@ public class CampControl implements IControl, ICamp, IEnrolment {
 
     /** Initialises the camp array with data from a CSV file */
     public static void start() {
-        camps.addAll((new CampParse()).parse("data\\camps.csv"));
+        camps.addAll(campParse.parse("data\\camps.csv"));
     }
 
     /** Saves the camp array to the CSV file */
     public static void close() {
-        (new CampParse()).write("data\\camps.csv", camps);
+        campParse.write("data\\camps.csv", camps);
     }
 
     /**
@@ -45,8 +45,8 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void add(User user) {
         if (!isStaff(user)) return;
-        camps.add((new CampBuild()).build(user));
-        (new CampSort()).sortByAlphabetical(camps, 0);
+        camps.add(campBuild.build(user));
+        campSort.sortByAlphabetical(camps, 0);
     }
 
     /** 
@@ -55,7 +55,7 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void addTemplate(User user) {
         if (!isStaff(user)) return;
-        camps.add((new CampBuild()).template(user));
+        camps.add(campBuild.template(user));
     }
 
     /** 
@@ -65,8 +65,8 @@ public class CampControl implements IControl, ICamp, IEnrolment {
     public void edit(User user) {
         if (!isStaff(user)) return;
         ArrayList <Camp> createdCamps = getByStaff(user);
-        Camp camp = (new CampSelect()).select(createdCamps, user.getUserID());
-        (new CampEdit()).edit(camp);
+        Camp camp = campSelect.select(createdCamps, user.getUserID());
+        campEdit.edit(camp);
     }
 
     /** 
@@ -76,7 +76,7 @@ public class CampControl implements IControl, ICamp, IEnrolment {
     public void delete(User user) {
         if (!isStaff(user)) return;
         ArrayList <Camp> createdCamps = getByStaff(user);
-        Camp camp = (new CampSelect()).select(createdCamps, user.getUserID());
+        Camp camp = campSelect.select(createdCamps, user.getUserID());
         camps.remove(camp);
     }
 
@@ -186,7 +186,7 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void registerCamp(User user) {
         ArrayList <Camp> available = getByGroup(user.getFaculty());
-        (new CampEnrol()).register(user.getUserID(), available);
+        campEnrol.register(user.getUserID(), available);
     }
 
     /**
@@ -195,6 +195,6 @@ public class CampControl implements IControl, ICamp, IEnrolment {
      */
     public void withdrawAttendee(User user) {
         ArrayList <Camp> registered = getByAttendee(user);
-        (new CampWithdraw()).attendee(user.getUserID(), registered);
+        campWithdraw.attendee(user.getUserID(), registered);
     }
 }

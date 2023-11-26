@@ -7,6 +7,10 @@ import user.User;
  * @author Jared Pek
  */
 public interface IEnrolment {
+    /** A CampEnrol object */
+    public CampEnrol campEnrol = new CampEnrol();
+    /** A CampWithdraw object */
+    public CampWithdraw campWithdraw = new CampWithdraw();
     /**
      * Registers a user to the camp
      * @param user The user to register to the camp

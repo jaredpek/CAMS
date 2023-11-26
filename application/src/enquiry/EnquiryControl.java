@@ -6,7 +6,7 @@ import camp.Camp;
 import camp.CampControl;
 import camp.CampSelect;
 import interfaces.IControl;
-import message.Status;
+import message.Message;
 import user.Role;
 import user.User;
 
@@ -23,12 +23,12 @@ public class EnquiryControl implements IControl, IEnquiry {
 
     /** Initialises the enquiry array with data from a CSV file */
     public static void start() {
-        enquiries.addAll((new EnquiryParse()).parse("data\\enquiries.csv"));
+        enquiries.addAll(enquiryParse.parse("data\\enquiries.csv"));
     }
 
      /** Saves the enquiry array to the CSV file */
     public static void close() {
-        (new EnquiryParse()).write("data\\enquiries.csv", enquiries);
+        enquiryParse.write("data\\enquiries.csv", enquiries);
     }
 
 	/**
@@ -37,7 +37,7 @@ public class EnquiryControl implements IControl, IEnquiry {
 	 * @return Boolean, true if has been reviewed
 	 */
 	private Boolean isReviewed(Enquiry enquiry) {
-		if (enquiry.getStatus() == Status.PROCESSING) return false;
+		if (Message.reviewed(enquiry)) return false;
 		System.out.println("Enquiry has already been " + enquiry.getStatus().toString());
 		return true;
 	}
@@ -51,7 +51,7 @@ public class EnquiryControl implements IControl, IEnquiry {
         ArrayList <Camp> camps = CampControl.instance.getByGroupNotCommittee(user);
         Camp camp = (new CampSelect()).select(camps, user.getUserID());
         if (camp == null) return;
-        Enquiry enquiry = (new EnquiryBuild()).build(camp, user);
+        Enquiry enquiry = enquiryBuild.build(camp, user);
         enquiries.add(enquiry);
     }
 
@@ -63,9 +63,9 @@ public class EnquiryControl implements IControl, IEnquiry {
     public void edit(User user) {
         String currentUser = user.getUserID();
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
-        Enquiry enquiry = (new EnquirySelect()).select(studentEnquiries);
+        Enquiry enquiry = enquirySelect.select(studentEnquiries);
         if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
-        (new EnquiryEdit()).edit(enquiry);
+        enquiryEdit.edit(enquiry);
     }
 
     /** 
@@ -75,7 +75,7 @@ public class EnquiryControl implements IControl, IEnquiry {
     public void delete(User user) {
         String currentUser = user.getUserID();
         ArrayList <Enquiry> studentEnquiries = getByStudent(user);
-        Enquiry enquiry = (new EnquirySelect()).select(studentEnquiries);
+        Enquiry enquiry = enquirySelect.select(studentEnquiries);
         if (enquiry == null || isReviewed(enquiry) || enquiry.getUser().compareTo(currentUser) != 0) return;
         enquiries.remove(enquiry);
     }
@@ -91,10 +91,10 @@ public class EnquiryControl implements IControl, IEnquiry {
         Camp camp = (new CampSelect()).select(camps, user.getUserID());
         if (camp == null) return;
         ArrayList <Enquiry> enquiries = getByCamp(camp);
-        Enquiry enquiry = (new EnquirySelect()).select(enquiries);
+        Enquiry enquiry = enquirySelect.select(enquiries);
         if (enquiry == null || isReviewed(enquiry)) return;
         if (!camp.enrolledCommittee(user.getUserID()) && !camp.enrolledStaff(user.getUserID())) return;
-        (new EnquiryReply()).reply(user.getUserID(), enquiry);
+        enquiryReply.reply(user.getUserID(), enquiry);
     }
 
     /**

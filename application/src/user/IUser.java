@@ -5,6 +5,8 @@ package user;
  * @author Qiang ZhiQin
  */
 public interface IUser {
+    /** A UserParse object */
+    public UserParse userParse = new UserParse();
     /**
      * Authenticates a user using userId and password
      * @param userID The userID of the student
