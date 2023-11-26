@@ -28,6 +28,9 @@ public class SuggestionApproveReject {
 			case 2:
 				suggestion.setStatus(Status.REJECTED);
 				break; 
+			case 3:
+				System.err.println("Exiting...");
+				break;
 			default:
 				System.out.println("Invalid Choice!");
 				break;
