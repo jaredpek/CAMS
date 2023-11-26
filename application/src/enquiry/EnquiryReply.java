@@ -12,6 +12,7 @@ public class EnquiryReply {
      */
     public void reply(String user, Enquiry enquiry){
         System.out.printf("Reply: "); String reply = Scan.scan.nextLine();
+        if (reply.isEmpty()) { return; }
         enquiry.setReply(reply);
         enquiry.setStatus(Status.REPLIED);
         enquiry.setRepliedBy(user);
