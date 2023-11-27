@@ -1,6 +1,8 @@
 package report;
 
 import camp.Camp;
+import enquiry.EnquiryScore;
+import suggestion.SuggestionScore;
 import user.User;
 
 /** 
@@ -8,6 +10,10 @@ import user.User;
  * @author Rachel Phuar Yi Ling
  */
 public interface IReport {
+    /** An EnquiryScore object */
+    public EnquiryScore enquiryScore = new EnquiryScore();
+    /** A SuggestionScore object */
+    public SuggestionScore suggestionScore = new SuggestionScore();
     /**
      * Generates a report of the participants in the camp
      * @param camp The camp to generate report for

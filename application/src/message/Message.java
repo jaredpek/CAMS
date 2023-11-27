@@ -86,4 +86,14 @@ public abstract class Message {
     protected void setMessage(String message) {
         this.message = message;
     }
+    /**
+     * Checks whether or not a message has been reviewed
+     * @param message The message object to check
+     * @return Boolean, true is reviewed, false if not reviewed
+     */
+    public static Boolean reviewed(Message message) {
+		if (message.getStatus() == Status.PROCESSING) return false;
+        System.out.printf("This has already been %s\n", message.getStatus());
+        return true;
+    }
 }
